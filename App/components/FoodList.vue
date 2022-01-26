@@ -1,10 +1,17 @@
 <template>
   <div class="container">
     <div class="inner">
-      <FoodItem
-        v-for="food in foods"
-        :key="food.rnum"
-        :food="food" />
+      <div
+        v-if="message"
+        class="message">
+        {{ message }}
+      </div>
+      <div class="foods">
+        <FoodItem
+          v-for="food in foods"
+          :key="food.rnum"
+          :food="food" />
+      </div>
     </div>
   </div>
 </template>
@@ -21,16 +28,33 @@ export default {
   // },
   computed: {
      ...mapState('food', [
-       'foods'
+       'foods',
+       'message'
      ])
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.container {
+  margin-top: 30px;
   .inner {
-    width: 500px;
-    height: 500px;
-    background: red;
+    background-color: $gray-200;
+    padding: 10px 0;
+    border-radius: 4px;
+    text-align: center;
+    &.no-result {
+      padding: 70px 0;
+    }
   }
+  .message {
+    color: $gray-400;
+    font-size: 20px;
+  }
+  .foods {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
 </style>

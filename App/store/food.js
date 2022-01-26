@@ -32,7 +32,6 @@ export default {
       const res = await axios.get(`/api${url}`);
       console.log(res);
       const { list } = res.data;
-      console.log(list[0].prdlstNm);
       commit('updateState', {
         foods: list,
       });
