@@ -60,8 +60,8 @@ export default {
 
   serverMiddleware: [
     {
-      path: '/api/',
-      handler: '~/server-middleware/index.js',
+      path: '/api/food',
+      handler: '~/server-middleware/food.js',
     },
   ],
   proxy: {
