@@ -1,15 +1,18 @@
 <template>
   <div>
+    <HeadLine />
     <Search />
   </div>
 </template>
 
 <script>
+import HeadLine from '~/components/HeadLine';
 import  Search from '~/components/Search';
 
 export default {
   components: {
-    Search
+    Search,
+    HeadLine
   },
 };
 </script>

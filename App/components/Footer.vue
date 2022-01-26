@@ -1,9 +1,27 @@
 <template>
-  <footer></footer>
+  <footer>
+    <Logo />
+  </footer>
 </template>
 
 <script>
-  export default {};
+  import Logo from '~/components/Logo';
+
+  export default {
+    components: {
+      Logo
+    }
+  };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+footer {
+  padding: 70px 0;
+  text-align: center;
+  opacity: .3;
+  .logo {
+    display: block;
+    margin-bottom: 4px;
+  }
+}
+</style>
