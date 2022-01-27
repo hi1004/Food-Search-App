@@ -2,6 +2,7 @@
   <div class="container">
     <input
       v-model="foodName"
+      required
       class="form-control"
       type="text"
       placeholder="검색"
@@ -22,11 +23,11 @@
         </option>
       </select>
     </div>
-    <button
+    <input
+      type="submit"
       class="btn btn-primary"
-      @click="apply">
-      Search
-    </button>
+      value="Search"
+      @click="apply" />
   </div>
 </template>
 
@@ -55,22 +56,15 @@
     },
     methods: {
       apply() {
+        // if(this.foodName !== '') {
         this.$store.dispatch('food/searchFoods', {
           foodName: this.foodName,
           type: this.type,
           number: this.number,
           year: this.year,
         });
+        // }
       },
-    },
-    computed: {
-      reset:()=> {
-        if(this.foodName === '') {
-        this.$store.commit('food/resetFood');
-        }
-      }
-     
-
     },
   };
 </script>

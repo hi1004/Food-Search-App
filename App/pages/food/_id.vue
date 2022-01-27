@@ -26,9 +26,10 @@
         <SwiperSlide>
           <div
             :style="{
-              backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl1)})`,
+              backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl1)})`
             }"
-            class="image"></div>
+            class="image">
+          </div>
           <Loader
             v-if="imageLoading"
             absolute />
@@ -101,11 +102,11 @@
 </template>
 
 <script>
+
   import { mapState } from 'vuex';
   import Loader from '~/components/Loader';
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
   import 'swiper/css/swiper.css';
-
   export default {
     components: {
       Loader,
@@ -148,7 +149,7 @@
     },
     methods: {
       requestDiffSizeImage(url) {
-        // 잘못된 URL(Poster)인 경우.
+        // 잘못된 URL(Image)인 경우.
         if (!url || url === 'N/A') {
           this.imageLoading = false;
           return '';

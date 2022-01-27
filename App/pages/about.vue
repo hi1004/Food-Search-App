@@ -1,13 +1,13 @@
 <template>
-  <ul>
-    <li>about</li>
-    <li>식단기록</li>
-    <li>회원정보 등등</li>
-  </ul>
+  <div></div>
 </template>
 
+<script>
+export default {
+
+}
+</script>
+
 <style>
-  ul {
-    text-align: center;
-  }
+
 </style>
