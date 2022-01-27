@@ -20,15 +20,40 @@
     <div
       v-else
       class="food-details">
-      <div
-        :style="{
-          backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl1)})`,
-        }"
-        class="image">
-        <Loader
-          v-if="imageLoading"
-          absolute />
-      </div>
+      <Swiper
+        class="swiper"
+        :options="swiperOption">
+        <SwiperSlide>
+          <div
+            :style="{
+              backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl1)})`,
+            }"
+            class="image"></div>
+          <Loader
+            v-if="imageLoading"
+            absolute />
+        </SwiperSlide>
+        <SwiperSlide>
+          <div
+            :style="{
+              backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl2)})`,
+            }"
+            class="image"></div>
+          <Loader
+            v-if="imageLoading"
+            absolute />
+        </SwiperSlide>
+        <div
+          class="swiper-pagination"
+          slot="pagination"></div>
+        <div
+          class="swiper-button-prev"
+          slot="button-prev"></div>
+        <div
+          class="swiper-button-next"
+          slot="button-next"></div>
+      </Swiper>
+
       <div class="specs">
         <div class="title">
           {{ theFood.prdlstNm }}
@@ -78,11 +103,36 @@
 <script>
   import { mapState } from 'vuex';
   import Loader from '~/components/Loader';
+  import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
+  import 'swiper/css/swiper.css';
 
   export default {
     components: {
       Loader,
+      Swiper,
+      SwiperSlide,
     },
+    directives: {
+      swiper: directive,
+    },
+    data() {
+      return {
+        swiperOption: {
+          slidesPerView: 1,
+          spaceBetween: 30,
+          loop: false,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        },
+      };
+    },
+
     // ssr이 실행하기 전 동작
     async asyncData({ store, params }) {
       await store.dispatch('food/searchFoodWithId', {
@@ -185,17 +235,34 @@
   .food-details {
     display: flex;
     color: $gray-600;
-    .image {
+    .swiper {
       width: 500px;
       height: calc(500px * 3 / 2);
       margin-right: 70px;
       border-radius: 10px;
-      background-color: $gray-200;
-      background-size: cover;
-      background-position: center;
-      position: relative;
+      display: flex;
       flex-shrink: 0;
+      .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-weight: bold;
+
+        .image {
+          width: 100%;
+          height: 100%;
+          // margin-right: 70px;
+          border-radius: 10px;
+          background-color: $gray-200;
+          background-size: cover;
+          background-position: center;
+          position: relative;
+          flex-shrink: 0;
+        }
+      }
     }
+
     .specs {
       flex-grow: 1;
       .title {
@@ -235,7 +302,7 @@
       }
     }
     @include media-breakpoint-down(xl) {
-      .image {
+      .swiper {
         width: 300px;
         height: calc(300px * 3 / 2);
         margin-right: 40px;
@@ -243,7 +310,7 @@
     }
     @include media-breakpoint-down(lg) {
       display: block;
-      .image {
+      .swiper {
         // margin-bottom: 40px;
         margin: 0 auto 40px;
       }
