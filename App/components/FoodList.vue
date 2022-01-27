@@ -1,15 +1,20 @@
 <template>
   <div class="container">
-    <div class="inner">
+    <div
+      :class="{ 'no-result': !foods.length}"
+      class="inner">
+      <Loader v-if="loading" />
       <div
         v-if="message"
         class="message">
         {{ message }}
       </div>
-      <div class="foods">
+      <div 
+        v-else
+        class="foods">
         <FoodItem
           v-for="food in foods"
-          :key="food.rnum"
+          :key="food.prdlstReportNo"
           :food="food" />
       </div>
     </div>
@@ -18,10 +23,12 @@
 
 <script>
 import { mapState } from 'vuex'
+import Loader from '~/components/Loader'
 import FoodItem from '~/components/FoodItem';
 export default {
   components: {
-    FoodItem
+    FoodItem,
+    Loader
   },
   // mounted() {
   //   console.log(this.foods);
@@ -29,9 +36,11 @@ export default {
   computed: {
      ...mapState('food', [
        'foods',
+       'loading',
        'message'
-     ])
-  }
+     ]),
+  },
+
 }
 </script>
 

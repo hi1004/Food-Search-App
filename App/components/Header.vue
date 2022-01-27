@@ -39,7 +39,7 @@
           },
           {
             name: 'Food',
-            href: '/food',
+            href: '/food/',
             path: /^\/food/,
           },
           {

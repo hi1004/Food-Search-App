@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <input
-      v-model="name"
+      v-model="foodName"
       class="form-control"
       type="text"
       placeholder="검색"
@@ -12,9 +12,7 @@
         v-model="$data[filter.name]"
         :key="filter.name"
         class="form-select">
-        <option
-          v-if="filter.name === 'year'"
-          value="">
+        <option value="">
           All Years
         </option>
         <option
@@ -33,87 +31,93 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      name: '',
-      type: '제품명',
-      number: 10,
-      year: '',
-      filters: [
-        {
-          name: 'type',
-          items: ['제품명', '제조원', '유형']
-        },
-        {
-          name: 'number',
-          items: [10, 20, 30]
-        },
-        {
-          name: '??',
-      
+  export default {
+    data() {
+      return {
+        foodName: '',
+        type: '제품명',
+        number: 10,
+        year: '',
+        filters: [
+          {
+            name: 'type',
+            items: ['제품명', '제조원', '유형'],
+          },
+          {
+            name: 'number',
+            items: [10, 20, 30],
+          },
+          {
+            name: '??',
+          },
+        ],
+      };
+    },
+    methods: {
+      apply() {
+        this.$store.dispatch('food/searchFoods', {
+          foodName: this.foodName,
+          type: this.type,
+          number: this.number,
+          year: this.year,
+        });
+      },
+    },
+    computed: {
+      reset:()=> {
+        if(this.foodName === '') {
+        this.$store.commit('food/resetFood');
         }
-      ]
-    }
-  },
-  methods: {
-    
-     apply() {
-         this.$store.dispatch('food/searchFoods', {
-        name: this.name,
-        type: this.type,
-        number: this.number,
-        year: this.year
-      })
-  
-    }
-  }
-}
+      }
+     
+
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-.container {
-  display: flex;
-  > * {
-    margin-right: 10px;
-    font-size: 15px;
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-  .selects {
+  .container {
     display: flex;
-    select {
-      width: 120px;
+    > * {
       margin-right: 10px;
+      font-size: 15px;
       &:last-child {
         margin-right: 0;
       }
     }
-  }
-  .btn {
-    width: 120px;
-    height: 50px;
-    flex-shrink: 0;
-    font-weight: 700;
-  }
-
-  @include media-breakpoint-down(lg) {
-    display: block;
-    input {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
     .selects {
-      margin-right: 0;
-      margin-bottom: 10px;
+      display: flex;
       select {
-        width: 100%;
+        width: 120px;
+        margin-right: 10px;
+        &:last-child {
+          margin-right: 0;
+        }
       }
     }
     .btn {
-      width: 100%;
+      width: 120px;
+      height: 50px;
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
+    @include media-breakpoint-down(lg) {
+      display: block;
+      input {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+      .selects {
+        margin-right: 0;
+        margin-bottom: 10px;
+        select {
+          width: 100%;
+        }
+      }
+      .btn {
+        width: 100%;
+      }
     }
   }
-}
 </style>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import _uniqBy from 'lodash/uniqBy';
 
 const _defaultMessage = '식품 이름을 검색해주세요!';
 
@@ -16,7 +17,7 @@ export default {
         state[key] = payload[key];
       });
     },
-    resetMovies(state) {
+    resetFood(state) {
       state.foods = [];
       state.message = _defaultMessage;
       state.loading = false;
@@ -24,17 +25,74 @@ export default {
   },
   actions: {
     async searchFoods({ state, commit }, payload) {
-      const { name } = payload;
-
-      const API_KEY =
-        '%2B%2FIm5j1T7QlZAUwzFL9dWaTPwfKay%2B%2BuAKfoBQsixwWd7Klt7ALIFepp9rQcCnSqw6oIY82%2FK%2FiOsja2j4zZ9g%3D%3D';
-      const url = `http://apis.data.go.kr/B553748/CertImgListService/getCertImgListService?serviceKey=${API_KEY}&prdlstNm=${name}&returnType=json&pageNo=1&numOfRows=30`;
-      const res = await axios.get(`/api${url}`);
-      console.log(res);
-      const { list } = res.data;
+      if (state.loading) return;
       commit('updateState', {
-        foods: list,
+        message: '',
+        loading: true,
       });
+
+      try {
+        const res = await _fetchFood({
+          ...payload,
+        });
+        const { list, totalCount } = res.data;
+        commit('updateState', {
+          foods: _uniqBy(list, 'prdlstReportNo'),
+        });
+
+        const total = parseInt(totalCount, 10);
+        const pageLength = Math.ceil(total / 10);
+
+        // 추가 요청!
+        // if (pageLength > 1) {
+        //   for (let page = 2; page <= pageLength; page += 1) {
+        //     if (page > payload.number / 10) break;
+        //     const res = await _fetchFood({
+        //       ...payload,
+        //       page,
+        //     });
+        //     const { list } = res.data;
+        //     // imdbID로 고유화하는 코드 수정!
+        //     commit('updateState', {
+        //       foods: _uniqBy([...state.foods, ...list], 'prdlstReportNo'),
+        //     });
+        //   }
+        // }
+      } catch ({ message }) {
+        commit('updateState', {
+          foods: [],
+          message,
+        });
+      } finally {
+        commit('updateState', {
+          loading: false,
+        });
+      }
+    },
+    async searchFoodWithId({ state, commit }, payload) {
+      // const { id } = payload
+      if (state.loading) return;
+
+      commit('updateState', {
+        theFood: {},
+        loading: true,
+      });
+
+      try {
+        const res = await _fetchFood(payload);
+        console.log(res);
+        commit('updateState', {
+          theFood: Object.apply({}, res.data.list),
+        });
+      } catch (error) {
+        commit('updateState', {
+          theFood: {},
+        });
+      } finally {
+        commit('updateState', {
+          loading: false,
+        });
+      }
     },
   },
 };
