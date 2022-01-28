@@ -167,7 +167,7 @@
         return src;
       },
        toSearch() {
-        this.$router.push('/searchResult');
+        this.$router.push('search/searchResult');
       },
     },
     head() {
