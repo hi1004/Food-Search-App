@@ -1,5 +1,7 @@
 <template>
-  <div class="container">
+  <div
+    class="container"
+    :style="{margin:`${mt}px auto`}">
     <input
       v-model="foodName"
       required
@@ -20,11 +22,11 @@
         </option>
       </select>
     </div>
-    <div
+    <button
       class="btn btn-primary"
       @click="apply">
       Search
-    </div>
+    </button>
   </div>
 </template>
 
@@ -46,6 +48,12 @@
           },
         ],
       };
+    },
+    props: {
+      mt: {
+        type: Number,
+        default: 0
+      }
     },
     methods: {
       apply() {
@@ -86,6 +94,7 @@
       height: 50px;
       flex-shrink: 0;
       font-weight: 700;
+      color: $white;
     }
 
     @include media-breakpoint-down(lg) {

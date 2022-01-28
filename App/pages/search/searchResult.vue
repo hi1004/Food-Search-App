@@ -17,9 +17,7 @@ export default {
     // HeadLine,
     FoodList
   },
-  //  created() {
-  //   this.$store.commit('food/resetFood')
-  // }
+
 };
 </script>
 
