@@ -2,29 +2,17 @@
   <header>
     <Logo />
     <div class="nav nav-pills">
-      <div
-        v-for="nav in navigations"
-        :key="nav.name"
-        class="nav-item">
-        <NuxtLink
-          :to="nav.href"
-          active-class="active"
-          :class="{ active: isMatch(nav.path) }"
-          class="nav-link"
-          exact>
+      <div v-for="nav in navigations" :key="nav.name" class="nav-item">
+        <NuxtLink :to="nav.href" active-class="active" :class="{ active: isMatch(nav.path) }" class="nav-link" exact>
           {{ nav.name }}
         </NuxtLink>
       </div>
     </div>
-    <div
-      class="user"
-      @click="toggleSignIn">
+    <div class="user" @click="toggleSignIn">
       <img />
     </div>
     <transition name="slide">
-      <div
-        v-if="showSignIn"
-        id="signIn">
+      <div v-if="showSignIn" id="signIn">
         <form>
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
@@ -33,36 +21,22 @@
               class="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              placeholder="Enter email" />
-            <small
-              id="emailHelp"
-              class="form-text text-muted">We'll never share your email with anyone else.</small>
+              placeholder="Enter email"
+            />
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password" />
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
           </div>
           <div class="form-group form-check">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              id="exampleCheck1" />
-            <label
-              class="form-check-label"
-              for="exampleCheck1">Remember me</label>
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
           </div>
-          <button
-            type="submit"
-            class="btn btn-primary">
-            Sign In
-          </button>
-          <small
-            id="registerHelp"
-            class="form-text text-muted">Don't have an account? <a href="#">Create Account!</a></small>
+          <button type="submit" class="btn btn-primary">Sign In</button>
+          <small id="registerHelp" class="form-text text-muted"
+            >Don't have an account? <a href="#">Create Account!</a></small
+          >
         </form>
       </div>
     </transition>
@@ -80,7 +54,7 @@
       return {
         showSignIn: false,
         navigations: [
-           {
+          {
             name: 'Home',
             href: '/',
           },
@@ -93,8 +67,8 @@
             href: '/search/searchResult',
           },
           {
-            name: 'About',
-            href: '/about',
+            name: 'My Page',
+            href: '/myPage',
           },
         ],
       };
