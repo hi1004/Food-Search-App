@@ -13,9 +13,6 @@
         v-model="$data[filter.name]"
         :key="filter.name"
         class="form-select">
-        <option value="">
-          All Years
-        </option>
         <option
           v-for="item in filter.items"
           :key="item">
@@ -23,11 +20,11 @@
         </option>
       </select>
     </div>
-    <input
-      type="submit"
+    <div
       class="btn btn-primary"
-      value="Search"
-      @click="apply" />
+      @click="apply">
+      Search
+    </div>
   </div>
 </template>
 
@@ -38,32 +35,27 @@
         foodName: '',
         type: '제품명',
         number: 10,
-        year: '',
         filters: [
           {
             name: 'type',
-            items: ['제품명', '제조원', '유형'],
+            items: ['제품명', '알레르기'],
           },
           {
             name: 'number',
             items: [10, 20, 30],
-          },
-          {
-            name: '??',
           },
         ],
       };
     },
     methods: {
       apply() {
-        // if(this.foodName !== '') {
+        this.$router.push('/search/searchResult')
         this.$store.dispatch('food/searchFoods', {
           foodName: this.foodName,
           type: this.type,
           number: this.number,
           year: this.year,
         });
-        // }
       },
     },
   };

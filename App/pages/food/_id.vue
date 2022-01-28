@@ -98,6 +98,11 @@
         </div>
       </div>
     </div>
+    <div
+      id="to-search"
+      @click="toSearch">
+      click
+    </div>
   </div>
 </template>
 
@@ -160,6 +165,9 @@
           this.imageLoading = false;
         });
         return src;
+      },
+       toSearch() {
+        this.$router.push('/searchResult');
       },
     },
     head() {
@@ -302,6 +310,8 @@
         font-size: 20px;
       }
     }
+   
+
     @include media-breakpoint-down(xl) {
       .swiper {
         width: 300px;
@@ -324,4 +334,12 @@
       }
     }
   }
+   #to-search {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      bottom: 0;
+      left: 0;
+    }
 </style>

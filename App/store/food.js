@@ -26,6 +26,7 @@ export default {
   actions: {
     async searchFoods({ state, commit }, payload) {
       if (state.loading) return;
+
       commit('updateState', {
         message: '',
         loading: true,
@@ -36,7 +37,7 @@ export default {
           ...payload,
           pageNo: 1,
         });
-        console.log(res);
+        console.log('res', res);
         const { list, totalCount } = res.data;
 
         // 같은 이름 중복제거
@@ -52,12 +53,14 @@ export default {
         } else if (payload.foodName === '') {
           commit('updateState', {
             message: `아무것도 입력하지 않으셨습니다. 다시 입력해주세요!`,
+            foods: [],
           });
         }
+        // console.log(res.list.allergy);
+        // console.log(payload);
 
         const total = parseInt(totalCount, 10);
         const pageLength = Math.ceil(total / 10);
-        console.log('payload', payload);
         // 추가 요청!
         if (pageLength > 1) {
           for (let pageNo = 2; pageNo <= pageLength; pageNo += 1) {
@@ -95,7 +98,6 @@ export default {
 
       try {
         const res = await _fetchFood(payload);
-        console.log(res);
         commit('updateState', {
           theFood: Object.apply({}, res.data.list),
         });

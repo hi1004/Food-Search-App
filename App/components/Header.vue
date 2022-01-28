@@ -33,14 +33,17 @@
     data() {
       return {
         navigations: [
-          {
-            name: 'Search',
+           {
+            name: 'Home',
             href: '/',
           },
           {
-            name: 'Food',
-            href: '/food',
-            path: /^\/food/,
+            name: 'Search',
+            href: '/search/search',
+          },
+          {
+            name: 'SearchResult',
+            href: '/search/searchResult',
           },
           {
             name: 'About',
