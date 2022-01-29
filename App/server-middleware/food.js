@@ -16,7 +16,6 @@ app.post('/', async (req, res) => {
     : `http://apis.data.go.kr/B553748/CertImgListService/getCertImgListService?serviceKey=${API_KEY}&prdlstNm=${encodeURIComponent(
         foodName
       )}&returnType=json&pageNo=${pageNo}&numOfRows=12`;
-
   try {
     const { data } = await axios.get(`${url}`);
     if (!data) {
@@ -28,4 +27,7 @@ app.post('/', async (req, res) => {
   }
 });
 
-module.exports = app;
+module.exports = {
+  path: '/api/food',
+  handler: app,
+};

@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeadLine />
-    <Search />
+    <Search :mt="80" />
     <!-- <FoodList /> -->
   </div>
 </template>
@@ -17,9 +17,9 @@
       HeadLine,
       // FoodList
     },
-    //  created() {
-    //   this.$store.commit('food/resetFood')
-    // }
+     created() {
+      this.$store.commit('food/resetFood')
+    }
   };
 </script>
 

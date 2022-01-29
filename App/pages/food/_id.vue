@@ -167,7 +167,7 @@
         return src;
       },
        toSearch() {
-        this.$router.push('search/searchResult');
+        this.$router.push('/search/searchResult');
       },
     },
     head() {
@@ -245,8 +245,8 @@
     display: flex;
     color: $gray-600;
     .swiper {
-      width: 500px;
-      height: calc(500px * 3 / 2);
+      width: 300px;
+      height: calc(300px * 3 / 2);
       margin-right: 70px;
       border-radius: 10px;
       display: flex;
@@ -340,6 +340,7 @@
       height: 100px;
       background-color: red;
       bottom: 0;
+      z-index: 1;
       left: 0;
     }
 </style>
