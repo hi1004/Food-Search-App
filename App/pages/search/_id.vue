@@ -93,18 +93,6 @@
   import Chart from 'chart.js/auto';
   import 'swiper/css/swiper.css';
 
-  const chartData = {
-    labels: ['탄수화물', '단백질', '지방'],
-    datasets: [
-      {
-        label: 'nutrients data',
-        data: [300, 50, 100],
-        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
-        hoverOffset: 4,
-      },
-    ],
-  };
-
   export default {
     components: {
       Loader,
@@ -162,11 +150,27 @@
         this.$router.push('search/result');
       },
       // Create Chart Method
-      createChart(chartId, data) {
+      createChart(chartId) {
+        // parsing nutrient data
+        const nutrient = this.theFood.nutrient;
+        const carbohydrate = 666 || Number(nutrient.match(/탄수화물 [0-9\.]*/)[0].replace('탄수화물 ', ''));
+        const protein = 666 || Number(nutrient.match(/단백질 [0-9\.]*/)[0].replace('단백질 ', ''));
+        const fat = 666 || Number(nutrient.match(/지방 [0-9\.]*/)[0].replace('지방 ', ''));
+        // create chart
         const ctx = document.getElementById(chartId);
         const nutrientChart = new Chart(ctx, {
           type: 'doughnut',
-          data: data,
+          data: {
+            labels: ['탄수화물', '단백질', '지방'],
+            datasets: [
+              {
+                label: 'nutrients data',
+                data: [carbohydrate, protein, fat],
+                backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+                hoverOffset: 4,
+              },
+            ],
+          },
           options: {
             responsive: false,
           },
@@ -174,7 +178,7 @@
       },
     },
     mounted() {
-      this.createChart('nutrient-chart', chartData);
+      this.createChart('nutrient-chart');
     },
     head() {
       return {
