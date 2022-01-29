@@ -153,9 +153,10 @@
       createChart(chartId) {
         // parsing nutrient data
         const nutrient = this.theFood.nutrient;
-        const carbohydrate = 666 || Number(nutrient.match(/탄수화물 [0-9\.]*/)[0].replace('탄수화물 ', ''));
-        const protein = 666 || Number(nutrient.match(/단백질 [0-9\.]*/)[0].replace('단백질 ', ''));
-        const fat = 666 || Number(nutrient.match(/지방 [0-9\.]*/)[0].replace('지방 ', ''));
+        console.log(nutrient);
+        const carbohydrate = Number(nutrient.match(/탄수화물 [0-9\.]*/)[0].replace('탄수화물 ', '')) || 666;
+        const protein = Number(nutrient.match(/단백질 [0-9\.]*/)[0].replace('단백질 ', '')) || 666;
+        const fat = Number(nutrient.match(/지방 [0-9\.]*/)[0].replace('지방 ', '')) || 666;
         // create chart
         const ctx = document.getElementById(chartId);
         const nutrientChart = new Chart(ctx, {
