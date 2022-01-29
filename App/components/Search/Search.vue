@@ -5,6 +5,8 @@
     <input
       v-model="foodName"
       required
+      v-focus
+      autofocus
       class="form-control"
       type="text"
       placeholder="검색"
@@ -35,17 +37,12 @@
     data() {
       return {
         foodName: '',
-        type: '제품명',
-        number: 10,
+        number: 12,
         filters: [
-          {
-            name: 'type',
-            items: ['제품명', '알레르기'],
-          },
-          {
-            name: 'number',
-            items: [10, 20, 30],
-          },
+          // {
+          //   name: 'number',
+          //   items: [10, 20, 30],
+          // },
         ],
       };
     },
@@ -53,19 +50,25 @@
       mt: {
         type: Number,
         default: 0
-      }
+      },
     },
     methods: {
       apply() {
         this.$router.push('/search/searchResult')
         this.$store.dispatch('food/searchFoods', {
           foodName: this.foodName,
-          type: this.type,
           number: this.number,
-          year: this.year,
         });
       },
     },
+    directives: {
+  focus: {
+    // 디렉티브 정의
+    inserted: function (el) {
+      el.focus()
+    }
+  }
+}
   };
 </script>
 

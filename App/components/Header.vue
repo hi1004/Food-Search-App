@@ -42,11 +42,11 @@
             name: 'Search',
             href: '/search/search',
           },
-          // {
-          //   name: 'SearchResult',
-          //   href: '/search/searchResult',
-          //   path: /^\/search^\/searchResult/
-          // },
+          {
+            name: 'Test',
+            href: '/test/',
+        
+          },
           {
             name: 'My Page',
             href: '/myPage',

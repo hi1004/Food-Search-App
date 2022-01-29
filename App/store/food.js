@@ -10,6 +10,7 @@ export default {
     message: _defaultMessage,
     loading: false,
     theFood: {},
+    foodName: '',
   }),
   mutations: {
     updateState: (state, payload) => {
@@ -26,10 +27,10 @@ export default {
   actions: {
     async searchFoods({ state, commit }, payload) {
       if (state.loading) return;
-
       commit('updateState', {
         message: '',
         loading: true,
+        foodName: payload.foodName,
       });
 
       try {
@@ -37,6 +38,8 @@ export default {
           ...payload,
           pageNo: 1,
         });
+        // infinite
+
         console.log('res', res);
         const { list, totalCount } = res.data;
 
@@ -54,13 +57,17 @@ export default {
           commit('updateState', {
             message: `아무것도 입력하지 않으셨습니다. 다시 입력해주세요!`,
             foods: [],
+            foodName: '',
           });
         }
+
         // console.log(res.list.allergy);
         // console.log(payload);
 
         const total = parseInt(totalCount, 10);
         const pageLength = Math.ceil(total / 10);
+        console.log('payload', { ...payload });
+        console.log('payload', payload);
         // 추가 요청!
         if (pageLength > 1) {
           for (let pageNo = 2; pageNo <= pageLength; pageNo += 1) {
@@ -69,8 +76,9 @@ export default {
               ...payload,
               pageNo,
             });
+            console.log(pageNo);
             const { list } = res.data;
-            // imdbID로 고유화하는 코드 수정!
+
             commit('updateState', {
               foods: _uniqBy([...state.foods, ...list], 'prdlstNm'),
             });

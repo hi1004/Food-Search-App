@@ -17,9 +17,9 @@
       HeadLine,
       // FoodList
     },
-    //  created() {
-    //   this.$store.commit('food/resetFood')
-    // }
+     created() {
+      this.$store.commit('food/resetFood')
+    }
   };
 </script>
 
