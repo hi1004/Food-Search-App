@@ -12,47 +12,31 @@
           <div class="skeleton etc"></div>
         </div>
       </div>
-      <Loader
-        :size="3"
-        :z-index="9"
-        fixed />
+      <Loader :size="3" :z-index="9" fixed />
     </template>
-    <div
-      v-else
-      class="food-details">
-      <Swiper
-        class="swiper"
-        :options="swiperOption">
+    <div v-else class="food-details">
+      <Swiper class="swiper" :options="swiperOption">
         <SwiperSlide>
           <div
             :style="{
-              backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl1)})`
+              backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl1)})`,
             }"
-            class="image">
-          </div>
-          <Loader
-            v-if="imageLoading"
-            absolute />
+            class="image"
+          ></div>
+          <Loader v-if="imageLoading" absolute />
         </SwiperSlide>
         <SwiperSlide>
           <div
             :style="{
               backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl2)})`,
             }"
-            class="image"></div>
-          <Loader
-            v-if="imageLoading"
-            absolute />
+            class="image"
+          ></div>
+          <Loader v-if="imageLoading" absolute />
         </SwiperSlide>
-        <div
-          class="swiper-pagination"
-          slot="pagination"></div>
-        <div
-          class="swiper-button-prev"
-          slot="button-prev"></div>
-        <div
-          class="swiper-button-next"
-          slot="button-next"></div>
+        <div class="swiper-pagination" slot="pagination"></div>
+        <div class="swiper-button-prev" slot="button-prev"></div>
+        <div class="swiper-button-next" slot="button-next"></div>
       </Swiper>
 
       <div class="specs">
@@ -70,9 +54,7 @@
 
         <h3>바코드</h3>
         <div>
-          <img
-            src="~/assets/images/barcode.png"
-            :alt="theFood.prdlstNm" />
+          <img src="~/assets/images/barcode.png" :alt="theFood.prdlstNm" />
           <span>{{ theFood.barcode }}</span>
         </div>
 
@@ -98,16 +80,11 @@
         </div>
       </div>
     </div>
-    <div
-      id="to-search"
-      @click="toSearch">
-      click
-    </div>
+    <div id="to-search" @click="toSearch">click</div>
   </div>
 </template>
 
 <script>
-
   import { mapState } from 'vuex';
   import Loader from '~/components/Loader';
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
@@ -141,7 +118,7 @@
 
     // ssr이 실행하기 전 동작
     async asyncData({ store, params }) {
-      await store.dispatch('food/searchFoodWithId', {
+      await store.dispatch('search/searchFoodWithId', {
         id: params.id,
       });
       return {
@@ -150,7 +127,7 @@
     },
 
     computed: {
-      ...mapState('food', ['loading', 'theFood']),
+      ...mapState('search', ['loading', 'theFood']),
     },
     methods: {
       requestDiffSizeImage(url) {
@@ -166,8 +143,8 @@
         });
         return src;
       },
-       toSearch() {
-        this.$router.push('search/searchResult');
+      toSearch() {
+        this.$router.push('search/result');
       },
     },
     head() {
@@ -310,7 +287,6 @@
         font-size: 20px;
       }
     }
-   
 
     @include media-breakpoint-down(xl) {
       .swiper {
@@ -334,12 +310,12 @@
       }
     }
   }
-   #to-search {
-      position: fixed;
-      width: 100px;
-      height: 100px;
-      background-color: red;
-      bottom: 0;
-      left: 0;
-    }
+  #to-search {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    bottom: 0;
+    left: 0;
+  }
 </style>
