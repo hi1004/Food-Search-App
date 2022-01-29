@@ -15,30 +15,32 @@
       <Loader :size="3" :z-index="9" fixed />
     </template>
     <div v-else class="food-details">
-      <Swiper class="swiper" :options="swiperOption">
-        <SwiperSlide>
-          <div
-            :style="{
-              backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl1)})`,
-            }"
-            class="image"
-          ></div>
-          <Loader v-if="imageLoading" absolute />
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            :style="{
-              backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl2)})`,
-            }"
-            class="image"
-          ></div>
-          <Loader v-if="imageLoading" absolute />
-        </SwiperSlide>
-        <div class="swiper-pagination" slot="pagination"></div>
-        <div class="swiper-button-prev" slot="button-prev"></div>
-        <div class="swiper-button-next" slot="button-next"></div>
-      </Swiper>
-
+      <div class="left-section">
+        <Swiper class="swiper" :options="swiperOption">
+          <SwiperSlide>
+            <div
+              :style="{
+                backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl1)})`,
+              }"
+              class="image"
+            ></div>
+            <Loader v-if="imageLoading" absolute />
+          </SwiperSlide>
+          <SwiperSlide>
+            <div
+              :style="{
+                backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl2)})`,
+              }"
+              class="image"
+            ></div>
+            <Loader v-if="imageLoading" absolute />
+          </SwiperSlide>
+          <div class="swiper-pagination" slot="pagination"></div>
+          <div class="swiper-button-prev" slot="button-prev"></div>
+          <div class="swiper-button-next" slot="button-next"></div>
+        </Swiper>
+        <canvas id="nutrient-chart"></canvas>
+      </div>
       <div class="specs">
         <div class="title">
           {{ theFood.prdlstNm }}
@@ -88,7 +90,21 @@
   import { mapState } from 'vuex';
   import Loader from '~/components/Loader';
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
+  import Chart from 'chart.js/auto';
   import 'swiper/css/swiper.css';
+
+  const chartData = {
+    labels: ['탄수화물', '단백질', '지방'],
+    datasets: [
+      {
+        label: 'nutrients data',
+        data: [300, 50, 100],
+        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+        hoverOffset: 4,
+      },
+    ],
+  };
+
   export default {
     components: {
       Loader,
@@ -125,7 +141,6 @@
         imageLoading: true,
       };
     },
-
     computed: {
       ...mapState('search', ['loading', 'theFood']),
     },
@@ -146,6 +161,20 @@
       toSearch() {
         this.$router.push('search/result');
       },
+      // Create Chart Method
+      createChart(chartId, data) {
+        const ctx = document.getElementById(chartId);
+        const nutrientChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: data,
+          options: {
+            responsive: false,
+          },
+        });
+      },
+    },
+    mounted() {
+      this.createChart('nutrient-chart', chartData);
     },
     head() {
       return {
@@ -221,34 +250,41 @@
   .food-details {
     display: flex;
     color: $gray-600;
-    .swiper {
-      width: 500px;
-      height: calc(500px * 3 / 2);
-      margin-right: 70px;
-      border-radius: 10px;
+    .left-section {
       display: flex;
-      flex-shrink: 0;
-      .swiper-slide {
+      width: 500px;
+      flex-direction: column;
+      align-items: center;
+      .swiper {
+        width: 400px;
+        height: calc(300px * 3 / 2);
+        border-radius: 10px;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        font-weight: bold;
-
-        .image {
-          width: 100%;
-          height: 100%;
-          // margin-right: 70px;
-          border-radius: 10px;
-          background-color: $gray-200;
-          background-size: cover;
-          background-position: center;
-          position: relative;
-          flex-shrink: 0;
+        flex-shrink: 0;
+        .swiper-slide {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          font-weight: bold;
+          .image {
+            width: 100%;
+            height: 100%;
+            // margin-right: 70px;
+            border-radius: 10px;
+            background-color: $gray-200;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            flex-shrink: 0;
+          }
         }
       }
+      #nutrient-chart {
+        width: 300px;
+        height: 300px;
+      }
     }
-
     .specs {
       flex-grow: 1;
       .title {
@@ -292,7 +328,6 @@
       .swiper {
         width: 300px;
         height: calc(300px * 3 / 2);
-        margin-right: 40px;
       }
     }
     @include media-breakpoint-down(lg) {
