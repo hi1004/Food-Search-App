@@ -151,12 +151,17 @@
       },
       // Create Chart Method
       createChart(chartId) {
-        // parsing nutrient data
+        // set default
+        let carbohydrate = 666;
+        let protein = 666;
+        let fat = 666;
+        // parsing nutrient data if nutrient data is not unknown
         const nutrient = this.theFood.nutrient;
-        console.log(nutrient);
-        const carbohydrate = Number(nutrient.match(/탄수화물 [0-9\.]*/)[0].replace('탄수화물 ', '')) || 666;
-        const protein = Number(nutrient.match(/단백질 [0-9\.]*/)[0].replace('단백질 ', '')) || 666;
-        const fat = Number(nutrient.match(/지방 [0-9\.]*/)[0].replace('지방 ', '')) || 666;
+        if (nutrient != '알수없음') {
+          carbohydrate = Number(nutrient.match(/탄수화물 [0-9\.]*/)[0].replace('탄수화물 ', ''));
+          protein = Number(nutrient.match(/단백질 [0-9\.]*/)[0].replace('단백질 ', ''));
+          fat = Number(nutrient.match(/지방 [0-9\.]*/)[0].replace('지방 ', ''));
+        }
         // create chart
         const ctx = document.getElementById(chartId);
         const nutrientChart = new Chart(ctx, {
