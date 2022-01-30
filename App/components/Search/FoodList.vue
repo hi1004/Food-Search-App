@@ -1,17 +1,28 @@
 <template>
   <div class="container">
-    <div :class="{ 'no-result': !foods.length }" class="inner">
+    <div
+      :class="{ 'no-result': !foods.length }"
+      class="inner">
       <Loader v-if="loading" />
-      <div v-if="message" class="message">
+      <div
+        v-if="message"
+        class="message">
         {{ message }}
       </div>
 
-      <div v-else class="foods">
+      <div
+        v-else
+        class="foods">
         <h2 v-if="!loading">
           <span>{{ total.totalCount }}개</span>의 <span>"{{ foodName }}"</span>에 대한 검색 결과 입니다.
         </h2>
-        <FoodItem v-for="food in scrollData" :key="food.prdlstReportNo" :food="food" />
-        <InfiniteLoading v-if="scrollData.length" @infinite="scrolling" />
+        <FoodItem
+          v-for="food in scrollData"
+          :key="food.prdlstReportNo"
+          :food="food" />
+        <InfiniteLoading
+          v-if="scrollData.length"
+          @infinite="scrolling" />
       </div>
     </div>
   </div>
@@ -68,7 +79,7 @@
           } else {
             $state.complete();
           }
-        }, 500);
+        }, 1000);
       },
     },
   };

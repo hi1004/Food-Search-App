@@ -1,12 +1,16 @@
 <template>
   <div>
-    <div v-for="(item, idx) in scrollData" :key="idx">
+    <div
+      v-for="(item, idx) in scrollData"
+      :key="idx">
       <div style="padding: 5px">
         {{ item.prdlstNm }}
       </div>
     </div>
     <br />
-    <infinite-loading v-if="scrollData.length" @infinite="scrolling" />
+    <infinite-loading
+      v-if="scrollData.length"
+      @infinite="scrolling" />
   </div>
 </template>
 

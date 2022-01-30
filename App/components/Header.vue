@@ -2,13 +2,23 @@
   <header>
     <Logo />
     <div class="nav nav-pills">
-      <div v-for="nav in navigations" :key="nav.name" class="nav-item">
-        <NuxtLink :to="nav.href" active-class="active" :class="{ active: isMatch(nav.path) }" class="nav-link" exact>
+      <div
+        v-for="nav in navigations"
+        :key="nav.name"
+        class="nav-item">
+        <NuxtLink
+          :to="nav.href"
+          active-class="active"
+          :class="{ active: isMatch(nav.path) }"
+          class="nav-link"
+          exact>
           {{ nav.name }}
         </NuxtLink>
       </div>
     </div>
-    <div class="user" @click="toSignIn">
+    <div
+      class="user"
+      @click="toSignIn">
       <img />
     </div>
   </header>
@@ -31,10 +41,6 @@
           {
             name: 'Search',
             href: '/search/',
-          },
-          {
-            name: 'Test',
-            href: '/test/',
           },
           {
             name: 'My Page',

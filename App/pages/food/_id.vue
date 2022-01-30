@@ -12,50 +12,33 @@
           <div class="skeleton etc"></div>
         </div>
       </div>
-      <Loader
-        :size="3"
-        :z-index="9"
-        fixed />
+      <Loader :size="3" :z-index="9" fixed />
     </template>
-    <div
-      v-else
-      class="food-details">
-      <div class="contents">
-        <Swiper
-          class="swiper"
-          :options="swiperOption">
-          <SwiperSlide>
-            <div
-              :style="{
-                backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl1)})`,
-              }"
-              class="image"></div>
-            <Loader
-              v-if="imageLoading"
-              absolute />
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              :style="{
-                backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl2)})`,
-              }"
-              class="image"></div>
-            <Loader
-              v-if="imageLoading"
-              absolute />
-          </SwiperSlide>
+    <div v-else class="food-details">
+      <Swiper class="swiper" :options="swiperOption">
+        <SwiperSlide>
           <div
-            class="swiper-pagination"
-            slot="pagination"></div>
+            :style="{
+              backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl1)})`,
+            }"
+            class="image"
+          ></div>
+          <Loader v-if="imageLoading" absolute />
+        </SwiperSlide>
+        <SwiperSlide>
           <div
-            class="swiper-button-prev"
-            slot="button-prev"></div>
-          <div
-            class="swiper-button-next"
-            slot="button-next"></div>
-        </Swiper>
-        <canvas id="nutrient-chart"></canvas>
-      </div>
+            :style="{
+              backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl2)})`,
+            }"
+            class="image"
+          ></div>
+          <Loader v-if="imageLoading" absolute />
+        </SwiperSlide>
+        <div class="swiper-pagination" slot="pagination"></div>
+        <div class="swiper-button-prev" slot="button-prev"></div>
+        <div class="swiper-button-next" slot="button-next"></div>
+      </Swiper>
+
       <div class="specs">
         <div class="title">
           {{ theFood.prdlstNm }}
@@ -63,7 +46,6 @@
         <div class="labels">
           <span>{{ theFood.prdkind }}</span>
           <span>{{ theFood.productGb }}</span>
-          <!-- <span>{{ theFood.rawmtrl }}</span> -->
         </div>
         <div class="nutrient">
           {{ theFood.nutrient }}
@@ -90,11 +72,7 @@
         </div>
       </div>
     </div>
-    <div
-      id="to-search"
-      @click="toSearch">
-      click
-    </div>
+    <div id="to-search" @click="toSearch">click</div>
   </div>
 </template>
 
@@ -102,9 +80,7 @@
   import { mapState } from 'vuex';
   import Loader from '~/components/Loader';
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
-  import Chart from 'chart.js/auto';
   import 'swiper/css/swiper.css';
-
   export default {
     components: {
       Loader,
@@ -134,15 +110,16 @@
 
     // ssr이 실행하기 전 동작
     async asyncData({ store, params }) {
-      await store.dispatch('search/searchFoodWithId', {
+      await store.dispatch('food/searchFoodWithId', {
         id: params.id,
       });
       return {
         imageLoading: true,
       };
     },
+
     computed: {
-      ...mapState('search', ['loading', 'theFood']),
+      ...mapState('food', ['loading', 'theFood']),
     },
     methods: {
       requestDiffSizeImage(url) {
@@ -159,39 +136,8 @@
         return src;
       },
       toSearch() {
-        this.$router.push('../search/result');
+        this.$router.push('/search/searchResult');
       },
-      // Create Chart Method
-      createChart(chartId) {
-        // parsing nutrient data
-        const nutrient = this.theFood.nutrient;
-        console.log(nutrient);
-        const carbohydrate = Number(nutrient.match(/탄수화물 [0-9.]*/)[0].replace('탄수화물 ', '')) || 666;
-        const protein = Number(nutrient.match(/단백질 [0-9.]*/)[0].replace('단백질 ', '')) || 666;
-        const fat = Number(nutrient.match(/지방 [0-9.]*/)[0].replace('지방 ', '')) || 666;
-        // create chart
-        const ctx = document.getElementById(chartId);
-        new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: ['탄수화물', '단백질', '지방'],
-            datasets: [
-              {
-                label: 'nutrients data',
-                data: [carbohydrate, protein, fat],
-                backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
-                hoverOffset: 4,
-              },
-            ],
-          },
-          options: {
-            responsive: false,
-          },
-        });
-      },
-    },
-    mounted() {
-      this.createChart('nutrient-chart');
     },
     head() {
       return {
@@ -228,23 +174,6 @@
   .container {
     padding-top: 40px;
     font-family: 'Noto Sans KR', sans-serif;
-    @include media-breakpoint-down(lg) {
-      margin-top: 90px;
-      .title {
-        position: absolute;
-        top: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        width:90%;
-        text-align: center;
-      }
-      .labels {
-          position: absolute;
-        top: 180px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
   }
   .skeletons {
     display: flex;
@@ -284,7 +213,6 @@
   .food-details {
     display: flex;
     color: $gray-600;
-
     .swiper {
       width: 300px;
       height: calc(300px * 3 / 2);
@@ -298,6 +226,7 @@
         align-items: center;
         text-align: center;
         font-weight: bold;
+
         .image {
           width: 100%;
           height: 100%;
@@ -310,11 +239,6 @@
           flex-shrink: 0;
         }
       }
-    }
-    #nutrient-chart {
-      width: 300px;
-      height: 300px;
-      margin: 30px 0px;
     }
 
     .specs {
@@ -360,20 +284,16 @@
       .swiper {
         width: 300px;
         height: calc(300px * 3 / 2);
+        margin-right: 40px;
       }
     }
     @include media-breakpoint-down(lg) {
-      margin-top: 30px;
       display: block;
       .swiper {
         // margin-bottom: 40px;
         margin: 0 auto 40px;
       }
-      #nutrient-chart {
-        margin: 20px auto;
-      }
     }
-
     @include media-breakpoint-down(md) {
       .specs {
         .title {
@@ -388,6 +308,7 @@
     height: 100px;
     background-color: red;
     bottom: 0;
+    z-index: 1;
     left: 0;
   }
 </style>

@@ -1,7 +1,14 @@
 <template>
-  <NuxtLink :to="`/search/${food.prdlstReportNo}`" class="food-box">
-    <div class="food" :style="{ backgroundImage: `url(${food.imgurl1})` }">
-      <Loader v-if="imageLoading" :size="1.5" absolute />
+  <NuxtLink
+    :to="`/search/${food.prdlstReportNo}`"
+    class="food-box">
+    <div
+      class="food"
+      :style="{ backgroundImage: `url(${food.imgurl1})` }">
+      <Loader
+        v-if="imageLoading"
+        :size="1.5"
+        absolute />
     </div>
     <div class="info">
       <div class="product">
