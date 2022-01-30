@@ -177,7 +177,7 @@
         // create chart
         const ctx = document.getElementById(chartId);
         new Chart(ctx, {
-          type: 'doughnut',
+          type: 'doughnut', 
           data: {
             labels: ['탄수화물', '단백질', '지방'],
             datasets: [
