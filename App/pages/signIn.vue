@@ -3,11 +3,11 @@
     <div id="signIn">
       <form>
         <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
+          <label for="inputEmail">Email address</label>
           <input
             type="email"
             class="form-control"
-            id="exampleInputEmail1"
+            id="inputEmail"
             aria-describedby="emailHelp"
             placeholder="Enter email" />
           <small
@@ -15,21 +15,21 @@
             class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
+          <label for="inputPassword">Password</label>
           <input
             type="password"
             class="form-control"
-            id="exampleInputPassword1"
+            id="inputPassword"
             placeholder="Password" />
         </div>
         <div class="form-group form-check">
           <input
             type="checkbox"
             class="form-check-input"
-            id="exampleCheck1" />
+            id="Check1" />
           <label
             class="form-check-label"
-            for="exampleCheck1">Remember me</label>
+            for="Check1">Remember me</label>
         </div>
         <button
           type="submit"
@@ -38,7 +38,7 @@
         </button>
         <small
           id="registerHelp"
-          class="form-text text-muted">Don't have an account? <a href="#">Create Account!</a></small>
+          class="form-text text-muted">Don't have an account? <a href="#"><router-link to="./signUp">Create Account!</router-link></a></small>
       </form>
     </div>
   </div>
@@ -54,10 +54,13 @@
     justify-content: center;
     box-shadow: 0px 0px 5px gray;
     form {
-      height: 300px;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
+      margin: 10px 0;
+      .form-group {
+        margin: 10px 0;
+      }
     }
   }
 </style>

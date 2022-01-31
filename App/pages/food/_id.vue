@@ -12,31 +12,46 @@
           <div class="skeleton etc"></div>
         </div>
       </div>
-      <Loader :size="3" :z-index="9" fixed />
+      <Loader
+        :size="3"
+        :z-index="9"
+        fixed />
     </template>
-    <div v-else class="food-details">
-      <Swiper class="swiper" :options="swiperOption">
+    <div
+      v-else
+      class="food-details">
+      <Swiper
+        class="swiper"
+        :options="swiperOption">
         <SwiperSlide>
           <div
             :style="{
               backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl1)})`,
             }"
-            class="image"
-          ></div>
-          <Loader v-if="imageLoading" absolute />
+            class="image"></div>
+          <Loader
+            v-if="imageLoading"
+            absolute />
         </SwiperSlide>
         <SwiperSlide>
           <div
             :style="{
               backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl2)})`,
             }"
-            class="image"
-          ></div>
-          <Loader v-if="imageLoading" absolute />
+            class="image"></div>
+          <Loader
+            v-if="imageLoading"
+            absolute />
         </SwiperSlide>
-        <div class="swiper-pagination" slot="pagination"></div>
-        <div class="swiper-button-prev" slot="button-prev"></div>
-        <div class="swiper-button-next" slot="button-next"></div>
+        <div
+          class="swiper-pagination"
+          slot="pagination"></div>
+        <div
+          class="swiper-button-prev"
+          slot="button-prev"></div>
+        <div
+          class="swiper-button-next"
+          slot="button-next"></div>
       </Swiper>
 
       <div class="specs">
@@ -72,7 +87,11 @@
         </div>
       </div>
     </div>
-    <div id="to-search" @click="toSearch">click</div>
+    <div
+      id="to-search"
+      @click="toSearch">
+      click
+    </div>
   </div>
 </template>
 
