@@ -1,63 +1,67 @@
 <template>
-  <div class="container">
-    <div id="signUp">
-      <form>
-        <div class="form-group">
-          <label for="inputEmail">Username</label>
-          <input
-            type="text"
-            class="form-control"
-            id="inputName"
-            placeholder="Username" />
+  <div id="signUp">
+    <form>
+      <div class="form-group">
+        <label for="inputEmail">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputName"
+          placeholder="Username" />
+      </div>
+      <div class="form-group">
+        <label for="inputEmail">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="inputEmail"
+          aria-describedby="emailHelp"
+          placeholder="Enter email" />
+      </div>
+      <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="inputPassword"
+          placeholder="Password" />
+      </div>
+      <div class="form-group">
+        <label for="inputPassword">Repeat Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="inputPassword"
+          placeholder="Password" />
+      </div>
+      <div class="form-group">
+        <label>Allergy</label>
+        <br />
+        <div
+          v-for="(allergy, i) in Allergies"
+          :key="i"
+          class="form-check-inline">
+          <input           
+            type="checkbox"
+            class="btn-check"
+            :id="allergy"
+            :value="allergy"
+            v-model="checkedAllergies" />
+          <label
+            class="allergy-option btn btn-outline-secondary"
+            :for="allergy">
+            {{ allergy }}
+          </label>
         </div>
-        <div class="form-group">
-          <label for="inputEmail">Email address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="inputEmail"
-            aria-describedby="emailHelp"
-            placeholder="Enter email" />
-        </div>
-        <div class="form-group">
-          <label for="inputPassword">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="inputPassword"
-            placeholder="Password" />
-        </div>
-        <div class="form-group">
-          <label for="inputPassword">Repeat Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="inputPassword"
-            placeholder="Password" />
-        </div>
-        <div class="form-group">
-          <label>Allergy</label>
-          <div
-            v-for="(allergy, i) in Allergies"
-            :key="i">
-            <input           
-              type="checkbox"
-              :id="allergy"
-              :value="allergy"
-              v-model="checkedAllergies" />
-            <label :for="allergy">
-              {{ allergy }}
-            </label>
-          </div>
-          <span>체크한 알레르기: {{ checkedAllergies }}</span>          
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary">
-          Sign Up
-        </button>
-      </form>
-    </div>
+        <br />
+        <span>체크한 알레르기: {{ checkedAllergies }}</span>          
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary">
+        Sign Up
+      </button>
+    </form>
   </div>
 </template>
 
@@ -74,6 +78,9 @@ export default {
 
 <style lang="scss">
   #signUp {
+    width: 90%;
+    max-width: 540px;
+    margin: 0 auto;
     background-color: rgb(240, 240, 240);
     border-radius: 10px;
     padding: 0 20px;
@@ -88,6 +95,14 @@ export default {
       margin: 10px 0;
       .form-group {
         margin: 10px 0;
+        label {
+          font-weight: bold;
+        }
+        .allergy-option {
+          font-weight: normal;    
+          border: none;
+          margin: 5px 0;     
+        }
       }
     }
   }
