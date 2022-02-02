@@ -5,40 +5,40 @@
         <label for="inputEmail">Username</label>
         <input
           type="text"
-          class="form-control"
-          id="inputName"
-          placeholder="Username" />
+          class="form-control"          
+          placeholder="Username"
+          v-model="userinfo.username" />
       </div>
       <div class="form-group">
         <label for="inputEmail">Email address</label>
         <input
           type="email"
           class="form-control"
-          id="inputEmail"
           aria-describedby="emailHelp"
-          placeholder="Enter email" />
+          placeholder="Enter email"
+          v-model="userinfo.email" />
       </div>
       <div class="form-group">
         <label for="inputPassword">Password</label>
         <input
           type="password"
           class="form-control"
-          id="inputPassword"
-          placeholder="Password" />
+          placeholder="Password"
+          v-model="userinfo.password" />
       </div>
       <div class="form-group">
         <label for="inputPassword">Repeat Password</label>
         <input
           type="password"
           class="form-control"
-          id="inputPassword"
-          placeholder="Password" />
+          placeholder="Password"
+          v-model="userinfo.rPassword" />
       </div>
       <div class="form-group">
         <label>Allergy</label>
         <br />
         <div
-          v-for="(allergy, i) in Allergies"
+          v-for="(allergy, i) in allergies"
           :key="i"
           class="form-check-inline">
           <input           
@@ -46,34 +46,72 @@
             class="btn-check"
             :id="allergy"
             :value="allergy"
-            v-model="checkedAllergies" />
+            v-model="userinfo.checkedAllergies" />
           <label
             class="allergy-option btn btn-outline-secondary"
             :for="allergy">
             {{ allergy }}
           </label>
         </div>
-        <br />
-        <span>체크한 알레르기: {{ checkedAllergies }}</span>          
+        <br />        
       </div>
       <button
-        type="submit"
+        @click="register"
+        type="button"
         class="btn btn-primary">
         Sign Up
       </button>
     </form>
   </div>
 </template>
-
+ 
 <script>
-export default {
-  data() {
-    return {
-      Allergies: ['난류', '우유', '메밀', '땅콩', '대두', '밀', '고등어', '게', '새우', '돼지', '복숭아', '토마토', '아황산염', '호두', '닭고기', '쇠고기', '오징어', '조개류', '잣'],
-      checkedAllergies: []
+  export default {
+    data() {
+      return {
+        allergies: ['난류', '우유', '메밀', '땅콩', '대두', '밀', '고등어', '게', '새우', '돼지', '복숭아', '토마토', '아황산염', '호두', '닭고기', '쇠고기', '오징어', '조개류', '잣'],
+        userinfo: {
+          username: '',
+          email: '',
+          password: '',
+          rPassword: '', 
+          checkedAllergies: [], 
+        },       
+      }
+    },
+    methods: {
+      // sign up button onclick method
+      register() {
+        // check blank and incorrect format
+        if (this.userinfo.username === '') {
+          alert('이름을 입력해주세요!');
+          return;
+        }
+        if (this.userinfo.email === '') {
+          alert('이메일을 입력해주세요!');
+          return;
+        }
+        if (this.userinfo.password === '') {
+          alert('비밀번호를 입력해주세요!');
+          return;
+        }
+        if (this.userinfo.rPassword === '') {
+          alert('비밀번호 확인을 입력해주세요!');
+          return;
+        }
+        if (this.userinfo.password != this.userinfo.rPassword) {
+          alert('비밀번호가 일치하지 않아요!');
+          return;
+        } 
+        console.log({
+          이름 : this.userinfo.username,
+          이메일 : this.userinfo.email,
+          비밀번호 : this.userinfo.password,
+          알레르기 : this.userinfo.checkedAllergies
+        });      
+      }
     }
   }
-}
 </script>
 
 <style lang="scss">
