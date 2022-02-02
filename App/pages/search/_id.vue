@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <!-- loading -->
     <template v-if="loading">
       <div class="skeletons">
         <div class="skeleton image"></div>
@@ -20,7 +21,8 @@
     <div
       v-else
       class="food-details">
-      <div class="contents">
+      <!-- Img section -->
+      <div class="container product-img">
         <Swiper
           class="swiper"
           :options="swiperOption">
@@ -53,10 +55,10 @@
           <div
             class="swiper-button-next"
             slot="button-next"></div>
-        </Swiper>
-        <canvas id="nutrient-chart"></canvas>
+        </Swiper>        
       </div>
-      <div class="specs">
+      <!-- Product specification section -->
+      <div class="container product-specs">
         <div class="title">
           {{ theFood.prdlstNm }}
         </div>
@@ -88,6 +90,10 @@
           <h3>판매</h3>
           {{ theFood.seller }}
         </div>
+      </div>
+      <!-- Chart section -->
+      <div class="container product-chart">
+        <canvas id="nutrient-chart"></canvas>
       </div>
     </div>
     <div
@@ -259,9 +265,6 @@
       height: calc(500px * 3 / 2);
       margin-right: 70px;
     }
-    .specs {
-      flex-grow: 1;
-    }
     .skeleton {
       border-radius: 10px;
       background-color: $gray-200;
@@ -289,7 +292,6 @@
   .food-details {
     display: flex;
     color: $gray-600;
-
     .swiper {
       width: 300px;
       height: calc(300px * 3 / 2);
@@ -321,8 +323,7 @@
       height: 300px;
       margin: 30px 0px;
     }
-
-    .specs {
+    .product-specs {
       flex-grow: 1;
       .title {
         color: $black;
@@ -346,19 +347,23 @@
       .nutrient {
         margin-top: 20px;
       }
-
       img {
         height: 30px;
         flex-shrink: 0;
         margin-right: 6px;
       }
-
       h3 {
         margin: 24px 0 6px;
         color: $black;
         font-family: 'Do Hyeon', sans-serif;
         font-size: 20px;
       }
+    }
+
+    .product-img, .product-chart {
+      display: flex;
+      justify-content: center;
+      align-content: center;
     }
 
     @include media-breakpoint-down(xl) {
@@ -380,7 +385,7 @@
     }
 
     @include media-breakpoint-down(md) {
-      .specs {
+      .product-specs {
         .title {
           font-size: 50px;
         }
