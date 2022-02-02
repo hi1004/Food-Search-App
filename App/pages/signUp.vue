@@ -8,6 +8,7 @@
           class="form-control"          
           placeholder="Username"
           v-model="userinfo.username" />
+        <small v-if="isBlankUsername">필수 입력값입니다.</small>
       </div>
       <div class="form-group">
         <label for="inputEmail">Email address</label>
@@ -17,6 +18,8 @@
           aria-describedby="emailHelp"
           placeholder="Enter email"
           v-model="userinfo.email" />
+        <small v-if="isBlankEmail">필수 입력값입니다.</small>
+        <small v-if="!isValidEmail">이메일 형식을 확인해주세요.</small>
       </div>
       <div class="form-group">
         <label for="inputPassword">Password</label>
@@ -25,14 +28,17 @@
           class="form-control"
           placeholder="Password"
           v-model="userinfo.password" />
+        <small v-if="isBlankPassword">필수 입력값입니다.</small>
       </div>
       <div class="form-group">
-        <label for="inputPassword">Repeat Password</label>
+        <label for="inputPassword">Confirm Password</label>
         <input
           type="password"
           class="form-control"
           placeholder="Password"
-          v-model="userinfo.rPassword" />
+          v-model="userinfo.cPassword" />
+        <small v-if="isBlankCPassword">필수 입력값입니다.</small>
+        <small v-if="!(isMatchPassword)">비밀번호란과 입력된 값이 다릅니다.</small>
       </div>
       <div class="form-group">
         <label>Allergy</label>
@@ -74,9 +80,32 @@
           username: '',
           email: '',
           password: '',
-          rPassword: '', 
+          cPassword: '', 
           checkedAllergies: [], 
-        },       
+        },
+        isBlankUsername: true,
+        isBlankEmail: true,
+        isValidEmail: true,
+        isBlankPassword: true,
+        isBlankCPassword: true, 
+        isMatchPassword: true,  
+      }
+    },
+    watch: {
+      userinfo: {
+        deep: true,
+        handler(newData) {
+          //check required value is blank
+          this.isBlankUsername = newData.username === '';
+          this.isBlankEmail = newData.email === '';
+          this.isBlankPassword = newData.password === '';
+          this.isBlankCPassword = newData.cPassword === '';
+          //check is it valid email
+          const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+          this.isValidEmail = !(newData.email !== '' && newData.email.match(regExp) == null);
+          //check password and confirm password are match
+          this.isMatchPassword = newData.cPassword === '' || newData.password === newData.cPassword
+        }
       }
     },
     methods: {

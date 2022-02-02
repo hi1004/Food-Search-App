@@ -363,7 +363,7 @@
     .product-img, .product-chart {
       display: flex;
       justify-content: center;
-      align-content: center;
+      align-items: center;
     }
 
     @include media-breakpoint-down(xl) {
