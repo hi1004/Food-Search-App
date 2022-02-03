@@ -17,7 +17,7 @@
       HeadLine,
       // FoodList
     },
-     created() {
+    created() {
       this.$store.commit('food/resetFood')
     }
   };

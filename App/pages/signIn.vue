@@ -54,14 +54,9 @@ export default {
       password : '',
     }
   },
-  methods: {    
-    signIn() {
-      console.log(
-        {
-          email: this.email,
-          password: this.password
-        }
-      )
+  methods: {
+    signIn() {      
+      const token = 'dora'; 
       axios.post('http://ec2-15-164-232-69.ap-northeast-2.compute.amazonaws.com/api/user/login', 
         {
           email: this.email,
@@ -69,7 +64,8 @@ export default {
         }
       )
       .then(function (response) {
-        console.log(response);
+        console.log(response);          
+        this.token = response.data.jwt;     
       })
       .catch(function (error) {
         if (error.response) {
@@ -82,6 +78,7 @@ export default {
         } else {
           console.log('Error', error.message);}
       });
+      this.$store.commit('token/setToken', token);
       // axios.get('http://ec2-15-164-232-69.ap-northeast-2.compute.amazonaws.com/api/user/user')
       // .then(function (response) {
       //   // 성공한 경우 실행
