@@ -49,7 +49,7 @@
           class="form-check-inline">
           <input           
             type="checkbox"
-            class="btn-check"
+            class="allergy-check btn-check"
             :id="allergy"
             :value="allergy"
             v-model="userinfo.checkedAllergies" />
@@ -72,6 +72,7 @@
 </template>
  
 <script>
+  import axios from 'axios'
   export default {
     data() {
       return {
@@ -134,13 +135,30 @@
         if (!this.isMatchPassword) {
           alert('비밀번호가 일치하지 않아요!');
           return;
-        } 
-        console.log({
-          이름 : this.userinfo.username,
-          이메일 : this.userinfo.email,
-          비밀번호 : this.userinfo.password,
-          알레르기 : this.userinfo.checkedAllergies
-        });      
+        }  
+        axios.post('http://ec2-15-164-232-69.ap-northeast-2.compute.amazonaws.com/api/user/register', 
+          {
+            name: this.userinfo.username,
+            email: this.userinfo.email,
+            password: this.userinfo.password
+          }
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          if (error.response) {
+            // Request made and server responded
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            // The request was made but no response was received
+            console.log(error.request);
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log('Error', error.message);}
+        });  
       }
     }
   }
@@ -167,6 +185,9 @@
         margin: 10px 0;
         label {
           font-weight: bold;
+        }
+        .allergy-check {
+          border: none;
         }
         .allergy-option {
           font-weight: normal;    

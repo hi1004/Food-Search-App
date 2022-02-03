@@ -8,7 +8,8 @@
           class="form-control"
           id="inputEmail"
           aria-describedby="emailHelp"
-          placeholder="Enter email" />
+          placeholder="Enter email"
+          v-model="email" />
         <small
           id="emailHelp"
           class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -19,7 +20,8 @@
           type="password"
           class="form-control"
           id="inputPassword"
-          placeholder="Password" />
+          placeholder="Password"
+          v-model="password" />
       </div>
       <div class="form-group form-check">
         <input
@@ -31,7 +33,8 @@
           for="Check1">Remember me</label>
       </div>
       <button
-        type="submit"
+        @click="signIn"
+        type="button"
         class="btn btn-primary">
         Sign In
       </button>
@@ -41,6 +44,40 @@
     </form>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data() {
+    return {
+      email : '',
+      password : ''
+    }
+  },
+  methods: {    
+    signIn() {
+      console.log(
+        {
+          email: this.email,
+          password: this.password
+        }
+      )
+      axios.post('http://ec2-15-164-232-69.ap-northeast-2.compute.amazonaws.com/api/user/login', 
+        {
+          email: this.email,
+          password: this.password
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+  }
+}
+</script>
 
 <style lang="scss">
   #signIn {
