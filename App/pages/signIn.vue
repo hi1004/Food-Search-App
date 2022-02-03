@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       email : '',
-      password : ''
+      password : '',
     }
   },
   methods: {    
@@ -72,8 +72,26 @@ export default {
         console.log(response);
       })
       .catch(function (error) {
-        console.log(error);
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          alert(error.response.data);
+        } else if (error.request) {          
+          console.log(error.request);
+        } else {
+          console.log('Error', error.message);}
       });
+      // axios.get('http://ec2-15-164-232-69.ap-northeast-2.compute.amazonaws.com/api/user/user')
+      // .then(function (response) {
+      //   // 성공한 경우 실행
+      //   console.log('유저 정보!')
+      //   console.log(response);
+      // })
+      // .catch(function (error) {
+      //   // 에러인 경우 실행
+      //   console.log(error);
+      // })
     }
   }
 }
