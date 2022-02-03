@@ -112,23 +112,26 @@
       // sign up button onclick method
       register() {
         // check blank and incorrect format
-        if (this.userinfo.username === '') {
+        if (this.isBlankUsername) {
           alert('이름을 입력해주세요!');
           return;
         }
-        if (this.userinfo.email === '') {
+        if (this.isBlankEmail) {
           alert('이메일을 입력해주세요!');
           return;
         }
-        if (this.userinfo.password === '') {
+        if (!this.isValidEmail) {
+          alert('유효하지 않은 이메일입니다.');
+        }
+        if (this.isBlankPassword) {
           alert('비밀번호를 입력해주세요!');
           return;
         }
-        if (this.userinfo.rPassword === '') {
+        if (this.isBlankCPassword) {
           alert('비밀번호 확인을 입력해주세요!');
           return;
         }
-        if (this.userinfo.password != this.userinfo.rPassword) {
+        if (!this.isMatchPassword) {
           alert('비밀번호가 일치하지 않아요!');
           return;
         } 
