@@ -59,6 +59,7 @@
           });
         setTimeout(() => {
           if (this.foods.length>1 && this.pgNo< this.total/12 ) {
+
             $state.loaded();
           } else {
             $state.complete();

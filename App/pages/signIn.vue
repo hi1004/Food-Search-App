@@ -8,7 +8,8 @@
           class="form-control"
           id="inputEmail"
           aria-describedby="emailHelp"
-          placeholder="Enter email" />
+          placeholder="Enter email"
+          v-model="email" />
         <small
           id="emailHelp"
           class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -19,7 +20,8 @@
           type="password"
           class="form-control"
           id="inputPassword"
-          placeholder="Password" />
+          placeholder="Password"
+          v-model="password" />
       </div>
       <div class="form-group form-check">
         <input
@@ -31,7 +33,8 @@
           for="Check1">Remember me</label>
       </div>
       <button
-        type="submit"
+        @click="signIn"
+        type="button"
         class="btn btn-primary">
         Sign In
       </button>
@@ -41,6 +44,45 @@
     </form>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data() {
+    return {
+      email : '',
+      password : '',
+    }
+  },
+  methods: {
+    signIn() {      
+      axios.post('https://foodsearch.shop/api/user/login', 
+        {
+          email: this.email,
+          password: this.password
+        },
+        {
+          withCredentials: true
+        }
+      )
+      .then(function (response) {
+        console.log(response);          
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          alert(error.response.data);
+        } else if (error.request) {          
+          console.log(error.request);
+        } else {
+          console.log('Error', error.message);}
+      });
+    }
+  }
+}
+</script>
 
 <style lang="scss">
   #signIn {

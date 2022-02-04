@@ -5,7 +5,10 @@ Vue.component('InfiniteLoading', InfiniteLoading);
 
 // vue-infinite-loading custom
 Vue.use(InfiniteLoading, {
-  slots: { noResults: '', noMore: '' },
+  slots: {
+    noMore: '',
+    noResults: '',
+  },
   props: {
     spinner: 'bubbles',
     directioin: 'bottom',

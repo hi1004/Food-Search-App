@@ -49,7 +49,7 @@
           class="form-check-inline">
           <input           
             type="checkbox"
-            class="btn-check"
+            class="allergy-check btn-check"
             :id="allergy"
             :value="allergy"
             v-model="userinfo.checkedAllergies" />
@@ -72,6 +72,7 @@
 </template>
  
 <script>
+  import axios from 'axios'
   export default {
     data() {
       return {
@@ -112,32 +113,50 @@
       // sign up button onclick method
       register() {
         // check blank and incorrect format
-        if (this.userinfo.username === '') {
+        if (this.isBlankUsername) {
           alert('이름을 입력해주세요!');
           return;
         }
-        if (this.userinfo.email === '') {
+        if (this.isBlankEmail) {
           alert('이메일을 입력해주세요!');
           return;
         }
-        if (this.userinfo.password === '') {
+        if (!this.isValidEmail) {
+          alert('유효하지 않은 이메일입니다.');
+        }
+        if (this.isBlankPassword) {
           alert('비밀번호를 입력해주세요!');
           return;
         }
-        if (this.userinfo.rPassword === '') {
+        if (this.isBlankCPassword) {
           alert('비밀번호 확인을 입력해주세요!');
           return;
         }
-        if (this.userinfo.password != this.userinfo.cPassword) {
+        if (!this.isMatchPassword) {
           alert('비밀번호가 일치하지 않아요!');
           return;
-        } 
-        console.log({
-          이름 : this.userinfo.username,
-          이메일 : this.userinfo.email,
-          비밀번호 : this.userinfo.password,
-          알레르기 : this.userinfo.checkedAllergies
-        });      
+        }  
+        axios.post('https://foodsearch.shop/api/user/register', 
+          {
+            name: this.userinfo.username,
+            email: this.userinfo.email,
+            password: this.userinfo.password
+          }
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {          
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            alert(error.response.data.email);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log('Error', error.message);}
+        }); 
       }
     }
   }
@@ -164,6 +183,9 @@
         margin: 10px 0;
         label {
           font-weight: bold;
+        }
+        .allergy-check {
+          border: none;
         }
         .allergy-option {
           font-weight: normal;    

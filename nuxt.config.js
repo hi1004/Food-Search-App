@@ -45,7 +45,14 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/style-resources', '@nuxtjs/dotenv', '@nuxtjs/proxy', '@nuxtjs/axios'],
+  modules: [
+    '@nuxtjs/style-resources',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/proxy',
+    '@nuxtjs/axios',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
+  ],
 
   styleResources: {
     scss: ['~/assets/scss/App.scss'],
@@ -69,6 +76,15 @@ export default {
     },
   ],
   proxy: {
-    // '/api': { target: 'http://apis.data.go.kr', pathRewrite: { '^/api': '' } },
+    // '/api': { target: 'http://foodsearch.shop/', pathRewrite: { '^/api': '' } },
   },
+  // auth: {
+  //   cookie: {
+  //     prefix: 'auth.',
+  //     options: {
+  //       sameSite: 'none',
+  //       secure: true,
+  //     },
+  //   },
+  // },
 };
