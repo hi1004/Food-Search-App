@@ -55,6 +55,20 @@ export default {
         });
       } catch (error) {
         console.log(error);
+        commit('updateState', {
+          isAuthorized: false,
+        });
+      }
+    },
+    async signOut({ commit }) {
+      try {
+        await axios.post('/api/user/logout');
+        commit('updateState', {
+          isAuthorized: false,
+        });
+        alert('로그아웃 하셨습니다.');
+      } catch (error) {
+        console.log(error);
       }
     },
   },

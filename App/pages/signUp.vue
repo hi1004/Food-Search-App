@@ -143,9 +143,7 @@
         }  
         this.$store.dispatch('signUp/userRegister', {
           userinfo: this.userinfo
-        });
-       
-    
+        });    
       }
     }
   }

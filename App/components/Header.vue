@@ -17,16 +17,23 @@
       </div>
     </div>
     <div
-      v-if="!isAuth"
+      v-if="!isAuthorized"
       class="user"
       @click="toSignIn">
-      Sign in
+      로그인
+    </div>
+    <div
+      v-if="isAuthorized"
+      class="user"
+      @click="signOut">
+      로그아웃
     </div>
   </header>
 </template>
 
 <script>
   import Logo from '~/components/Logo';
+  import { mapState } from 'vuex';
   // import index from '~/store/index';
   export default {
     components: {
@@ -51,6 +58,9 @@
         isAuth: false,
       };
     },
+    computed: {
+      ...mapState('signIn',['isAuthorized'])
+    },
     methods: {
       isMatch(path) {
         if (!path) return false;
@@ -59,6 +69,9 @@
       toSignIn() {
         this.$router.push('/signIn');
       },
+      signOut() {
+        this.$store.dispatch('signIn/signOut'); 
+      }
     },
   };
 </script>

@@ -11,13 +11,13 @@
 
 <script>
   import { mapState } from 'vuex';
-export default {
-  computed: {
-    ...mapState('signIn',['isAuthorized'])
-  },
-  created() {
-       this.$store.dispatch('signIn/setAuthorized');
-  }
+  export default {
+    computed: {
+      ...mapState('signIn',['isAuthorized'])
+    },
+    created() {
+      this.$store.dispatch('signIn/setAuthorized');
+    }
 }
 </script>
 
