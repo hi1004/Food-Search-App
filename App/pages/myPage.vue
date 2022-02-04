@@ -1,30 +1,22 @@
 <template>
   <div>
-    <h1 v-if="!isAuth">
+    <h1 v-if="!isAuthorized">
       로그인 안됐음!
     </h1>
-    <h1 v-if="isAuth">
+    <h1 v-if="isAuthorized">
       로그인 됐음!
     </h1>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+  import { mapState } from 'vuex';
 export default {
-  data() {
-    return {
-      isAuth: false
-    }
+  computed: {
+    ...mapState('signIn',['isAuthorized'])
   },
-  beforeCreate() {
-    axios.get('/api/user/user')
-    .then(() => {
-      this.isAuth = true;
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+  created() {
+       this.$store.dispatch('signIn/setAuthorized');
   }
 }
 </script>

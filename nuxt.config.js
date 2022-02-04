@@ -13,6 +13,7 @@ export default {
         content:
           'width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1 shrink-to-fit=no',
       },
+      { 'http-equiv': 'Content-Security-Policy', content: 'upgrade-insecure-requests' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
       { hid: 'og:type', property: 'og:type', content: 'website' },

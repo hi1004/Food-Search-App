@@ -5,9 +5,10 @@
         <label for="inputEmail">Username</label>
         <input
           type="text"
-          class="form-control"          
+          class="form-control"   
+          @keyup.enter="register"       
           placeholder="Username"
-          v-model="userinfo.username" />
+          v-model.trim="userinfo.username" />
         <small v-if="isBlankUsername">필수 입력값입니다.</small>
       </div>
       <div class="form-group">
@@ -15,9 +16,10 @@
         <input
           type="email"
           class="form-control"
+          @keyup.enter="register"
           aria-describedby="emailHelp"
           placeholder="Enter email"
-          v-model="userinfo.email" />
+          v-model.trim="userinfo.email" />
         <small v-if="isBlankEmail">필수 입력값입니다.</small>
         <small v-if="!isValidEmail">이메일 형식을 확인해주세요.</small>
       </div>
@@ -26,17 +28,19 @@
         <input
           type="password"
           class="form-control"
+          @keyup.enter="register"
           placeholder="Password"
-          v-model="userinfo.password" />
+          v-model.trim="userinfo.password" />
         <small v-if="isBlankPassword">필수 입력값입니다.</small>
       </div>
       <div class="form-group">
         <label for="inputPassword">Confirm Password</label>
         <input
           type="password"
+          @keyup.enter="register"
           class="form-control"
           placeholder="Password"
-          v-model="userinfo.cPassword" />
+          v-model.trim="userinfo.cPassword" />
         <small v-if="isBlankCPassword">필수 입력값입니다.</small>
         <small v-if="!(isMatchPassword)">비밀번호란과 입력된 값이 다릅니다.</small>
       </div>
@@ -72,7 +76,7 @@
 </template>
  
 <script>
-  import axios from 'axios'
+  // import axios from 'axios'
   export default {
     data() {
       return {
@@ -110,9 +114,10 @@
       }
     },
     methods: {
+      
       // sign up button onclick method
       register() {
-        // check blank and incorrect format
+            // check blank and incorrect format
         if (this.isBlankUsername) {
           alert('이름을 입력해주세요!');
           return;
@@ -136,27 +141,11 @@
           alert('비밀번호가 일치하지 않아요!');
           return;
         }  
-        axios.post('https://foodsearch.shop/api/user/register', 
-          {
-            name: this.userinfo.username,
-            email: this.userinfo.email,
-            password: this.userinfo.password
-          }
-        )
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {          
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-            alert(error.response.data.email);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log('Error', error.message);}
-        }); 
+        this.$store.dispatch('signUp/userRegister', {
+          userinfo: this.userinfo
+        });
+       
+    
       }
     }
   }

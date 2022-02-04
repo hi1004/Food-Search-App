@@ -6,10 +6,11 @@
         <input
           type="email"
           class="form-control"
+          @keyup.enter="signIn"
           id="inputEmail"
           aria-describedby="emailHelp"
           placeholder="Enter email"
-          v-model="email" />
+          v-model.trim="email" />
         <small
           id="emailHelp"
           class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -19,9 +20,10 @@
         <input
           type="password"
           class="form-control"
+          @keyup.enter="signIn"
           id="inputPassword"
           placeholder="Password"
-          v-model="password" />
+          v-model.trim="password" />
       </div>
       <div class="form-group form-check">
         <input
@@ -40,47 +42,32 @@
       </button>
       <small
         id="registerHelp"
-        class="form-text text-muted">Don't have an account? <a href="#"><router-link to="./signUp">Create Account!</router-link></a></small>
+        class="form-text text-muted">Don't have an account? <NuxtLink to="./signUp">Create Account!</NuxtLink></small>
     </form>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
+      username: '',
       email : '',
       password : '',
     }
   },
+  computed: {
+    ...mapState('signUp',['userName'])
+  },
   methods: {
-    signIn() {      
-      axios.post('/api/user/login', 
-        {
+    signIn() {
+       this.$store.dispatch('signIn/userLogin', {
+          username: this.userName,
           email: this.email,
-          password: this.password
-        },
-        {
-          withCredentials: true
-        }
-      )
-      .then((response) => {
-        console.log(response);
-        this.$store.commit('signIn/setAuthorized', true);
-        this.$router.push('/');
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-          alert(error.response.data);
-        } else if (error.request) {          
-          console.log(error.request);
-        } else {
-          console.log('Error', error.message);}
-      });
+          password: this.password,
+        });
+      
     }
   }
 }

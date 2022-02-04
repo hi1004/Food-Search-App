@@ -9,19 +9,6 @@
       type="text"
       placeholder="검색"
       @keyup.enter="apply" />
-    <div class="selects">
-      <!-- <select
-        v-for="filter in filters"
-        v-model="$data[filter.name]"
-        :key="filter.name"
-        class="form-select">
-        <option
-          v-for="item in filter.items"
-          :key="item">
-          {{ item }}
-        </option>
-      </select> -->
-    </div>
     <button
       class="btn btn-primary"
       @click="apply">

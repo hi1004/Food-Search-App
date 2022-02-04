@@ -1,15 +1,61 @@
+import axios from 'axios';
+
 export default {
   namespaced: true,
   state: () => ({
     isAuthorized: false,
+    email: '',
+    password: '',
   }),
   mutations: {
-    checkAuthorized: state => {
-      return state.isAuthorized;
+    updateState: (state, payload) => {
+      Object.keys(payload).forEach(key => {
+        state[key] = payload[key];
+      });
     },
-    setAuthorized: (state, auth) => {
-      console.log(auth);
-      state.isAuthorized = auth;
+  },
+  actions: {
+    async userLogin({ state, commit }, payload) {
+      console.log('payload', payload);
+      commit('updateState', {
+        email: payload.email,
+        password: payload.password,
+      });
+      try {
+        await axios.post(
+          '/api/user/login',
+          {
+            email: state.email,
+            password: state.password,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        alert(`${state.email}님 환영합니다!`);
+        this.$router.push('/');
+      } catch (error) {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          alert(error.response.data);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log('Error', error.message);
+        }
+      }
+    },
+    async setAuthorized({ commit }) {
+      try {
+        await axios.get('/api/user/user');
+        commit('updateState', {
+          isAuthorized: true,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
