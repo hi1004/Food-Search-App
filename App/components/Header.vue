@@ -55,7 +55,6 @@
             href: '/myPage',
           },          
         ],
-        isAuth: false,
       };
     },
     computed: {
@@ -70,7 +69,7 @@
         this.$router.push('/signIn');
       },
       signOut() {
-        this.$store.dispatch('signIn/signOut'); 
+        this.$store.dispatch('signIn/userLogout'); 
       }
     },
   };
