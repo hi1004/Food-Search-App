@@ -143,10 +143,10 @@
             password: this.userinfo.password
           }
         )
-        .then(function (response) {
+        .then((response) => {
           console.log(response);
         })
-        .catch(function (error) {          
+        .catch((error) => {          
           if (error.response) {
             console.log(error.response.data);
             console.log(error.response.status);
