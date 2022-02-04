@@ -136,7 +136,7 @@
           alert('비밀번호가 일치하지 않아요!');
           return;
         }  
-        axios.post('http://ec2-15-164-232-69.ap-northeast-2.compute.amazonaws.com/api/user/register', 
+        axios.post('https://foodsearch.shop/api/user/register', 
           {
             name: this.userinfo.username,
             email: this.userinfo.email,

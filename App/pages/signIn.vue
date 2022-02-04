@@ -56,15 +56,17 @@ export default {
   },
   methods: {
     signIn() {      
-      axios.post('http://ec2-15-164-232-69.ap-northeast-2.compute.amazonaws.com/api/user/login', 
+      axios.post('https://foodsearch.shop/api/user/login', 
         {
           email: this.email,
           password: this.password
+        },
+        {
+          withCredentials: true
         }
       )
       .then(function (response) {
         console.log(response);          
-        this.token = response.data.jwt;     
       })
       .catch(function (error) {
         if (error.response) {
