@@ -1,25 +1,20 @@
 <template>
   <div>
-    <!-- <HeadLine /> -->
-    <!-- <Search /> -->
+    <Search />
     <FoodList />
   </div>
 </template>
 
 <script>
-  // import HeadLine from '~/components/Search/HeadLine';
-  // import Search from '~/components/Search/Search';
+  import Search from '~/components/Search/Search';
   import FoodList from '~/components/Search/FoodList';
 
   export default {
     components: {
-      // Search,
-      // HeadLine,
+      Search,
       FoodList,
     },
-    //  created() {
-    //   this.$store.commit('food/resetFood')
-    // }
+
   };
 </script>
 

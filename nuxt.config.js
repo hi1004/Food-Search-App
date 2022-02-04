@@ -8,7 +8,11 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        name: 'viewport',
+        content:
+          'width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1 shrink-to-fit=no',
+      },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
@@ -65,6 +69,6 @@ export default {
     },
   ],
   proxy: {
-    '/api': { target: 'http://apis.data.go.kr', pathRewrite: { '^/api': '' } },
+    // '/api': { target: 'http://apis.data.go.kr', pathRewrite: { '^/api': '' } },
   },
 };

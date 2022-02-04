@@ -4,9 +4,7 @@
     :style="{ margin: `${mt}px auto` }">
     <input
       v-model="foodName"
-      required
       v-focus
-      autofocus
       class="form-control"
       type="text"
       placeholder="검색"
@@ -52,9 +50,11 @@
         default: 0,
       },
     },
+   
     methods: {
       apply() {
         this.$router.push('/search/result');
+        this.$store.commit('search/resetFood')
         this.$store.dispatch('search/searchFoods', {
           foodName: this.foodName,
           number: this.number,

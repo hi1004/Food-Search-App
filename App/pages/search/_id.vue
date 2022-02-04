@@ -55,7 +55,7 @@
           <div
             class="swiper-button-next"
             slot="button-next"></div>
-        </Swiper>        
+        </Swiper>
       </div>
       <!-- Product specification section -->
       <div class="container product-specs">
@@ -71,10 +71,6 @@
           {{ theFood.nutrient }}
         </div>
         <div>
-          <h3>유형의상태</h3>
-          {{ theFood.prdkindstate }}
-        </div>
-        <div>
           <h3>제조</h3>
           {{ theFood.manufacture }}
         </div>
@@ -85,6 +81,10 @@
         <div>
           <h3>알레르기</h3>
           {{ theFood.allergy }}
+        </div>
+        <div>
+          <h3>유형의상태</h3>
+          {{ theFood.prdkindstate }}
         </div>
         <div>
           <h3>판매</h3>
@@ -183,7 +183,7 @@
         // create chart
         const ctx = document.getElementById(chartId);
         new Chart(ctx, {
-          type: 'doughnut', 
+          type: 'doughnut',
           data: {
             labels: ['탄수화물', '단백질', '지방'],
             datasets: [
@@ -246,11 +246,11 @@
         top: 80px;
         left: 50%;
         transform: translateX(-50%);
-        width:90%;
+        width: 90%;
         text-align: center;
       }
       .labels {
-          position: absolute;
+        position: absolute;
         top: 180px;
         left: 50%;
         transform: translateX(-50%);
@@ -360,7 +360,8 @@
       }
     }
 
-    .product-img, .product-chart {
+    .product-img,
+    .product-chart {
       display: flex;
       justify-content: center;
       align-items: center;

@@ -7,7 +7,9 @@ const { API_KEY } = process.env;
 app.use(express.json());
 app.post('/', async (req, res) => {
   const payload = req.body;
+
   const { foodName, pageNo, id } = payload;
+  // console.log(payload);
   // console.log('API_KEY: ', API_KEY);
   // console.log('params: ', payload);
 

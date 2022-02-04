@@ -2,7 +2,7 @@ import axios from 'axios';
 import _uniqBy from 'lodash/uniqBy';
 
 const _defaultMessage = 'Search for the food name!';
-
+let pageNo = 1;
 export default {
   namespaced: true,
   state: () => ({
@@ -11,6 +11,9 @@ export default {
     loading: false,
     theFood: {},
     foodName: '',
+    total: '',
+    pgNo: 0,
+    scrollData: [],
   }),
   mutations: {
     updateState: (state, payload) => {
@@ -22,11 +25,14 @@ export default {
       state.foods = [];
       state.message = _defaultMessage;
       state.loading = false;
+      state.foods.length = 0;
     },
   },
   actions: {
     async searchFoods({ state, commit }, payload) {
+      pageNo = 1;
       if (state.loading) return;
+
       commit('updateState', {
         message: '',
         loading: true,
@@ -36,13 +42,9 @@ export default {
       try {
         const res = await _fetchFood({
           ...payload,
-          pageNo: 1,
+          pageNo,
         });
-        // infinite
-
-        console.log('res', res);
         const { list, totalCount } = res.data;
-
         // 같은 이름 중복제거
         commit('updateState', {
           foods: _uniqBy(list, 'prdlstNm'),
@@ -60,30 +62,10 @@ export default {
             foodName: '',
           });
         }
-
-        // console.log(res.list.allergy);
-        // console.log(payload);
-
         const total = parseInt(totalCount, 10);
-        const pageLength = Math.ceil(total / 10);
-        console.log('payload', { ...payload });
-        console.log('payload', payload);
-        // 추가 요청!
-        if (pageLength > 1) {
-          for (let pageNo = 2; pageNo <= pageLength; pageNo += 1) {
-            if (pageNo > payload.number / 10) break;
-            const res = await _fetchFood({
-              ...payload,
-              pageNo,
-            });
-            console.log(pageNo);
-            const { list } = res.data;
-
-            commit('updateState', {
-              foods: _uniqBy([...state.foods, ...list], 'prdlstNm'),
-            });
-          }
-        }
+        commit('updateState', {
+          total,
+        });
       } catch ({ message }) {
         commit('updateState', {
           foods: [],
@@ -112,6 +94,42 @@ export default {
       } catch (error) {
         commit('updateState', {
           theFood: {},
+        });
+      } finally {
+        commit('updateState', {
+          loading: false,
+        });
+      }
+    },
+
+    async searchResult({ state, commit }, payload) {
+      if (state.loading) return;
+      try {
+        const res = await _fetchFood({
+          ...payload,
+          pageNo: 1,
+        });
+        const { totalCount } = res.data;
+
+        const total = parseInt(totalCount, 10);
+        const pageLength = Math.ceil(total / 12);
+        setTimeout(async () => {
+          if (pageNo < pageLength) {
+            pageNo++;
+            const res = await _fetchFood({
+              ...payload,
+              pageNo,
+            });
+            const { list } = res.data;
+            commit('updateState', {
+              foods: [...state.foods, ...list],
+              pgNo: pageNo,
+            });
+          }
+        }, 1000);
+      } catch ({ message }) {
+        commit('updateState', {
+          message,
         });
       } finally {
         commit('updateState', {
