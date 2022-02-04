@@ -75,8 +75,11 @@ export default {
       handler: '~/server-middleware/food.js',
     },
   ],
+  axios: {
+    proxy: true,
+  },
   proxy: {
-    // '/api': { target: 'http://foodsearch.shop/', pathRewrite: { '^/api': '' } },
+    '/api/': { target: 'https://foodsearch.shop/api/', pathRewrite: { '^/api/': '' } },
   },
   // auth: {
   //   cookie: {

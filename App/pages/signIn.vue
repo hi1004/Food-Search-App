@@ -41,6 +41,11 @@
       <small
         id="registerHelp"
         class="form-text text-muted">Don't have an account? <a href="#"><router-link to="./signUp">Create Account!</router-link></a></small>
+      <button
+        @click="getInfo"
+        type="button">
+        test
+      </button>
     </form>
   </div>
 </template>
@@ -55,8 +60,17 @@ export default {
     }
   },
   methods: {
+    getInfo() {
+      axios.get('/api/user/user')
+      .then(function (response) {
+        console.log(response);          
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    },
     signIn() {      
-      axios.post('https://foodsearch.shop/api/user/login', 
+      axios.post('/api/user/login', 
         {
           email: this.email,
           password: this.password
