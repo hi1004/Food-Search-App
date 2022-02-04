@@ -1,5 +1,5 @@
 import axios from 'axios';
-import _uniqBy from 'lodash/uniqBy';
+// import _uniqBy from 'lodash/uniqBy';
 
 const _defaultMessage = 'Search for the food name!';
 let pageNo = 1;
@@ -13,7 +13,6 @@ export default {
     foodName: '',
     total: '',
     pgNo: 0,
-    scrollData: [],
   }),
   mutations: {
     updateState: (state, payload) => {
@@ -45,9 +44,8 @@ export default {
           pageNo,
         });
         const { list, totalCount } = res.data;
-        // 같은 이름 중복제거
         commit('updateState', {
-          foods: _uniqBy(list, 'prdlstNm'),
+          foods: list,
         });
 
         // 잘못 입력했을 때

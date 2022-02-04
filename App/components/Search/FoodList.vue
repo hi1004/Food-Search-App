@@ -21,7 +21,7 @@
           :key="food.prdlstReportNo"
           :food="food" />
         <InfiniteLoading
-          v-if="foods.length>1 && pgNo< total/12"
+          v-if="foods.length >= 12 && pgNo < total / 12"
           @infinite="scrolling" />
       </div>
     </div>
@@ -48,20 +48,19 @@
       Loader,
     },
     computed: {
-      ...mapState('search', ['foods', 'loading', 'message', 'foodName', 'total','pgNo']),
+      ...mapState('search', ['foods', 'loading', 'message', 'foodName', 'total', 'pgNo']),
     },
 
     methods: {
       scrolling($state) {
         // 스크롤이 페이지 하단에 위치해도 약간의 딜레이를 주고 데이터를 가져옴
-          this.$store.dispatch('search/searchResult', {
-            foodName: this.foodName,
-          });
+        this.$store.dispatch('search/searchResult', {
+          foodName: this.foodName,
+        });
         setTimeout(() => {
-          if (this.foods.length>1 && this.pgNo< this.total/12 ) {
-
+          if (this.foods.length >= 12 && this.pgNo < this.total / 12) {
             $state.loaded();
-          } else {
+          }  else {
             $state.complete();
           }
         }, 1000);

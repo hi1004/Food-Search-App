@@ -3,14 +3,14 @@
     class="container"
     :style="{ margin: `${mt}px auto` }">
     <input
-      v-model="foodName"
+      v-model.trim="foodName"
       v-focus
       class="form-control"
       type="text"
       placeholder="검색"
       @keyup.enter="apply" />
     <div class="selects">
-      <select
+      <!-- <select
         v-for="filter in filters"
         v-model="$data[filter.name]"
         :key="filter.name"
@@ -20,7 +20,7 @@
           :key="item">
           {{ item }}
         </option>
-      </select>
+      </select> -->
     </div>
     <button
       class="btn btn-primary"
