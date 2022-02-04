@@ -41,11 +41,6 @@
       <small
         id="registerHelp"
         class="form-text text-muted">Don't have an account? <a href="#"><router-link to="./signUp">Create Account!</router-link></a></small>
-      <button
-        @click="getInfo"
-        type="button">
-        test
-      </button>
     </form>
   </div>
 </template>
@@ -60,15 +55,6 @@ export default {
     }
   },
   methods: {
-    getInfo() {
-      axios.get('/api/user/user')
-      .then(function (response) {
-        console.log(response);          
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-    },
     signIn() {      
       axios.post('/api/user/login', 
         {
@@ -79,10 +65,12 @@ export default {
           withCredentials: true
         }
       )
-      .then(function (response) {
-        console.log(response);          
+      .then((response) => {
+        console.log(response);
+        this.$store.commit('signIn/setAuthorized', true);
+        this.$router.push('/');
       })
-      .catch(function (error) {
+      .catch((error) => {
         if (error.response) {
           console.log(error.response.data);
           console.log(error.response.status);

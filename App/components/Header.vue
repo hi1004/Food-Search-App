@@ -17,9 +17,10 @@
       </div>
     </div>
     <div
+      v-if="!isAuth"
       class="user"
       @click="toSignIn">
-      <img />
+      Sign in
     </div>
   </header>
 </template>
@@ -45,8 +46,9 @@
           {
             name: 'My Page',
             href: '/myPage',
-          },
+          },          
         ],
+        isAuth: false,
       };
     },
     methods: {
