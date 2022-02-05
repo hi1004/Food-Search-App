@@ -48,6 +48,9 @@ export default {
       }
     },
     async setAuthorized({ commit }) {
+      commit('updateState', {
+        isAuthorized: true,
+      });
       try {
         await axios.get('/api/user/user');
         commit('updateState', {
