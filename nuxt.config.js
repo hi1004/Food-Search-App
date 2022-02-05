@@ -37,11 +37,7 @@ export default {
   css: ['~/assets/css/App.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '~/plugins',
-    { src: '~/plugins/infinite-loading', ssr: false },
-    { src: '~/plugins/persistedState.client.js' },
-  ],
+  plugins: ['~/plugins', { src: '~/plugins/infinite-loading', ssr: false }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
