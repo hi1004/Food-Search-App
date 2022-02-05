@@ -16,18 +16,22 @@
         </NuxtLink>
       </div>
     </div>
-    <div
-      v-if="!isAuthorized"
-      class="user"
-      @click="toSignIn">
-      로그인
-    </div>
-    <div
-      v-if="isAuthorized"
-      class="user"
-      @click="signOut">
-      로그아웃
-    </div>
+    <client-only>
+      <div
+        v-if="!isAuthorized"
+        class="user"
+        @click="toSignIn">
+        로그인
+      </div>
+    </client-only>
+    <client-only>
+      <div
+        v-if="isAuthorized"
+        class="user"
+        @click="signOut">
+        로그아웃
+      </div>
+    </client-only>
   </header>
 </template>
 
