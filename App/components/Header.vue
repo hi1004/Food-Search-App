@@ -34,7 +34,6 @@
 <script>
   import Logo from '~/components/Logo';
   import { mapState } from 'vuex';
-  // import index from '~/store/index';
   export default {
     components: {
       Logo,
@@ -55,7 +54,6 @@
             href: '/myPage',
           },          
         ],
-        isAuth: false,
       };
     },
     computed: {
@@ -70,9 +68,9 @@
         this.$router.push('/signIn');
       },
       signOut() {
-        this.$store.dispatch('signIn/signOut'); 
+        this.$store.dispatch('signIn/userLogout'); 
       }
-    },
+    },    
   };
 </script>
 
