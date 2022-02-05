@@ -32,9 +32,6 @@ export default {
             withCredentials: true,
           }
         );
-        commit('updateState', {
-          isAuthorized: true,
-        });
         alert(`${state.email}님 환영합니다!`);
         this.$router.push('/');
       } catch (error) {
@@ -50,17 +47,6 @@ export default {
         }
       }
     },
-    async userLogout({ commit }) {
-      try {
-        await axios.post('/api/user/logout');
-        commit('updateState', {
-          isAuthorized: false,
-        });
-        alert('로그아웃 하셨습니다.');
-      } catch (error) {
-        console.log(error);
-      }
-    },
     async setAuthorized({ commit }) {
       try {
         await axios.get('/api/user/user');
@@ -72,6 +58,17 @@ export default {
         commit('updateState', {
           isAuthorized: false,
         });
+      }
+    },
+    async signOut({ commit }) {
+      try {
+        await axios.post('/api/user/logout');
+        commit('updateState', {
+          isAuthorized: false,
+        });
+        alert('로그아웃 하셨습니다.');
+      } catch (error) {
+        console.log(error);
       }
     },
   },
