@@ -16,8 +16,8 @@
       Header,
       Footer,
     },
-     created() {
-      this.$store.dispatch('signIn/setAuthorized');
-    }
+    //  beforeCreate() {
+    //   this.$store.dispatch('signIn/setAuthorized');
+    // }
   };
 </script>

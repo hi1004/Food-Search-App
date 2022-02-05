@@ -7,9 +7,9 @@
 <script>
  export default {
 
-    created() {
-      this.$store.dispatch('signIn/setAuthorized');
-    }
+    // created() {
+    //   this.$store.dispatch('signIn/setAuthorized');
+    // }
  }
 </script>
 

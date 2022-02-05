@@ -33,6 +33,9 @@ export default {
           }
         );
         alert(`${state.email}님 환영합니다!`);
+        commit('updateState', {
+          isAuthorized: true,
+        });
         this.$router.push('/');
       } catch (error) {
         if (error.response) {
@@ -48,9 +51,6 @@ export default {
       }
     },
     async setAuthorized({ commit }) {
-      commit('updateState', {
-        isAuthorized: true,
-      });
       try {
         await axios.get('/api/user/user');
         commit('updateState', {
