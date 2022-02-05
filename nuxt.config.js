@@ -72,12 +72,10 @@ export default {
     postcss: {
       plugins: [require('autoprefixer')],
     },
-    build: {
-      html: {
-        minify: {
-          collapseWhitespace: true, // as @dario30186 mentioned
-          removeComments: true, // 👈 add this line
-        },
+    html: {
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
       },
     },
   },
