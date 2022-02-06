@@ -62,12 +62,11 @@ export default {
   },
   methods: {
     signIn() {
-       this.$store.dispatch('signIn/userLogin', {
-          username: this.userName,
-          email: this.email,
-          password: this.password,
-        });
-      
+      this.$store.dispatch('signIn/userLogin', {
+        username: this.userName,
+        email: this.email,
+        password: this.password,
+      });      
     }
   }
 }

@@ -13,6 +13,9 @@
     components: {
       Header,
       Footer,
-    },      
+    },
+    beforeCreate() {
+      this.$store.dispatch('signIn/setAuthorized')
+    }
   };
 </script>
