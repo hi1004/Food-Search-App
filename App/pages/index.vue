@@ -6,10 +6,6 @@
 
 <script>
  export default {
-
-    // created() {
-    //   this.$store.dispatch('signIn/setAuthorized');
-    // }
  }
 </script>
 

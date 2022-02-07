@@ -6,6 +6,13 @@
 
 <script>
   export default {
-  };
+    beforeResolve (to, from, next) {
+      if (this.$store.state.signIn.isAuthorized) {
+        next()
+      } else {
+        next(false);
+      }
+    }
+  }
 </script>
 <style></style>

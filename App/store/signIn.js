@@ -14,9 +14,8 @@ export default {
   },
   actions: {
     async userLogin({ commit }, payload) {
-      console.log('payload', payload);
       try {
-        await axios.post(
+        const res = await axios.post(
           '/api/user/login',
           {
             email: payload.email,
@@ -26,7 +25,7 @@ export default {
             withCredentials: true,
           }
         );
-        alert(`환영합니다!`);
+        alert(`${res.data.username}님 환영합니다!`);
         commit('updateState', {
           isAuthorized: true,
         });

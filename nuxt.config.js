@@ -91,7 +91,7 @@ export default {
   proxy: {
     '/api/': { target: 'https://foodsearch.shop/api/', pathRewrite: { '^/api/': '' } },
   },
-  router: {
-    middleware: ['checkAuth'],
-  },
+  // router: {
+  //   middleware: ['checkAuth'],
+  // },
 };

@@ -1,6 +1,6 @@
-export default function ({ store }) {
-  store.app.router.beforeEach((to, from, next) => {
-    store.dispatch('signIn/setAuthorized');
-    next();
-  });
-}
+// export default function ({ store }) {
+//   store.app.router.beforeResolve((to, from, next) => {
+//     console.log('dora');
+//     next();
+//   });
+// }

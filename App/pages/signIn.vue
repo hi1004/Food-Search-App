@@ -48,22 +48,16 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 export default {
   data() {
     return {
-      username: '',
       email : '',
       password : '',
     }
   },
-  computed: {
-    ...mapState('signUp',['userName'])
-  },
   methods: {
     signIn() {
       this.$store.dispatch('signIn/userLogin', {
-        username: this.userName,
         email: this.email,
         password: this.password,
       });      
