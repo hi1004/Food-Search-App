@@ -4,8 +4,6 @@ export default {
   namespaced: true,
   state: () => ({
     isAuthorized: false,
-    email: '',
-    password: '',
   }),
   mutations: {
     updateState: (state, payload) => {
@@ -17,16 +15,13 @@ export default {
   actions: {
     async userLogin({ state, commit }, payload) {
       console.log('payload', payload);
-      commit('updateState', {
-        email: payload.email,
-        password: payload.password,
-      });
+
       try {
         await axios.post(
           '/api/user/login',
           {
-            email: state.email,
-            password: state.password,
+            email: payload.email,
+            password: payload.password,
           },
           {
             withCredentials: true,
