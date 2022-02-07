@@ -76,7 +76,7 @@
 </template>
  
 <script>
-  // import axios from 'axios'
+  import axios from 'axios'
   export default {
     data() {
       return {
@@ -114,9 +114,7 @@
       }
     },
     methods: {
-      
-      // sign up button onclick method
-      register() {
+      async register() {
             // check blank and incorrect format
         if (this.isBlankUsername) {
           alert('이름을 입력해주세요!');
@@ -128,6 +126,7 @@
         }
         if (!this.isValidEmail) {
           alert('유효하지 않은 이메일입니다.');
+          return;
         }
         if (this.isBlankPassword) {
           alert('비밀번호를 입력해주세요!');
@@ -141,9 +140,26 @@
           alert('비밀번호가 일치하지 않아요!');
           return;
         }  
-        this.$store.dispatch('signUp/userRegister', {
-          userinfo: this.userinfo
-        });    
+        try {
+          await axios.post('https://foodsearch.shop/api/user/register', {
+            name: this.userinfo.username,
+            email: this.userinfo.email,
+            password: this.userinfo.password,
+          });
+          alert(`${this.userinfo.username}님 회원가입에 성공하셨습니다.`);
+          this.$router.push('/signIn');
+        } catch (error) {
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            alert(error.response.data.email);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log('Error', error.message);
+          }
+        } 
       }
     }
   }
