@@ -79,7 +79,6 @@ export default {
       },
     },
   },
-
   serverMiddleware: [
     {
       path: '/api/food',
@@ -92,13 +91,7 @@ export default {
   proxy: {
     '/api/': { target: 'https://foodsearch.shop/api/', pathRewrite: { '^/api/': '' } },
   },
-  // auth: {
-  //   cookie: {
-  //     prefix: 'auth.',
-  //     options: {
-  //       sameSite: 'none',
-  //       secure: true,
-  //     },
-  //   },
-  // },
+  router: {
+    middleware: ['checkAuth'],
+  },
 };
