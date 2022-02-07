@@ -73,6 +73,7 @@
       },
       signOut() {
         this.$store.dispatch('signIn/userLogout'); 
+        this.$router.go(this.$router.currentRoute);
       }
     },    
   };

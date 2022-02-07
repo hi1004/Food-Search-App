@@ -6,11 +6,12 @@
 
 <script>
   export default {
-    beforeResolve (to, from, next) {
-      if (this.$store.state.signIn.isAuthorized) {
-        next()
-      } else {
-        next(false);
+    middleware({ store, redirect }) {
+      if (!store.state.signIn.isAuthorized) {
+        if (typeof window !== 'undefined') {
+          alert("로그인부터 하세요 도라에몽아");
+        }        
+        return redirect("/signIn");
       }
     }
   }

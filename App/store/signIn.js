@@ -60,11 +60,12 @@ export default {
         commit('updateState', {
           isAuthorized: true,
         });
+        console.log('인증성공!');
       } catch (error) {
-        console.log(error);
         commit('updateState', {
           isAuthorized: false,
         });
+        console.log('인증실패 T_T');
       }
     },
   },
