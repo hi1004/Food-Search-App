@@ -72,8 +72,7 @@
         this.$router.push('/signIn');
       },
       signOut() {
-        this.$store.dispatch('signIn/userLogout'); 
-        this.$router.go(this.$router.currentRoute);
+        this.$store.dispatch('signIn/userLogout');         
       }
     },    
   };
