@@ -31,7 +31,7 @@
       <div
         v-if="isAuthorized"
         class="user">
-        {{ isAuthorized }}
+        {{ username }}님 사랑해요
         <font-awesome-icon
           class="iconBtn"
           @click="signOut"
@@ -78,7 +78,7 @@
       };
     },
     computed: {
-      ...mapState('signIn',['isAuthorized'])
+      ...mapState('signIn',['isAuthorized', 'username'])
     },
     methods: {
       isMatch(path) {
