@@ -21,7 +21,7 @@ export default {
       {
         hid: 'og:title',
         property: 'og:title',
-        content: '식품의 정보를 검색해보고 관련 알레르기 정보도 함께 찾아보세요',
+        content: '안전한식탁',
       },
       {
         hid: 'og:description',
@@ -44,7 +44,7 @@ export default {
       { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Do+Hyeon&family=Noto+Sans+KR&family=Roboto:wght@400;700&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Do+Hyeon&family=Noto+Sans+KR&family=Jua&display=swap&family=Roboto:wght@400;700&display=swap',
       },
     ],
   },
