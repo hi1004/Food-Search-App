@@ -4,6 +4,7 @@ export default {
   namespaced: true,
   state: () => ({
     isAuthorized: false,
+    username: '',
   }),
   mutations: {
     updateState: (state, payload) => {
@@ -56,14 +57,16 @@ export default {
     },
     async setAuthorized({ commit }) {
       try {
-        await axios.get('/api/user/user');
+        const res = await axios.get('/api/user/user');
         commit('updateState', {
           isAuthorized: true,
+          username: res.data.name,
         });
         console.log('인증성공!');
       } catch (error) {
         commit('updateState', {
           isAuthorized: false,
+          username: '',
         });
         console.log('인증실패 T_T');
       }

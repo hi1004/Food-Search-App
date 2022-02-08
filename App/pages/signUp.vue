@@ -44,27 +44,6 @@
         <small v-if="isBlankCPassword">필수 입력값입니다.</small>
         <small v-if="!(isMatchPassword)">비밀번호란과 입력된 값이 다릅니다.</small>
       </div>
-      <div class="form-group">
-        <label>Allergy</label>
-        <br />
-        <div
-          v-for="(allergy, i) in allergies"
-          :key="i"
-          class="form-check-inline">
-          <input           
-            type="checkbox"
-            class="allergy-check btn-check"
-            :id="allergy"
-            :value="allergy"
-            v-model="userinfo.checkedAllergies" />
-          <label
-            class="allergy-option btn btn-outline-secondary"
-            :for="allergy">
-            {{ allergy }}
-          </label>
-        </div>
-        <br />        
-      </div>
       <button
         @click="register"
         type="button"
@@ -80,7 +59,6 @@
   export default {
     data() {
       return {
-        allergies: ['난류', '우유', '메밀', '땅콩', '대두', '밀', '고등어', '게', '새우', '돼지', '복숭아', '토마토', '아황산염', '호두', '닭고기', '쇠고기', '오징어', '조개류', '잣'],
         userinfo: {
           username: '',
           email: '',
