@@ -5,33 +5,30 @@
     <img
       src="~/assets/images/logo.png"
       alt="logo" />
-    <h1><span>안전</span>한식탁</h1>
+    <p>안전한<span>식탁</span></p>
   </NuxtLink>
 </template>
 
 <script>
-export default {
-
-}
+  export default {};
 </script>
 
 <style lang="scss" scoped>
-.logo {
-  font-size: 20px;
-  color: $black;
-  text-decoration: none;
-    color: $primary;
-  display: flex;
-  h1 {
-      font-family: "Do Hyeon", sans-serif;
+  .logo {
+    font-size: 20px;
+    color: $black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    p {
+      font-family: 'Jua', sans-serif;
       font-size: 1.5em;
-    font-weight: 600;
-    span {
-      color: green;
+      font-weight: 600;
+      margin: 0;
+      color: $primary;
+      span {
+        color: green;
+      }
     }
   }
-  img {
-    width: 30px;
-  }
-}
 </style>
