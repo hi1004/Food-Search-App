@@ -88,8 +88,9 @@
       toSignIn() {
         this.$router.push('/signIn');
       },
-      signOut() {
-        this.$store.dispatch('signIn/userLogout');         
+      async signOut() {
+        await this.$store.dispatch('signIn/userLogout');   
+        this.$router.push('/');   
       }
     },    
   };

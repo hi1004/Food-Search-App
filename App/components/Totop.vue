@@ -1,21 +1,29 @@
 <template>
   <transition name="slide">
-    <button
+    <font-awesome-icon
       id="totopBtn"
-      type="button"
       v-if="!isScrollTop"
-      @click="toTop">
-      to top 
-    </button>
+      @click="toTop"
+      :icon="toTopIcon" />
   </transition>
 </template>
 
 <script>
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faArrowCircleUp } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faArrowCircleUp)
+
 export default {
   data() {
     return {
       isScrollTop: true,
+      toTopIcon: 'arrow-circle-up'
     }
+  },
+  components: {
+    FontAwesomeIcon,
   },
   created () {
     if (process.client) {
@@ -44,12 +52,20 @@ export default {
 
 <style lang="scss" scoped>
   #totopBtn {
+    width: 50px;
+    height: 50px;
     position: fixed;
     right: 20px;
     bottom: 20px;
+    transition: 0.4s;
+    z-index: 10;
+    &:hover {
+      cursor: pointer;
+      color: darken($gray-200, 10%);
+    }
   }
   .slide-enter {
-    transform: translateX(100px);
+    transform: translateY(100px);
     opacity: 0;
   }
   .slide-enter-active,
@@ -57,7 +73,7 @@ export default {
     transition: 0.5s;
   }
   .slide-leave-to {
-    transform: translateX(100px);
+    transform: translateY(100px);
     opacity: 0;
   } 
 </style>
