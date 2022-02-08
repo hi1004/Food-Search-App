@@ -2,20 +2,20 @@
   <div>
     <Search />
     <FoodList />
-    <toTop />
+    <Totop />
   </div>
 </template>
 
 <script>
   import Search from '~/components/Search/Search';
   import FoodList from '~/components/Search/FoodList';
-  import toTop from '~/components/toTop';
+  import Totop from '~/components/Totop';
 
   export default {
     components: {
       Search,
       FoodList,
-      toTop,
+      Totop,
     },
   };
 </script>

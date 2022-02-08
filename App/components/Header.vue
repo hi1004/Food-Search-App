@@ -97,11 +97,15 @@
 
 <style lang="scss" scoped>
   header {
+    width: 100%;
     height: 70px;
     display: flex;
     align-items: center;
     padding: 0 40px;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
     .logo {
       margin-right: 40px;
     }
