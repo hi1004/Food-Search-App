@@ -18,18 +18,24 @@
     </div>
     <client-only>
       <div
-        v-if="!isAuthorized"
-        class="user"
-        @click="toSignIn">
-        로그인
+        v-if="!isAuthorized"     
+        class="user">
+        Sign In
+        <font-awesome-icon
+          class="iconBtn"
+          @click="toSignIn"
+          :icon="signInIcon" />
       </div>
     </client-only>
     <client-only>
       <div
         v-if="isAuthorized"
-        class="user"
-        @click="signOut">
-        로그아웃
+        class="user">
+        {{ isAuthorized }}
+        <font-awesome-icon
+          class="iconBtn"
+          @click="signOut"
+          :icon="signOutIcon" />
       </div>
     </client-only>
   </header>
@@ -37,10 +43,19 @@
 
 <script>
   import Logo from '~/components/Logo';
+  
   import { mapState } from 'vuex';
+
+  import { library } from '@fortawesome/fontawesome-svg-core'
+  import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+  library.add(faSignInAlt, faSignOutAlt)
+
   export default {
     components: {
       Logo,
+      FontAwesomeIcon,
     },
     data() {
       return {
@@ -58,6 +73,8 @@
             href: '/myPage',
           },          
         ],
+        signInIcon: "sign-in-alt",
+        signOutIcon: "sign-out-alt"
       };
     },
     computed: {
@@ -89,27 +106,20 @@
       margin-right: 40px;
     }
     .user {
-      width: 40px;
-      height: 40px;
       padding: 6px;
-      border-radius: 50%;
-      box-sizing: border-box;
-      background-color: $gray-200;
-      cursor: pointer;
       position: absolute;
       top: 0;
       bottom: 0;
       right: 40px;
       margin: auto;
-      transition: 0.4s;
-      &:hover {
-        background-color: darken($gray-200, 10%);
-      }
-      img {
-        width: 100%;
-      }
+      .iconBtn {
+        transition: 0.4s;
+        &:hover {
+          cursor: pointer;
+          color: darken($gray-200, 10%);
+        }
+      }      
     }
-
     @include media-breakpoint-down(sm) {
       .nav {
         display: none;
