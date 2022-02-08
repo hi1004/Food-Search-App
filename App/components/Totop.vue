@@ -58,6 +58,7 @@ export default {
     right: 20px;
     bottom: 20px;
     transition: 0.4s;
+    z-index: 10;
     &:hover {
       cursor: pointer;
       color: darken($gray-200, 10%);
