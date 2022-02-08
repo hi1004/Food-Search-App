@@ -2,7 +2,10 @@
   <NuxtLink
     to="/"
     class="logo">
-    <span>FoodSearch</span>.com
+    <img
+      src="~/assets/images/logo.png"
+      alt="logo" />
+    안전한식탁
   </NuxtLink>
 </template>
 
@@ -17,11 +20,13 @@ export default {
   font-size: 20px;
   color: $black;
   text-decoration: none;
-  &:hover {
-    color: $black;
-  }
-  span {
+  font-family: "Do Hyeon", sans-serif;
+      font-size: 1.5em;
+    font-weight: 600;
     color: $primary;
+ 
+  img {
+    width: 30px;
   }
 }
 </style>
