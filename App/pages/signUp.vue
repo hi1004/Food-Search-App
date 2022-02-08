@@ -125,7 +125,7 @@
             password: this.userinfo.password,
           });
           alert(`${this.userinfo.username}님 회원가입에 성공하셨습니다.`);
-          this.$router.push('/myPage');
+          this.$router.push('/signIn');
         } catch (error) {
           if (error.response) {
             console.log(error.response.data);
