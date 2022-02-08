@@ -31,7 +31,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: '~/assets/images/main_img.jpg',
+        content: 'https://raw.githubusercontent.com/hi1004/Food-Search-App/master/App/assets/images/main_img.jpg',
       },
       { hid: 'og:url', property: 'og:url', content: process.env.CLIENT_URL },
     ],
