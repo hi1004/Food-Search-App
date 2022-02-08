@@ -17,6 +17,22 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:site', property: 'og:site', content: 'Food Search App' },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: '식품의 정보를 검색해보고 관련 알레르기 정보도 함께 찾아보세요',
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: '한국식품안전관리인증원 API를 기반으로 한 식품 검색기능을 제공합니다.',
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: '~/assets/images/main_img.jpg',
+      },
       { hid: 'og:url', property: 'og:url', content: process.env.CLIENT_URL },
     ],
     link: [
