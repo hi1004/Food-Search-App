@@ -7,7 +7,7 @@
       :key="index">
       <div
         :style="{
-          backgroundImage: `url(${bannerURL[index-1]})`,
+          backgroundImage: `url(${bannerURL[index - 1]})`,
         }"
         class="image"></div>
     </SwiperSlide>
@@ -20,12 +20,16 @@
     <div
       class="swiper-button-next"
       slot="button-next"></div>
+    <div
+      class="swiper-scrollbar"
+      slot="scrollbar"></div>
   </Swiper>
 </template>
 
 <script>
   import { mapState } from 'vuex';
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
+  import 'swiper/css/swiper.css';
   export default {
     components: {
       Swiper,
@@ -36,10 +40,12 @@
     },
     data() {
       return {
-        swiperOption: { 
+        swiperOption: {
           slidesPerView: 1,
           spaceBetween: 0,
           loop: true,
+          effect: 'fade',
+          autoplay: { delay: 5000 },
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -47,6 +53,10 @@
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
+          },
+          scrollbar: {
+            el: '.swiper-scrollbar',
+            draggable: true,
           },
         },
       };
@@ -57,32 +67,27 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .swiper {
-      width: 100%;
-      height: 100vh;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-shrink: 0;
+    overflow: hidden;
+    .swiper-slide {
+      text-align: center;
       display: flex;
-      flex-shrink: 0;
-      overflow:hidden;
-       .swiper-wrapper {
-        display:flex;
-         .swiper-slide {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        font-weight: bold;
-        .image {
-          width: 100%;
-          height: 100vh;
-          background-color: $gray-200;
-          background-size: cover;
-          background-position: center;
-          position: relative;
-          flex-shrink: 0;
-        }
+      align-items: center;
+      justify-content: center;
+      .image {
+        width: 100%;
+        height: 100vh;
+        background-color: $gray-200;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        flex-shrink: 0;
       }
-      }
-     
+    }
   }
 </style>

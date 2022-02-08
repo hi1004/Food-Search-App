@@ -5,7 +5,7 @@
       type="button"
       v-if="!isScrollTop"
       @click="toTop">
-      to top
+      to top 
     </button>
   </transition>
 </template>
