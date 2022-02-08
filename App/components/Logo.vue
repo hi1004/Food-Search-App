@@ -5,7 +5,7 @@
     <img
       src="~/assets/images/logo.png"
       alt="logo" />
-    안전한식탁
+    <h1><span>안전</span>한식탁</h1>
   </NuxtLink>
 </template>
 
@@ -20,11 +20,16 @@ export default {
   font-size: 20px;
   color: $black;
   text-decoration: none;
-  font-family: "Do Hyeon", sans-serif;
+    color: $primary;
+  display: flex;
+  h1 {
+      font-family: "Do Hyeon", sans-serif;
       font-size: 1.5em;
     font-weight: 600;
-    color: $primary;
- 
+    span {
+      color: green;
+    }
+  }
   img {
     width: 30px;
   }
