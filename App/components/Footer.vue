@@ -26,6 +26,8 @@
     .logo {
       display: block;
       margin-bottom: 4px;
+      position: relative;
+      height: 80px;
     }
   }
 </style>

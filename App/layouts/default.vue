@@ -1,6 +1,7 @@
 <template>
   <div>
     <Header />
+    <div class="margin"></div>
     <Nuxt />
     <Footer />
   </div>
@@ -16,3 +17,9 @@
     }
   };
 </script>
+
+<style lang="scss" scoped>
+  .margin {
+    margin-top: 70px;
+  }
+</style>

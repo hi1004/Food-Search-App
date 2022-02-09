@@ -7,22 +7,24 @@
       :key="index">
       <div
         :style="{
-          backgroundImage: `url(${bannerURL[index - 1]})`,
+          backgroundImage: `url(${bannerURL[index-1]})`,
         }"
         class="image"></div>
     </SwiperSlide>
-    <div
-      class="swiper-pagination"
-      slot="pagination"></div>
-    <div
-      class="swiper-button-prev"
-      slot="button-prev"></div>
-    <div
-      class="swiper-button-next"
-      slot="button-next"></div>
-    <div
-      class="swiper-scrollbar"
-      slot="scrollbar"></div>
+    <div class="container">
+      <div
+        class="swiper-pagination"
+        slot="pagination"></div>
+      <div
+        class="swiper-button-prev"
+        slot="button-prev"></div>
+      <div
+        class="swiper-button-next"
+        slot="button-next"></div>
+      <div
+        class="swiper-scrollbar"
+        slot="scrollbar"></div>
+    </div>
   </Swiper>
 </template>
 
@@ -45,7 +47,7 @@
           spaceBetween: 0,
           loop: true,
           effect: 'fade',
-          autoplay: { delay: 5000 },
+          // autoplay: { delay: 5000 },
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -72,6 +74,7 @@
     width: 100%;
     height: 100vh;
     display: flex;
+    margin-top: -70px;
     flex-shrink: 0;
     overflow: hidden;
     .swiper-slide {
@@ -87,6 +90,19 @@
         background-position: center;
         position: relative;
         flex-shrink: 0;
+      }
+    }
+    .container {
+      box-sizing: border-box;
+      height: calc(100vh - 70px);
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-top: 70px;
+      z-index: 1;
+      transform: translateX(-50%);
+      .swiper-pagination {
+        bottom: 50px;
       }
     }
   }
