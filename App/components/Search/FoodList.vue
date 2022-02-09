@@ -21,7 +21,7 @@
           :key="food.prdlstReportNo"
           :food="food" />
         <InfiniteLoading
-          v-if="foods.length >= 12 && pgNo < total / 12"
+          v-if="this.foods.length >= 12 && this.pgNo < this.total / 12"
           @infinite="scrolling" />
       </div>
     </div>
@@ -77,7 +77,7 @@
     margin-top: 30px;
     .inner {
       background-color: $gray-200;
-      padding: 10px 0;
+      padding: 10px 0 10px 0;
       border-radius: 4px;
       text-align: center;
       &.no-result {
@@ -92,6 +92,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      position: relative;
       h2 {
         width: 100%;
         padding: 30px 0;
@@ -101,5 +102,10 @@
         }
       }
     }
+  }
+</style>
+<style lang="scss">
+  .infinite-loading-container {
+    width: 100%;
   }
 </style>

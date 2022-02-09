@@ -51,11 +51,11 @@
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
-                renderBullet: function (index, className) {
-    return '<span class="' + className + '">'+'<b>' +'0'+ (index + 1) + '</b>'+ '</span>';
-  },
+            renderBullet: function (index, className) {
+              return '<span class="' + className + '">' + '<b>' + '0' + (index + 1) + '</b>' + '</span>';
+            },
           },
-        
+
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -81,6 +81,15 @@
     margin-top: -70px;
     flex-shrink: 0;
     overflow: hidden;
+    &:hover .cursor{
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+      z-index: 10;
+    }
+   
+
     .swiper-slide {
       text-align: center;
       display: flex;
@@ -108,7 +117,7 @@
       .swiper-pagination {
         bottom: 50px;
         display: flex;
-       align-items: flex-end;
+        align-items: flex-end;
       }
     }
   }
@@ -136,11 +145,10 @@
     &.swiper-pagination-bullet-active {
       height: 46px !important;
       width: 1px !important;
-        b {
-      
-      visibility: visible;
-      opacity: 1;
-    }
+      b {
+        visibility: visible;
+        opacity: 1;
+      }
     }
   }
 </style>
