@@ -5,6 +5,8 @@ export default {
   state: () => ({
     isAuthorized: false,
     username: '',
+    email: '',
+    allergiesInfo: [],
   }),
   mutations: {
     updateState: (state, payload) => {
@@ -58,9 +60,12 @@ export default {
     async setAuthorized({ commit }) {
       try {
         const res = await axios.get('/api/user/user');
+        const res2 = await axios.get('/api/allergy/manage');
         commit('updateState', {
           isAuthorized: true,
           username: res.data.name,
+          email: res.data.email,
+          allergiesInfo: res2.data,
         });
         console.log('인증성공!');
       } catch (error) {

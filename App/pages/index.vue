@@ -7,7 +7,7 @@
 
 <script>
   import Totop from '~/components/Totop';
- import Banner from '~/components/Home/Banner';
+  import Banner from '~/components/Home/Banner';
   export default {
     components: {
       Totop,

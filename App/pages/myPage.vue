@@ -3,11 +3,11 @@
     <form>
       <div class="form-group">
         <label for="inputEmail">Username</label>
-        <div>{{ userinfo.username }}</div>
+        <div>{{ username }}</div>
       </div>
       <div class="form-group">
         <label for="inputEmail">Email address</label>
-        <div>{{ userinfo.email }}</div>
+        <div>{{ email }}</div>
       </div>      
       <div class="form-group">
         <label>Allergy</label>
@@ -21,7 +21,7 @@
             class="allergy-check btn-check"
             :id="allergy"
             :value="allergy[1]"
-            v-model="userinfo.checkedAllergies" />
+            v-model="checkedAllergies" />
           <label
             class="allergy-option btn btn-outline-secondary"
             :for="allergy">
@@ -42,6 +42,8 @@
 
 <script>
   import axios from 'axios'
+  import { mapState } from 'vuex';
+
   export default {
     middleware({ store, redirect }) {
       if (!store.state.signIn.isAuthorized) {
@@ -73,58 +75,42 @@
           ['오징어', 'squid'],
           ['조개류', 'shellfish'],
           ['잣', 'pineNut']
-        ],
-        userinfo: {
-          username: '',
-          email: '',
-          checkedAllergies: [], 
-        },
+        ],        
+        checkedAllergies: [],         
       }
     },
-    async beforeCreate() {
-      // get userinfo from server and set it on this component's data
-      try {
-        const res = await axios.get('/api/user/user');
-        this.userinfo.username = res.data.name;
-        this.userinfo.email = res.data.email;
-      } catch (error) {
-        console.log(error)
-      }
-      try {
-        const res = await axios.get('/api/allergy/manage');
-        Object.entries(res.data).forEach(([key, value]) => {
-          if (value === true) {
-            this.userinfo.checkedAllergies.push(key)
-          }
-        })
-        console.log(res.data)
-      } catch (error) {        
-        console.log(error);
-      }
+    created() {    
+      Object.entries(this.allergiesInfo).forEach(([key, value]) => {
+        if (value === true) {
+          this.checkedAllergies.push(key)
+        }
+      })
+    },
+    beforeUpdate() {
+      Object.entries(this.allergiesInfo).forEach(([key, value]) => {
+        if (value === true) {
+          this.checkedAllergies.push(key)
+        }
+      })
+    },
+    computed: {
+      ...mapState('signIn', ['isAuthorized', 'username', 'email', 'allergiesInfo']),
     },
     methods: {
       async updateUserinfo() {
         let allergiesInfo = {}
-        this.userinfo.checkedAllergies.forEach(allergy => {
+        this.checkedAllergies.forEach(allergy => {
           allergiesInfo[allergy] = true;
         })
         console.log(allergiesInfo)
-        // try {
-        //   await axios.put('/api/allergy/manage', allergiesInfo);
-        // } catch (error) {
-        //   console.log(error)
-        // }
-      }
-    },
-    watch: {
-      userinfo: {
-        deep: true,
-        handler(newData) {
-          //check required value is blank
-          this.isBlankUsername = newData.username === '';       
+        try {
+          await axios.put('/api/allergy/manage', allergiesInfo);
+          alert('변경 성공!')          
+        } catch (error) {
+          console.log(error)
         }
       }
-    }
+    },
   }
 </script>
 <style lang="scss">

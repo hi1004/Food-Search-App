@@ -48,22 +48,22 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      email : '',
-      password : '',
-    }
-  },
-  methods: {
-    signIn() {
-      this.$store.dispatch('signIn/userLogin', {
-        email: this.email,
-        password: this.password,
-      });      
+  export default {
+    data() {
+      return {
+        email : '',
+        password : '',
+      }
+    },
+    methods: {
+      signIn() {
+        this.$store.dispatch('signIn/userLogin', {
+          email: this.email,
+          password: this.password,
+        });      
+      }
     }
   }
-}
 </script>
 
 <style lang="scss">
