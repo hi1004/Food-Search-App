@@ -103,9 +103,7 @@
 
 <script>
   import Logo from '~/components/Logo';
-
   import { mapState } from 'vuex';
-
   import { library } from '@fortawesome/fontawesome-svg-core';
   import { faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -212,8 +210,9 @@
       .username {
         position: absolute;
         top: 50%;
-    right: 50px;
-    transform: translateY(-50%);
+        font-size: 1rem;
+        right: 50px;
+        transform: translateY(-50%);
       }
       .user {
         display: flex;

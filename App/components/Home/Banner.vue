@@ -1,13 +1,13 @@
 <template>
   <Swiper
-    class="swiper"
+    class="banner-swiper"
     :options="swiperOption">
     <SwiperSlide
       v-for="index in 3"
       :key="index">
       <div
         :style="{
-          backgroundImage: `url(${bannerURL[index-1]})`,
+          backgroundImage: `url(${bannerURL[index - 1]})`,
         }"
         class="image"></div>
     </SwiperSlide>
@@ -51,7 +51,11 @@
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
+                renderBullet: function (index, className) {
+    return '<span class="' + className + '">'+'<b>' +'0'+ (index + 1) + '</b>'+ '</span>';
+  },
           },
+        
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -70,7 +74,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .swiper {
+  .banner-swiper {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -103,7 +107,40 @@
       transform: translateX(-50%);
       .swiper-pagination {
         bottom: 50px;
+        display: flex;
+       align-items: flex-end;
       }
+    }
+  }
+</style>
+<style lang="scss">
+  .banner-swiper .swiper-pagination-clickable .swiper-pagination-bullet {
+    background-color: #fff;
+    width: 5px;
+    height: 14px;
+    border-radius: 0;
+    margin: 0 17px;
+    opacity: 1;
+    transition: height 0.5s ease;
+    vertical-align: bottom;
+    b {
+      color: #fff;
+      transform: translateX(-9px);
+      position: absolute;
+      top: -30px;
+      font-weight: 500;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.5s ease;
+    }
+    &.swiper-pagination-bullet-active {
+      height: 46px !important;
+      width: 1px !important;
+        b {
+      
+      visibility: visible;
+      opacity: 1;
+    }
     }
   }
 </style>
