@@ -39,5 +39,7 @@ module.exports = {
         multiline: 'never',
       },
     ],
+    'vue/script-indent': ['error', 2, { baseIndent: 1 }],
+    'vue/array-bracket-newline': ['error'],
   },
 };

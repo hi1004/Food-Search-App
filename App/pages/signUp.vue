@@ -93,7 +93,7 @@
     },
     methods: {
       async register() {
-            // check blank and incorrect format
+        // check blank and incorrect format
         if (this.isBlankUsername) {
           alert('이름을 입력해주세요!');
           return;
