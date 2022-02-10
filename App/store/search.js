@@ -13,6 +13,7 @@ export default {
     foodName: '',
     total: '',
     pgNo: 0,
+    foodAllergies: [],
   }),
   mutations: {
     updateState: (state, payload) => {
@@ -102,6 +103,7 @@ export default {
 
     async searchResult({ state, commit }, payload) {
       if (state.loading) return;
+
       try {
         const res = await _fetchFood({
           ...payload,
@@ -130,9 +132,14 @@ export default {
           message,
         });
       } finally {
+        const allergiesObject = state.foods.map(food => {
+          return food.allergy;
+        });
         commit('updateState', {
           loading: false,
+          foodAllergies: allergiesObject,
         });
+        console.log('state.foods', state.foods);
       }
     },
   },
