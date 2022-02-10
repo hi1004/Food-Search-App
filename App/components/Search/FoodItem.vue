@@ -139,7 +139,20 @@
     border-radius: 4px;
     overflow: hidden;
     position: relative;
-
+    .mark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 3rem;
+      background-color: transparent;
+      color: $danger;
+      &.unknown {
+        color: $warning;
+      }
+      &.safe {
+        color: $success;
+      }
+    }
     &:hover::after {
       content: '';
       position: absolute;
@@ -192,18 +205,5 @@
   }
 </style>
 <style lang="scss">
- .mark {
-      position: absolute;
-      top: 0;
-      left: 0;
-      font-size: 3rem;
-      background-color: transparent;
-      color: $danger;
-      &.unknown {
-        color: $warning;
-      }
-      &.safe {
-        color: $success;
-      }
-    }
+ 
 </style>
