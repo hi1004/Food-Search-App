@@ -23,11 +23,13 @@
 
 <script>
   import Loader from '~/components/Loader';
+  import { mapState } from 'vuex';
 
   export default {
     components: {
       Loader,
     },
+    
     props: {
       food: {
         type: Object,
@@ -37,7 +39,20 @@
     data() {
       return {
         imageLoading: true,
+        checkedAllergies: [],
       };
+    },
+    created() {
+      Object.entries(this.allergiesInfo).forEach(([key, value]) => {
+        if (value === true) {
+          this.checkedAllergies.push(key)
+        }
+      })
+      console.log(this.checkedAllergies)
+    },
+    computed: {
+      ...mapState('signIn', ['allergiesInfo']),
+      ...mapState('search', ['theFood']),
     },
     mounted() {
       this.init();
