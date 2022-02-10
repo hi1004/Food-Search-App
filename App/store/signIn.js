@@ -61,6 +61,7 @@ export default {
       try {
         const res = await axios.get('/api/user/user');
         const res2 = await axios.get('/api/allergy/manage');
+        console.log(res2.data);
         commit('updateState', {
           isAuthorized: true,
           username: res.data.name,

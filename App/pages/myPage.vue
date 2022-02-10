@@ -79,14 +79,7 @@
         checkedAllergies: [],         
       }
     },
-    created() {    
-      Object.entries(this.allergiesInfo).forEach(([key, value]) => {
-        if (value === true) {
-          this.checkedAllergies.push(key)
-        }
-      })
-    },
-    beforeUpdate() {
+    beforeMount() {    
       Object.entries(this.allergiesInfo).forEach(([key, value]) => {
         if (value === true) {
           this.checkedAllergies.push(key)
@@ -98,7 +91,27 @@
     },
     methods: {
       async updateUserinfo() {
-        let allergiesInfo = {}
+        let allergiesInfo = {
+          egg: false,
+          milk: false,
+          buckwheat: false,
+          peanut: false,
+          bean: false,
+          wheat: false,
+          mackerel: false,
+          crab: false,
+          shrimp: false,
+          pork: false,
+          peach: false,
+          tomato: false,
+          sulfite: false,
+          walnut: false,
+          chicken: false,
+          beef: false,
+          squid: false,
+          shellfish: false,
+          pineNut: false,
+        }     
         this.checkedAllergies.forEach(allergy => {
           allergiesInfo[allergy] = true;
         })
