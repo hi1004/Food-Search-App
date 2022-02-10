@@ -18,34 +18,28 @@
         {{ food.prdlstNm }}
       </div>
     </div>
-    <FontAwesomeIcon
-      class="mark safe"
-      v-if="this.isSafe"
-      icon="fa-solid fa-circle-check" />
-    <FontAwesomeIcon
+    <img
+      src="~/assets/images/allergy/allergy-safe.png"
       class="mark"
-      v-if="this.isAllergy"
-      icon="fa-solid fa-triangle-exclamation" />
-    <FontAwesomeIcon
-      class="mark unknown"
-      v-if="this.unknownAllergy"
-      icon="fa-solid fa-circle-question" />
+      v-if="this.isSafe" />
+    <img
+      src="~/assets/images/allergy/allergy-danger.png"
+      class="mark"
+      v-if="this.isDanger" />
+    <img
+      src="~/assets/images/allergy/allergy-unknown.png"
+      class="mark"
+      v-if="this.isUnknown" />
   </NuxtLink>
 </template>
 
 <script>
   import Loader from '~/components/Loader';
   import { mapState } from 'vuex';
-  import { library } from '@fortawesome/fontawesome-svg-core';
-  import { faTriangleExclamation, faCircleQuestion, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
-  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
-  library.add(faTriangleExclamation, faCircleQuestion, faCircleCheck);
 
   export default {
     components: {
       Loader,
-      FontAwesomeIcon,
     },
 
     props: {
@@ -80,8 +74,8 @@
           pineNut: '잣',
         },
         message: [],
-        isAllergy: false,
-        unknownAllergy: false,
+        isDanger: false,
+        isUnknown: false,
         isSafe: false,
       };
     },
@@ -94,7 +88,7 @@
       console.log(this.checkedAllergies);
       if (this.food.allergy === '알수없음') {
         this.message = '정보제공 안함';
-        this.unknownAllergy = true;
+        this.isUnknown = true;
       } else {
         this.checkedAllergies.forEach(al => {
           if (this.food.allergy.includes(al)) {
@@ -102,7 +96,7 @@
           }
         });
         if (this.message.length > 0) {
-          this.isAllergy = true;
+          this.isDanger = true;
         } else {
           this.isSafe = true;
         }
@@ -139,18 +133,12 @@
     overflow: hidden;
     position: relative;
     .mark {
+      width: 3rem;
+      height: 3rem;
       position: absolute;
       top: 0;
       left: 0;
-      font-size: 3rem;
       background-color: transparent;
-      color: $danger;
-      &.unknown {
-        color: $warning;
-      }
-      &.safe {
-        color: $success;
-      }
     }
     &:hover::after {
       content: '';
