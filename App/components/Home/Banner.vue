@@ -1,16 +1,54 @@
 <template>
   <Swiper
+    ref="mySwiper"
     class="banner-swiper"
+    @slideChange="onSwiperSlideChangeTransitionStart"
     :options="swiperOption">
-    <SwiperSlide
-      v-for="index in 3"
+    <SwiperSlide>
+      <video
+        class="video-slide-player video-slide-player01"
+        autoplay
+        muted
+        playsinline
+        loop>
+        <source
+          src="~/assets/video/banner_video01.mp4"
+          type="video/mp4" />
+      </video>
+    </SwiperSlide>
+    <SwiperSlide>
+      <video
+        class="video-slide-player video-slide-player02"
+        autoplay
+        muted
+        playsinline
+        loop>
+        <source
+          src="~/assets/video/banner_video02.mp4"
+          type="video/mp4" />
+      </video>
+    </SwiperSlide>
+    <SwiperSlide>
+      <video
+        class="video-slide-player video-slide-player03"
+        autoplay
+        muted
+        playsinline
+        loop>
+        <source
+          src="~/assets/video/banner_video03.mp4"
+          type="video/mp4" />
+      </video>
+    </SwiperSlide>
+    <!-- <SwiperSlide
+      v-for="index in 2"
       :key="index">
       <div
         :style="{
-          backgroundImage: `url(${bannerURL[index - 1]})`,
+          backgroundImage: `url(${bannerURL[index]})`,
         }"
         class="image"></div>
-    </SwiperSlide>
+    </SwiperSlide> -->
     <div class="container">
       <div
         class="swiper-pagination"
@@ -21,9 +59,6 @@
       <div
         class="swiper-button-next"
         slot="button-next"></div>
-      <div
-        class="swiper-scrollbar"
-        slot="scrollbar"></div>
     </div>
   </Swiper>
 </template>
@@ -46,8 +81,9 @@
           slidesPerView: 1,
           spaceBetween: 0,
           loop: true,
+     
           effect: 'fade',
-          // autoplay: { delay: 5000 },
+          autoplay: { delay: 5000 },
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -55,20 +91,50 @@
               return '<span class="' + className + '">' + '<b>' + '0' + (index + 1) + '</b>' + '</span>';
             },
           },
-
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
           },
-          scrollbar: {
-            el: '.swiper-scrollbar',
-            draggable: true,
+          on: {
+            slideChange: function () {
+              console.log('change')
+              if (this.isEnd) {
+            
+                console.log('end')
+              }
+              if (this.isBeginning) {
+             
+                console.log('start')
+              }
+            }
           },
         },
       };
     },
     computed: {
       ...mapState('banner', ['bannerURL']),
+      swiper() {
+        return this.$refs.mySwiper.$swiper;
+      },
+    },
+    methods: {
+      onSwiperSlideChangeTransitionStart() {
+        const swiperPaginationActive = document.querySelector('.swiper-pagination-bullet-active');
+        const pageNo = swiperPaginationActive.childNodes[0].textContent;
+        const video02 = document.querySelector('.video-slide-player.video-slide-player02');
+        const video03 = document.querySelector('.video-slide-player.video-slide-player03');
+        if (pageNo === '02' ) {
+          video02.play();
+          video03.pause();
+        } else if (pageNo === '03') {
+          video03.play();
+          video02.pause();
+        } else {
+          video02.pause();
+          video03.pause();
+        }
+      },
+
     },
   };
 </script>
@@ -81,14 +147,13 @@
     margin-top: -70px;
     flex-shrink: 0;
     overflow: hidden;
-    &:hover .cursor{
+    &:hover .cursor {
       width: 100px;
       height: 100px;
       background-color: red;
       position: absolute;
       z-index: 10;
     }
-   
 
     .swiper-slide {
       text-align: center;
@@ -123,6 +188,20 @@
   }
 </style>
 <style lang="scss">
+  .swiper-button-prev, .swiper-button-next {
+    color: #fff;
+    opacity: .5;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .swiper-button-prev {
+    margin-left: 30px;
+  }
+   .swiper-button-next {
+    margin-right: 30px;
+  }
+
   .banner-swiper .swiper-pagination-clickable .swiper-pagination-bullet {
     background-color: #fff;
     width: 5px;

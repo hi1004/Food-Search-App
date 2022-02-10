@@ -1,7 +1,7 @@
 <template>
   <div
     class="container"
-    :style="{ margin: `${mt}px auto` }">
+    :style="{ margin: `${mt}px auto 0 auto` }">
     <input
       v-model.trim="foodName"
       v-focus
@@ -37,11 +37,11 @@
         default: 0,
       },
     },
-   
+
     methods: {
       apply() {
         this.$router.push('/search/result');
-        this.$store.commit('search/resetFood')
+        this.$store.commit('search/resetFood');
         this.$store.dispatch('search/searchFoods', {
           foodName: this.foodName,
           number: this.number,
@@ -62,6 +62,7 @@
 <style lang="scss" scoped>
   .container {
     display: flex;
+    margin: 100px auto 10px auto;
     > * {
       margin-right: 10px;
       font-size: 15px;

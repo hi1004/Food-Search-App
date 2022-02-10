@@ -2,10 +2,10 @@
   <NuxtLink
     to="/"
     class="logo">
-    <img
+    <!-- <img
       src="~/assets/images/logo.png"
-      alt="logo" />
-    <p>안전한<span>식탁</span></p>
+      alt="logo" /> -->
+    <p>안전한식탁</p>
   </NuxtLink>
 </template>
 
@@ -26,13 +26,9 @@
     left: 0;
     p {
       font-family: 'Jua', sans-serif;
-      font-size: 1.5em;
-      font-weight: 600;
+      font-size: 1.5rem;
       margin: 0;
-      color: $primary;
-      span {
-        color: green;
-      }
+      color: $white;
     }
   }
 </style>

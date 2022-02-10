@@ -23,7 +23,9 @@
         v-if="isAuthorized">
         {{ username }}
       </h4>
-      <ul class="user">
+      <ul
+        v-if="isAuthorized"
+        class="user login">
         <FontAwesomeIcon
           class="iconBtn"
           icon="circle-user" />
@@ -75,28 +77,60 @@
           </li>
         </ul>
       </ul>
-      <!-- <client-only>
-        <div
-          v-if="!isAuthorized"     
-          class="user">
-          Sign In
-          <font-awesome-icon
-            class="iconBtn"
-            @click="toSignIn"
-            :icon="signInIcon" />
-        </div>
-      </client-only>
-      <client-only>
-        <div
-          v-if="isAuthorized"
-          class="user">
-          {{ username }}님 사랑해요
-          <font-awesome-icon
-            class="iconBtn"
-            @click="signOut"
-            :icon="signOutIcon" />
-        </div>
-      </client-only> -->
+      <ul
+        v-if="!isAuthorized"
+        class="user">
+        <FontAwesomeIcon
+          class="iconBtn"
+          icon="circle-user" />
+        <ul class="sub-menu">
+          <li>
+            <client-only>
+              <div v-if="!isAuthorized">
+                <a
+                  href="javascript:void(0)"
+                  @click="toSignIn">
+                  <FontAwesomeIcon
+                    class="iconBtn"
+                    icon="sign-in-alt" />
+                  로그인
+                </a>
+              </div>
+            </client-only>
+          </li>
+          <li>
+            <client-only>
+              <div v-if="isAuthorized">
+                <h4 class="welcome">
+                  {{ username }}
+                </h4>
+                <a
+                  href="javascript:void(0)"
+                  @click="signOut">
+                  <FontAwesomeIcon
+                    class="iconBtn"
+                    icon="sign-out-alt" />
+                  로그아웃
+                </a>
+              </div>
+            </client-only>
+          </li>
+          <li>
+            <client-only>
+              <div v-if="!isAuthorized">
+                <a
+                  href="javascript:void(0)"
+                  @click="toSignUp">
+                  <FontAwesomeIcon
+                    class="iconBtn"
+                    icon="user-plus" />
+                  회원가입
+                </a>
+              </div>
+            </client-only>
+          </li>
+        </ul>
+      </ul>
     </div>
   </header>
 </template>
@@ -185,17 +219,13 @@
     transform: translate3d(0, 0, 0);
     transition: 0.1s all ease-out;
     position: fixed;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     top: 0;
-    box-shadow: 0 2px 15px rgba(249, 81, 34, 0.5);
     z-index: 99;
     box-sizing: border-box;
     &.header--hidden {
       box-shadow: none;
       transform: translate3d(0, -100%, 0);
-    }
-    &:hover {
-      background-color: rgba(255, 255, 255, 1);
     }
     .container {
       display: flex;
@@ -206,6 +236,9 @@
       .nav {
         margin: 0 auto;
         height: 40px;
+        .nav-link {
+          color: #fff;
+        }
       }
       .username {
         position: absolute;
@@ -213,6 +246,7 @@
         font-size: 1rem;
         right: 50px;
         transform: translateY(-50%);
+        color: $white;
       }
       .user {
         display: flex;
@@ -222,8 +256,11 @@
         right: 0;
         top: 0;
         height: 40px;
-        color: $primary;
+        color: $white;
         padding: 0 0 55px 0;
+        &.login {
+          color: $primary;
+        }
         &:hover .sub-menu {
           display: block;
         }
@@ -232,7 +269,7 @@
           font-size: 40px;
           &:hover {
             cursor: pointer;
-            color: darken($primary, 20%);
+            color: darken($white, 20%);
           }
         }
         .sub-menu {
@@ -241,18 +278,15 @@
           top: 70px;
           left: 50%;
           transform: translateX(-50%);
-          right: 0;
-          padding: 0px;
           margin-top: -1rem;
-          padding: 20px;
+          padding: 10px;
           box-sizing: border-box;
           display: flex;
           flex-direction: column;
-          width: 200px;
+          width: 150px;
           border: 1px solid rgba(177, 177, 177, 0.65);
           border-top: 0;
-          line-height: 30px;
-          box-shadow: 0 2px 15px rgba(249, 81, 34, 0.5);
+          line-height: 50px;
           display: none;
           li {
             .iconBtn {
