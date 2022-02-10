@@ -17,7 +17,6 @@
       <div class="name">
         {{ food.prdlstNm }}
       </div>
-      {{ this.message }}
     </div>
     <FontAwesomeIcon
       class="mark safe"

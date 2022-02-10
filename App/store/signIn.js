@@ -51,6 +51,7 @@ export default {
         await axios.post('/api/user/logout');
         commit('updateState', {
           isAuthorized: false,
+          allergiesInfo: [],
         });
         alert('로그아웃 하셨습니다.');
       } catch (error) {

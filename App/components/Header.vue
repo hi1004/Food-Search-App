@@ -25,6 +25,7 @@
       </h4>
       <ul
         v-if="isAuthorized"
+        @click="toMyPage"
         class="user login">
         <FontAwesomeIcon
           class="iconBtn"
@@ -50,6 +51,14 @@
                 <h4 class="welcome">
                   {{ username }}
                 </h4>
+                <a
+                  href="javascript:void(0)"
+                  @click="toMyPage">
+                  <FontAwesomeIcon
+                    class="iconBtn"
+                    icon="sign-out-alt" />
+                  내정보
+                </a>
                 <a
                   href="javascript:void(0)"
                   @click="signOut">
@@ -104,14 +113,28 @@
                 <h4 class="welcome">
                   {{ username }}
                 </h4>
+              </div>
+            </client-only>
+          </li>
+          <li>
+            <client-only>
+              <div v-if="isAuthorized">
                 <a
+                  href="javascript:void(0)"
+                  @click="toMyPage">
+                  <FontAwesomeIcon
+                    class="iconBtn"
+                    icon="sign-out-alt" />
+                  내정보
+                </a>
+                <!-- <a
                   href="javascript:void(0)"
                   @click="signOut">
                   <FontAwesomeIcon
                     class="iconBtn"
                     icon="sign-out-alt" />
                   로그아웃
-                </a>
+                </a> -->
               </div>
             </client-only>
           </li>
@@ -180,6 +203,9 @@
       },
       toSignIn() {
         this.$router.push('/signIn');
+      },
+      toMyPage() {
+        this.$router.push('/myPage');
       },
       async signOut() {
         await this.$store.dispatch('signIn/userLogout');
