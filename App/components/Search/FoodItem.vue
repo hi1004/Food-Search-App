@@ -17,7 +17,6 @@
       <div class="name">
         {{ food.prdlstNm }}
       </div>
-      {{ this.message }}
     </div>
     <img
       src="~/assets/images/allergy/allergy-safe.png"

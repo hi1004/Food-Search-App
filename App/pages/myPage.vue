@@ -115,13 +115,13 @@
         this.checkedAllergies.forEach(allergy => {
           allergiesInfo[allergy] = true;
         })
-        console.log(allergiesInfo)
         try {
           await axios.put('/api/allergy/manage', allergiesInfo);
           alert('변경 성공!')          
         } catch (error) {
           console.log(error)
         }
+        this.$router.push('/search');
       }
     },
   }

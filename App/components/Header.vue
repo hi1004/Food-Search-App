@@ -52,6 +52,14 @@
                 </h4>
                 <a
                   href="javascript:void(0)"
+                  @click="toMyPage">
+                  <FontAwesomeIcon
+                    class="iconBtn"
+                    icon="sign-out-alt" />
+                  내정보
+                </a>
+                <a
+                  href="javascript:void(0)"
                   @click="signOut">
                   <FontAwesomeIcon
                     class="iconBtn"
@@ -104,13 +112,19 @@
                 <h4 class="welcome">
                   {{ username }}
                 </h4>
+              </div>
+            </client-only>
+          </li>
+          <li>
+            <client-only>
+              <div v-if="isAuthorized">
                 <a
                   href="javascript:void(0)"
-                  @click="signOut">
+                  @click="toMyPage">
                   <FontAwesomeIcon
                     class="iconBtn"
-                    icon="sign-out-alt" />
-                  로그아웃
+                    icon="fa-user" />
+                  내정보
                 </a>
               </div>
             </client-only>
@@ -139,10 +153,10 @@
   import Logo from '~/components/Logo';
   import { mapState } from 'vuex';
   import { library } from '@fortawesome/fontawesome-svg-core';
-  import { faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+  import { faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus, faUser } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-  library.add(faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus);
+  library.add(faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus, faUser);
   export default {
     components: {
       Logo,
@@ -180,6 +194,9 @@
       },
       toSignIn() {
         this.$router.push('/signIn');
+      },
+      toMyPage() {
+        this.$router.push('/myPage');
       },
       async signOut() {
         await this.$store.dispatch('signIn/userLogout');
