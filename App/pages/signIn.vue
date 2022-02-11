@@ -11,12 +11,16 @@
               type="email"
               id="inputEmail"
               v-model.trim="email" />
+            <span class="label">이메일 아이디</span>
+            <div class="underline"></div>
           </label>
           <label class="user-input">
             <input
               type="password"
               id="inputPassword"
               v-model.trim="password" />
+            <span class="label">비밀번호</span>
+            <div class="underline"></div>
           </label>
         </div>
         <button
@@ -88,16 +92,42 @@
           justify-content: space-between;
           flex: 4;
           margin-right: 0.5rem;
-          .user-input {            
+          .user-input {  
+            position: relative;          
             input {
               width: 100%;
               border: none;
-              border-bottom: solid 1.5px gray;
-              height: 3.4rem;
+              height: 3rem;
               position: relative;
               &:focus {
                 outline: none;              
-              }  
+              }
+              & ~ .label {
+                position: absolute;   
+                top: 1rem;
+                left: 0.1rem;   
+                transition: 0.2s;       
+              }              
+              & ~ .underline {
+                background-color: gray;
+                width: 100%;
+                height: 0.05rem;
+                position: absolute;
+                bottom: 0;
+                left: 0; 
+                transition: 0.2s;              
+              }              
+              &:focus {
+                & ~ .label {
+                  color: $primary;
+                  font-size: 0.7rem;
+                  top: -0.5rem;                
+                }
+                & ~ .underline { 
+                  background-color: $primary;
+                  transform: scaleY(2);                                  
+                }    
+              }   
             }          
           }
         }
@@ -112,9 +142,13 @@
     }
     button {
       border: none;
-      border-radius: 0.1rem;
+      border-radius: 0.2rem;
       background-color: #333333;
       color: white;
+      transition: 0.5s;
+      &:hover {
+        background-color: #555555
+      }
     }
   }
 </style>
