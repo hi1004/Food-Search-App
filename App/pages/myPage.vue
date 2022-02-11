@@ -1,42 +1,44 @@
 <template>
   <div id="myPage">
-    <form>
-      <div class="form-group">
-        <label for="inputEmail">Username</label>
-        <div>{{ username }}</div>
-      </div>
-      <div class="form-group">
-        <label for="inputEmail">Email address</label>
-        <div>{{ email }}</div>
-      </div>      
-      <div class="form-group">
-        <label>Allergy</label>
-        <br />
-        <div
-          v-for="(allergy, i) in allergies"
-          :key="i"
-          class="form-check-inline">
-          <input           
-            type="checkbox"
-            class="allergy-check btn-check"
-            :id="allergy"
-            :value="allergy[1]"
-            v-model="checkedAllergies" />
-          <label
-            class="allergy-option btn btn-outline-secondary"
-            :for="allergy">
-            {{ allergy[0] }}
-          </label>
+    <client-only>
+      <form>
+        <div class="form-group">
+          <label for="inputEmail">Username</label>
+          <div>{{ username }}</div>
         </div>
-        <br />        
-      </div>
-      <button
-        type="button"
-        class="btn btn-primary"
-        @click="updateUserinfo">
-        Save
-      </button>
-    </form>
+        <div class="form-group">
+          <label for="inputEmail">Email address</label>
+          <div>{{ email }}</div>
+        </div>      
+        <div class="form-group">
+          <label>Allergy</label>
+          <br />
+          <div
+            v-for="(allergy, i) in allergies"
+            :key="i"
+            class="form-check-inline">
+            <input           
+              type="checkbox"
+              class="allergy-check btn-check"
+              :id="allergy"
+              :value="allergy[1]"
+              v-model="checkedAllergies" />
+            <label
+              class="allergy-option btn btn-outline-secondary"
+              :for="allergy">
+              {{ allergy[0] }}
+            </label>
+          </div>
+          <br />        
+        </div>
+        <button
+          type="button"
+          class="btn btn-primary"
+          @click="updateUserinfo">
+          Save
+        </button>
+      </form>
+    </client-only>
   </div>
 </template>
 
