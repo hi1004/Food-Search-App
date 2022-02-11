@@ -1,44 +1,38 @@
 <template>
-  <div id="signUp">
-    <form>
-      <div class="user-group">
-        <label for="inputEmail">Username</label>
+  <div class="signUp">
+    <form class="user-form">
+      <h1 class="user-title">
+        회원가입
+      </h1>
+      <div class="user-input">
+        <label for="inputEmail">이름</label>
         <input
-          type="text"
-          class="user-input"   
-          @keyup.enter="register"       
+          type="text"         
           placeholder="Username"
           v-model.trim="userinfo.username" />
         <small v-if="isBlankUsername">필수 입력값입니다.</small>
       </div>
-      <div class="user-group">
-        <label for="inputEmail">Email address</label>
+      <div class="user-input">
+        <label for="inputEmail">이메일 아이디</label>
         <input
           type="email"
-          class="user-input"
-          @keyup.enter="register"
-          aria-describedby="emailHelp"
           placeholder="Enter email"
           v-model.trim="userinfo.email" />
         <small v-if="isBlankEmail">필수 입력값입니다.</small>
         <small v-if="!isValidEmail">이메일 형식을 확인해주세요.</small>
       </div>
-      <div class="user-group">
-        <label for="inputPassword">Password</label>
+      <div class="user-input">
+        <label for="inputPassword">비밀번호</label>
         <input
           type="password"
-          class="user-input"
-          @keyup.enter="register"
           placeholder="Password"
           v-model.trim="userinfo.password" />
         <small v-if="isBlankPassword">필수 입력값입니다.</small>
       </div>
-      <div class="user-group">
-        <label for="inputPassword">Confirm Password</label>
+      <div class="user-input">
+        <label for="inputPassword">비밀번호 확인</label>
         <input
           type="password"
-          @keyup.enter="register"
-          class="user-input"
           placeholder="Password"
           v-model.trim="userinfo.cPassword" />
         <small v-if="isBlankCPassword">필수 입력값입니다.</small>
@@ -47,7 +41,7 @@
       <button
         @click="register"
         type="button"
-        class="btn btn-primary">
+        class="user-register">
         Sign Up
       </button>
     </form>
@@ -144,35 +138,52 @@
 </script>
 
 <style lang="scss">
-  #signUp {
-    width: 90%;
-    max-width: 540px;
-    margin: 0 auto;
-    background-color: rgb(240, 240, 240);
-    border-radius: 10px;
-    padding: 0 20px;
+  .signUp {
+    width: 100vw;
+    height: 80vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    form {
+    align-items: center;
+    font-family: "Jua", sans-serif;
+    .user-title {
+      text-align: center;
+      font-size: 2.8rem
+    }
+    .user-form {
+      width: 100%;
+      max-width: 540px;
+      height: 40rem;
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
-      margin: 10px 0;
-      .user-group {
-        margin: 10px 0;
+      justify-content: space-evenly;             
+      .user-input {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;    
         label {
-          font-weight: bold;
-        }
-        .allergy-check {
+          font-size: 1.5rem;
+        }      
+        input {
+          width: 100%;
           border: none;
-        }
-        .allergy-option {
-          font-weight: normal;    
-          border: none;
-          margin: 5px 0;     
-        }
+          border-bottom: solid 1.5px gray;
+          height: 2.5rem;
+          position: relative;
+          &:focus {
+            outline: none;              
+          }  
+        }           
       }
+      .user-register {
+        width: 100%;
+        height: 3rem;
+      }
+    }
+    button {
+      border: none;
+      border-radius: 0.1rem;
+      background-color: #333333;
+      color: white;
     }
   }
 </style>
