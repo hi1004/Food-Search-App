@@ -38,7 +38,7 @@ export default {
           console.log(error.response.data);
           console.log(error.response.status);
           console.log(error.response.headers);
-          alert(error.response.data);
+          alert(error.response.data.message);
         } else if (error.request) {
           console.log(error.request);
         } else {

@@ -1,43 +1,63 @@
 <template>
   <div class="signUp">
-    <form class="user-form">
+    <form class="user-form container">
       <h1 class="user-title">
         회원가입
-      </h1>
-      <div class="user-input">
-        <label for="inputEmail">이름</label>
-        <input
-          type="text"         
-          placeholder="Username"
-          v-model.trim="userinfo.username" />
-        <small v-if="isBlankUsername">필수 입력값입니다.</small>
-      </div>
-      <div class="user-input">
-        <label for="inputEmail">이메일 아이디</label>
-        <input
-          type="email"
-          placeholder="Enter email"
-          v-model.trim="userinfo.email" />
-        <small v-if="isBlankEmail">필수 입력값입니다.</small>
-        <small v-if="!isValidEmail">이메일 형식을 확인해주세요.</small>
-      </div>
-      <div class="user-input">
-        <label for="inputPassword">비밀번호</label>
-        <input
-          type="password"
-          placeholder="Password"
-          v-model.trim="userinfo.password" />
-        <small v-if="isBlankPassword">필수 입력값입니다.</small>
-      </div>
-      <div class="user-input">
-        <label for="inputPassword">비밀번호 확인</label>
-        <input
-          type="password"
-          placeholder="Password"
-          v-model.trim="userinfo.cPassword" />
-        <small v-if="isBlankCPassword">필수 입력값입니다.</small>
-        <small v-if="!(isMatchPassword)">비밀번호란과 입력된 값이 다릅니다.</small>
-      </div>
+      </h1>      
+      <div class="user-inputbox">
+        <label class="user-input">        
+          <input
+            type="text"         
+            v-model.trim="userinfo.username"
+            required />
+          <span class="label">이름</span>
+          <div class="underline"></div>        
+        </label>
+        <div class="msgbox">
+          <small v-if="isBlankUsername">필수 입력값입니다.</small>
+        </div>
+      </div>     
+      <div class="user-inputbox">
+        <label class="user-input">
+          <input
+            type="text"
+            v-model.trim="userinfo.email"
+            required />
+          <span class="label">이메일 아이디</span>
+          <div class="underline"></div>          
+        </label>
+        <div class="msgbox">
+          <small v-if="isBlankEmail">필수 입력값입니다.</small>
+          <small v-if="!isValidEmail">이메일 형식을 확인해주세요.</small>
+        </div> 
+      </div>      
+      <div class="user-inputbox">
+        <label class="user-input">
+          <input
+            type="password"
+            v-model.trim="userinfo.password"
+            required />
+          <span class="label">비밀번호</span>
+          <div class="underline"></div>        
+        </label>
+        <div class="msgbox">
+          <small v-if="isBlankPassword">필수 입력값입니다.</small>
+        </div>
+      </div>       
+      <div class="user-inputbox">
+        <label class="user-input">        
+          <input
+            type="password"
+            v-model.trim="userinfo.cPassword"
+            required />
+          <span class="label">비밀번호 확인</span>
+          <div class="underline"></div>              
+        </label> 
+        <div class="msgbox">
+          <small v-if="isBlankCPassword">필수 입력값입니다.</small>
+          <small v-if="!(isMatchPassword)">비밀번호란과 입력된 값이 다릅니다.</small>
+        </div> 
+      </div>     
       <button
         @click="register"
         type="button"
@@ -155,25 +175,63 @@
       height: 40rem;
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;             
-      .user-input {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 1.5rem;    
-        label {
-          font-size: 1.5rem;
-        }      
-        input {
-          width: 100%;
-          border: none;
-          border-bottom: solid 1.5px gray;
-          height: 2.5rem;
-          position: relative;
-          &:focus {
-            outline: none;              
-          }  
-        }           
-      }
+      justify-content: space-evenly;
+      padding: 0 2rem;            
+      .user-inputbox {
+        width: 100%;
+        .user-input {
+          width: 100%;  
+          position: relative;          
+          input {
+            width: 100%;
+            border: none;
+            border-bottom: solid 1px gray;
+            height: 3rem;
+            position: relative;
+            &:focus {
+              outline: none;              
+            }
+            & ~ .label {
+              position: absolute; 
+              font-size: 1.2rem;  
+              left: 0.1rem;
+              top: -0.7rem;    
+              pointer-events: none;
+              transition: 0.2s;       
+            }              
+            & ~ .underline {
+              background-color: gray;
+              width: 100%;
+              height: 0.05rem;
+              position: absolute;
+              bottom: 0;
+              left: 0; 
+              transition: 0.2s;
+              transform: scale(0);           
+            }              
+            &:focus {
+              & ~ .label {
+                color: $primary;                             
+              }
+              & ~ .underline { 
+                background-color: $primary;
+                transform: scaleY(2);                                  
+              } 
+            }
+            &:valid {
+              & ~ .label {
+                font-size: 0.7rem;
+                top: -0.5rem;                
+              }
+            }   
+          }
+        }     
+        .msgbox {
+          height: 1.5rem;
+          margin-bottom: 1rem;
+          color: red;
+        } 
+      }  
       .user-register {
         width: 100%;
         height: 3rem;
@@ -184,6 +242,10 @@
       border-radius: 0.1rem;
       background-color: #333333;
       color: white;
+      transition: 0.5s;
+      &:hover {
+        background-color: #555555
+      }
     }
   }
 </style>

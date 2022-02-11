@@ -1,6 +1,6 @@
 <template>
   <div class="signIn">
-    <form class="user-form">    
+    <form class="user-form container">    
       <h1 class="user-title">
         회원 로그인
       </h1>
@@ -73,7 +73,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Jua", sans-serif;
+    font-family: "Jua", sans-serif;  
     .user-title {
       text-align: center;
       font-size: 2.8rem
@@ -85,6 +85,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
+      padding: 0 2rem;
       .user-box {
         width: 100%;
         height: 7rem;
