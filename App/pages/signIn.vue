@@ -8,17 +8,21 @@
         <div class="user-inputbox">
           <label class="user-input">
             <input
-              type="email"
+              @keyup.enter="signIn"
+              type="text"
               id="inputEmail"
-              v-model.trim="email" />
+              v-model.trim="email"
+              required />
             <span class="label">이메일 아이디</span>
             <div class="underline"></div>
           </label>
           <label class="user-input">
             <input
+              @keyup.enter="signIn"
               type="password"
               id="inputPassword"
-              v-model.trim="password" />
+              v-model.trim="password"
+              required />
             <span class="label">비밀번호</span>
             <div class="underline"></div>
           </label>
@@ -106,6 +110,7 @@
                 position: absolute;   
                 top: 1rem;
                 left: 0.1rem;   
+                pointer-events: none;
                 transition: 0.2s;       
               }              
               & ~ .underline {
@@ -126,7 +131,13 @@
                 & ~ .underline { 
                   background-color: $primary;
                   transform: scaleY(2);                                  
-                }    
+                } 
+              }
+              &:valid {
+                & ~ .label {
+                  font-size: 0.7rem;
+                  top: -0.5rem;                
+                }
               }   
             }          
           }
