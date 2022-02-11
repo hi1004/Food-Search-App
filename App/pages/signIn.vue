@@ -101,6 +101,7 @@
             input {
               width: 100%;
               border: none;
+              border-bottom: solid 1px gray;
               height: 3rem;
               position: relative;
               &:focus {
@@ -120,7 +121,8 @@
                 position: absolute;
                 bottom: 0;
                 left: 0; 
-                transition: 0.2s;              
+                transition: 0.2s;
+                transform: scale(0);           
               }              
               &:focus {
                 & ~ .label {
