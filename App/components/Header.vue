@@ -17,21 +17,20 @@
           </NuxtLink>
         </div>
       </div>
-
-      <h4
-        class="username"
-        v-if="isAuthorized">
-        {{ username }}
-      </h4>
-      <ul
-        v-if="isAuthorized"
-        class="user login">
-        <FontAwesomeIcon
-          class="iconBtn"
-          icon="circle-user" />
-        <ul class="sub-menu">
-          <li>
-            <client-only>
+      <client-only>
+        <h4
+          class="username"
+          v-if="isAuthorized">
+          {{ username }}
+        </h4>
+        <ul
+          v-if="isAuthorized"
+          class="user login">
+          <FontAwesomeIcon
+            class="iconBtn"
+            icon="circle-user" />
+          <ul class="sub-menu">
+            <li>
               <div v-if="!isAuthorized">
                 <a
                   href="javascript:void(0)"
@@ -42,10 +41,8 @@
                   로그인
                 </a>
               </div>
-            </client-only>
-          </li>
-          <li>
-            <client-only>
+            </li>
+            <li>
               <div v-if="isAuthorized">
                 <h4 class="welcome">
                   {{ username }}
@@ -67,10 +64,8 @@
                   로그아웃
                 </a>
               </div>
-            </client-only>
-          </li>
-          <li>
-            <client-only>
+            </li>
+            <li>
               <div v-if="!isAuthorized">
                 <a
                   href="javascript:void(0)"
@@ -81,19 +76,17 @@
                   회원가입
                 </a>
               </div>
-            </client-only>
-          </li>
+            </li>
+          </ul>
         </ul>
-      </ul>
-      <ul
-        v-if="!isAuthorized"
-        class="user">
-        <FontAwesomeIcon
-          class="iconBtn"
-          icon="circle-user" />
-        <ul class="sub-menu">
-          <li>
-            <client-only>
+        <ul
+          v-if="!isAuthorized"
+          class="user">
+          <FontAwesomeIcon
+            class="iconBtn"
+            icon="circle-user" />
+          <ul class="sub-menu">
+            <li>
               <div v-if="!isAuthorized">
                 <a
                   href="javascript:void(0)"
@@ -104,19 +97,15 @@
                   로그인
                 </a>
               </div>
-            </client-only>
-          </li>
-          <li>
-            <client-only>
+            </li>
+            <li>
               <div v-if="isAuthorized">
                 <h4 class="welcome">
                   {{ username }}
                 </h4>
               </div>
-            </client-only>
-          </li>
-          <li>
-            <client-only>
+            </li>
+            <li>
               <div v-if="isAuthorized">
                 <a
                   href="javascript:void(0)"
@@ -127,10 +116,8 @@
                   내정보
                 </a>
               </div>
-            </client-only>
-          </li>
-          <li>
-            <client-only>
+            </li>
+            <li>
               <div v-if="!isAuthorized">
                 <a
                   href="javascript:void(0)"
@@ -141,10 +128,10 @@
                   회원가입
                 </a>
               </div>
-            </client-only>
-          </li>
+            </li>
+          </ul>
         </ul>
-      </ul>
+      </client-only>
     </div>
   </header>
 </template>
