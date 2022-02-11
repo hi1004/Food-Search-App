@@ -25,7 +25,6 @@
       </h4>
       <ul
         v-if="isAuthorized"
-        @click="toMyPage"
         class="user login">
         <FontAwesomeIcon
           class="iconBtn"
@@ -124,17 +123,9 @@
                   @click="toMyPage">
                   <FontAwesomeIcon
                     class="iconBtn"
-                    icon="sign-out-alt" />
+                    icon="fa-user" />
                   내정보
                 </a>
-                <!-- <a
-                  href="javascript:void(0)"
-                  @click="signOut">
-                  <FontAwesomeIcon
-                    class="iconBtn"
-                    icon="sign-out-alt" />
-                  로그아웃
-                </a> -->
               </div>
             </client-only>
           </li>
@@ -162,10 +153,10 @@
   import Logo from '~/components/Logo';
   import { mapState } from 'vuex';
   import { library } from '@fortawesome/fontawesome-svg-core';
-  import { faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+  import { faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus, faUser } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-  library.add(faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus);
+  library.add(faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus, faUser);
   export default {
     components: {
       Logo,
