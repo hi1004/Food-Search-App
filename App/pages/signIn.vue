@@ -1,48 +1,37 @@
 <template>
-  <div id="signIn">
-    <form>
-      <div class="form-group">
-        <label for="inputEmail">Email address</label>
-        <input
-          type="email"
-          class="form-control"
-          @keyup.enter="signIn"
-          id="inputEmail"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-          v-model.trim="email" />
-        <small
-          id="emailHelp"
-          class="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-      <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          @keyup.enter="signIn"
-          id="inputPassword"
-          placeholder="Password"
-          v-model.trim="password" />
-      </div>
-      <div class="form-group form-check">
-        <input
-          type="checkbox"
-          class="form-check-input"
-          id="Check1" />
-        <label
-          class="form-check-label"
-          for="Check1">Remember me</label>
+  <div class="signIn">
+    <form class="signIn-form">    
+      <h1 class="signIn-title">
+        회원 로그인
+      </h1>
+      <div class="signIn-box">
+        <div class="signIn-inputbox">
+          <label class="sign-input">
+            <input
+              type="email"
+              id="inputEmail"
+              v-model.trim="email" />
+          </label>
+          <label class="sign-input">
+            <input
+              type="password"
+              id="inputPassword"
+              v-model.trim="password" />
+          </label>
+        </div>
+        <button
+          @click="signIn"
+          type="button"
+          class="signIn-button">
+          로그인
+        </button>
       </div>
       <button
-        @click="signIn"
+        @click="toSignUp"
         type="button"
-        class="btn btn-primary">
-        Sign In
+        class="signIn-toSignUp">
+        회원가입
       </button>
-      <small
-        id="registerHelp"
-        class="form-text text-muted">Don't have an account? <NuxtLink to="./signUp">Create Account!</NuxtLink></small>
     </form>
   </div>
 </template>
@@ -60,35 +49,71 @@
         this.$store.dispatch('signIn/userLogin', {
           email: this.email,
           password: this.password,
-        });      
-      }
+        });
+      },
+      toSignUp() {
+        this.$router.push('./signUp')
+      },      
     }
   }
 </script>
 
 <style lang="scss">
-  #signIn {
-    width: 90%;
-    max-width: 540px;
-    margin: 0 auto;
-    background-color: rgb(240, 240, 240);
-    border-radius: 10px;
-    padding: 0 20px;
+  .signIn {
+    width: 100vw;
+    height: 80vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    box-shadow: 0px 0px 5px gray;
-    form {
+    align-items: center;
+    font-family: "Jua", sans-serif;
+    .signIn-title {
+      text-align: center;
+      font-size: 2.8rem
+    }
+    .signIn-form {
+      width: 100%;
+      max-width: 540px;
+      height: 25rem;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
-      margin: 10px 0;
-      .form-group {
-        margin: 10px 0;
-        label {
-          font-weight: bold;
+      .signIn-box {
+        width: 100%;
+        height: 7rem;
+        display: flex;
+        flex-direction: row;        
+        .signIn-inputbox {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          flex: 4;
+          margin-right: 0.5rem;
+          .sign-input {
+            input {
+              border: none;
+              border-bottom: solid 1.5px gray;
+              height: 3.4rem;
+              position: relative;
+              &:focus {
+                outline: none;              
+              }  
+            }          
+          }
+        }
+        .signIn-button {
+          flex: 1;
         }
       }
+      .signIn-toSignUp {
+        width: 100%;
+        height: 4rem;
+      }
+    }
+    button {
+      border: none;
+      border-radius: 0.1rem;
+      background-color: #333333;
+      color: white;
     }
   }
 </style>

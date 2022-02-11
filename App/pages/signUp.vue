@@ -1,21 +1,21 @@
 <template>
   <div id="signUp">
     <form>
-      <div class="form-group">
+      <div class="user-group">
         <label for="inputEmail">Username</label>
         <input
           type="text"
-          class="form-control"   
+          class="user-input"   
           @keyup.enter="register"       
           placeholder="Username"
           v-model.trim="userinfo.username" />
         <small v-if="isBlankUsername">필수 입력값입니다.</small>
       </div>
-      <div class="form-group">
+      <div class="user-group">
         <label for="inputEmail">Email address</label>
         <input
           type="email"
-          class="form-control"
+          class="user-input"
           @keyup.enter="register"
           aria-describedby="emailHelp"
           placeholder="Enter email"
@@ -23,22 +23,22 @@
         <small v-if="isBlankEmail">필수 입력값입니다.</small>
         <small v-if="!isValidEmail">이메일 형식을 확인해주세요.</small>
       </div>
-      <div class="form-group">
+      <div class="user-group">
         <label for="inputPassword">Password</label>
         <input
           type="password"
-          class="form-control"
+          class="user-input"
           @keyup.enter="register"
           placeholder="Password"
           v-model.trim="userinfo.password" />
         <small v-if="isBlankPassword">필수 입력값입니다.</small>
       </div>
-      <div class="form-group">
+      <div class="user-group">
         <label for="inputPassword">Confirm Password</label>
         <input
           type="password"
           @keyup.enter="register"
-          class="form-control"
+          class="user-input"
           placeholder="Password"
           v-model.trim="userinfo.cPassword" />
         <small v-if="isBlankCPassword">필수 입력값입니다.</small>
@@ -154,13 +154,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: 0px 0px 5px gray;
     form {
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
       margin: 10px 0;
-      .form-group {
+      .user-group {
         margin: 10px 0;
         label {
           font-weight: bold;
