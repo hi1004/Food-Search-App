@@ -1,42 +1,62 @@
 <template>
-  <div id="myPage">
+  <div class="myPage">
     <client-only>
-      <form>
-        <div class="form-group">
-          <label for="inputEmail">Username</label>
-          <div>{{ username }}</div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail">Email address</label>
-          <div>{{ email }}</div>
-        </div>      
-        <div class="form-group">
-          <label>Allergy</label>
-          <br />
-          <div
-            v-for="(allergy, i) in allergies"
-            :key="i"
-            class="form-check-inline">
-            <input           
-              type="checkbox"
-              class="allergy-check btn-check"
-              :id="allergy"
-              :value="allergy[1]"
-              v-model="checkedAllergies" />
-            <label
-              class="allergy-option btn btn-outline-secondary"
-              :for="allergy">
-              {{ allergy[0] }}
-            </label>
+      <form class="user-form container">
+        <div class="user-info-section">
+          <div class="user-name">
+            {{ username }}<span>님</span>
           </div>
-          <br />        
+          <div class="user-email">
+            {{ email }}
+          </div>
         </div>
-        <button
-          type="button"
-          class="btn btn-primary"
-          @click="updateUserinfo">
-          Save
-        </button>
+        <!-- tab menu  -->
+        <div class="user-tab-menu">
+          <button
+            type="button"
+            id="allergy-tab"
+            class="user-tab-item active"
+            @click="clickTab($event)">
+            알러지 정보 변경
+          </button>
+          <button
+            type="button"
+            id="password-tab"
+            class="user-tab-item"
+            @click="clickTab($event)">
+            비밀번호 변경
+          </button>
+        </div>            
+        <!-- password update tab -->
+        <div class="user-password-tab user-tab"></div>
+        <!-- allergy info tab -->
+        <div class="user-allergy-tab user-tab">
+          <div class="user-allergy-section form-group">
+            <div
+              v-for="(allergy, i) in allergies"
+              :key="i"
+              class="user-allergy-select form-check-inline">
+              <input           
+                type="checkbox"
+                class="user-allergy-check btn-check"
+                :id="allergy"
+                :value="allergy[1]"
+                v-model="checkedAllergies" />
+              <label
+                class="user-allergy-option btn btn-outline-secondary"
+                :for="allergy">
+                {{ allergy[0] }}
+              </label>
+            </div>
+            <br />        
+          </div>
+          <button
+            type="button"
+            class="user-allergy-update user-btn"
+            @click="updateUserinfo">
+            Save
+          </button>
+        </div>
       </form>
     </client-only>
   </div>
@@ -124,39 +144,102 @@
           console.log(error)
         }
         this.$router.push('/search');
+      },
+      clickTab(event) {
+        const targetId = event.currentTarget.id;
+        const clickedTab = document.querySelector(`#${targetId}`);
+        const allTabs = document.querySelectorAll('.user-tab-item');
+        allTabs.forEach(tab => {
+          tab.classList.remove("active");
+        })
+        clickedTab.classList.add("active");
       }
     },
   }
 </script>
 <style lang="scss">
-  #myPage {
-    width: 90%;
-    max-width: 540px;
-    margin: 0 auto;
-    background-color: rgb(240, 240, 240);
-    border-radius: 10px;
-    padding: 0 20px;
+  .myPage {
+    width: 100vw;
+    height: 80vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    box-shadow: 0px 0px 5px gray;
-    form {
+    align-items: center;
+    font-family: "Jua", sans-serif;
+    .user-form {
+      width: 100%;
+      max-width: 540px;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
-      margin: 10px 0;
-      .form-group {
-        margin: 10px 0;
-        label {
-          font-weight: bold;
+      padding: 0 2rem; 
+      .user-info-section {
+        height: 8rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .user-name {
+          font-size: 3rem;
+          flex: 2;
+          span {
+            font-size: 2rem;
+          }
         }
-        .allergy-check {
-          border: none;
+        .user-email {
+          font-size: 1rem;
+          flex: 1;
         }
-        .allergy-option {
-          font-weight: normal;    
+      }
+      .user-tab-menu {
+        display: flex;
+        flex-direction: row;
+        height: 3rem;
+        .user-tab-item {
+          flex: 1;
+          color: white;
+          background: #333333;
           border: none;
-          margin: 5px 0;     
+          transition: 0.2s;
+          &:hover {
+            background: #555555;
+          }
+          &.active {
+            color: black;
+            background: white;
+          }
+        }
+      } 
+      .user-allergy-tab {
+        display: flex;
+        flex-direction: column;
+        align-items: center;        
+        .user-allergy-section {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin: 2rem 0;
+          .user-allergy-select {
+            margin: 0; 
+            .user-allergy-option {
+              width: 5rem;
+              height: 2.5rem;
+              text-align: center;
+              margin: 0.7rem;
+            }
+          }          
+        }        
+      }
+      .user-tab {        
+        .user-btn {
+          width: 100%;
+          height: 3rem;
+          color: white;
+          background: #333333;
+          border: none;
+          transition: 0.2s;
+          &:hover {
+            background: #555555;
+          }
         }
       }
     }

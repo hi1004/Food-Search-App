@@ -74,6 +74,8 @@ export default {
         commit('updateState', {
           isAuthorized: false,
           username: '',
+          email: '',
+          allergiesInfo: [],
         });
         console.log('인증실패 T_T');
       }
