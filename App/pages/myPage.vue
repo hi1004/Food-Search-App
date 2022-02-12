@@ -26,11 +26,11 @@
             @click="clickTab($event)">
             비밀번호 변경
           </button>
-        </div>            
-        <!-- password update tab -->
-        <div class="user-password-tab user-tab"></div>
+        </div>       
         <!-- allergy info tab -->
-        <div class="user-allergy-tab user-tab">
+        <div
+          v-if="this.tab === 0"
+          class="user-allergy-tab user-tab">
           <div class="user-allergy-section form-group">
             <div
               v-for="(allergy, i) in allergies"
@@ -52,9 +52,60 @@
           </div>
           <button
             type="button"
-            class="user-allergy-update user-btn"
-            @click="updateUserinfo">
-            Save
+            class="user-btn"
+            @click="updateAllergyInfo">
+            저장!
+          </button>
+        </div>
+        <!-- password update tab -->
+        <div
+          v-if="this.tab === 1"
+          class="user-password-tab user-tab">
+          <div class="user-inputbox">
+            <label class="user-input">
+              <input
+                type="password"
+                v-model.trim="oPassword"
+                required />
+              <span class="label">현재 비밀번호</span>
+              <div class="underline"></div>        
+            </label>
+            <div class="msgbox">
+              <small v-if="this.isBlankOPassword">필수 입력값입니다.</small>
+            </div>
+          </div>
+          <div class="user-inputbox">
+            <label class="user-input">
+              <input
+                type="password"
+                v-model.trim="password"
+                required />
+              <span class="label">비밀번호</span>
+              <div class="underline"></div>        
+            </label>
+            <div class="msgbox">
+              <small v-if="this.isBlankPassword">필수 입력값입니다.</small>
+            </div>
+          </div>       
+          <div class="user-inputbox">
+            <label class="user-input">        
+              <input
+                type="password"
+                v-model.trim="cPassword"
+                required />
+              <span class="label">비밀번호 확인</span>
+              <div class="underline"></div>              
+            </label> 
+            <div class="msgbox">
+              <small v-if="this.isBlankCPassword">필수 입력값입니다.</small>
+              <small v-if="!(this.isMatchPassword)">비밀번호란과 입력된 값이 다릅니다.</small>
+            </div>            
+          </div>
+          <button
+            type="button"
+            class="user-btn"
+            @click="updatePassword">
+            변경!
           </button>
         </div>
       </form>
@@ -99,6 +150,14 @@
           ['잣', 'pineNut']
         ],        
         checkedAllergies: [],         
+        tab: 0,      
+        oPassword: '', 
+        password: '',
+        cPassword: '', 
+        isBlankOPassword: true,
+        isBlankPassword: true,
+        isBlankCPassword: true, 
+        isMatchPassword: true, 
       }
     },
     beforeMount() {    
@@ -111,8 +170,20 @@
     computed: {
       ...mapState('signIn', ['isAuthorized', 'username', 'email', 'allergiesInfo']),
     },
+    watch: {
+      oPassword(newData) {
+        this.isBlankOPassword = newData === '';
+      },
+      password(newData) {
+        this.isBlankPassword = newData === '';
+      },
+      cPassword(newData) {
+        this.isBlankCPassword = newData === '';
+        this.isMatchPassword = newData === '' || this.password === newData
+      }
+    },
     methods: {
-      async updateUserinfo() {
+      async updateAllergyInfo() {
         let allergiesInfo = {
           egg: false,
           milk: false,
@@ -143,7 +214,17 @@
         } catch (error) {
           console.log(error)
         }
-        this.$router.push('/search');
+      },
+      async updatePassword() {
+        try {
+          await axios.put('/api/user/user', {
+            oldpassword: this.oPassword,
+            newpassword: this.password,
+          });
+          alert('변경 성공!')          
+        } catch (error) {
+          console.log(error)
+        }
       },
       clickTab(event) {
         const targetId = event.currentTarget.id;
@@ -153,7 +234,12 @@
           tab.classList.remove("active");
         })
         clickedTab.classList.add("active");
-      }
+        if (targetId === 'allergy-tab') {
+          this.tab = 0;
+        } else if (targetId === 'password-tab') {
+          this.tab = 1;
+        }
+      },
     },
   }
 </script>
@@ -162,15 +248,14 @@
     width: 100vw;
     height: 80vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-top: 10rem;
     font-family: "Jua", sans-serif;
     .user-form {
       width: 100%;
       max-width: 540px;
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: flex-start;
       padding: 0 2rem; 
       .user-info-section {
         height: 8rem;
@@ -228,6 +313,68 @@
             }
           }          
         }        
+      }
+      .user-password-tab {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 31rem;
+        align-items: center;
+        .user-inputbox {
+          width: 100%;
+          .user-input {
+            width: 100%;  
+            position: relative;          
+            input {
+              width: 100%;
+              border: none;
+              border-bottom: solid 1px gray;
+              height: 3rem;
+              position: relative;
+              &:focus {
+                outline: none;              
+              }
+              & ~ .label {
+                position: absolute; 
+                font-size: 1.2rem;  
+                left: 0.1rem;
+                top: -0.7rem;    
+                pointer-events: none;
+                transition: 0.2s;       
+              }              
+              & ~ .underline {
+                background-color: gray;
+                width: 100%;
+                height: 0.05rem;
+                position: absolute;
+                bottom: 0;
+                left: 0; 
+                transition: 0.2s;
+                transform: scale(0);           
+              }              
+              &:focus {
+                & ~ .label {
+                  color: $primary;                             
+                }
+                & ~ .underline { 
+                  background-color: $primary;
+                  transform: scaleY(2);                                  
+                } 
+              }
+              &:valid {
+                & ~ .label {
+                  font-size: 0.7rem;
+                  top: -0.5rem;                
+                }
+              }   
+            }
+          }     
+          .msgbox {
+            height: 1.5rem;
+            margin-bottom: 1rem;
+            color: red;
+          } 
+        }  
       }
       .user-tab {        
         .user-btn {
