@@ -9,45 +9,45 @@
 </template>
 
 <script>
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faArrowCircleUp } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+  import { library } from '@fortawesome/fontawesome-svg-core'
+  import { faArrowCircleUp } from '@fortawesome/free-solid-svg-icons'
+  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faArrowCircleUp)
+  library.add(faArrowCircleUp)
 
-export default {
-  data() {
-    return {
-      isScrollTop: true,
-      toTopIcon: 'arrow-circle-up'
-    }
-  },
-  components: {
-    FontAwesomeIcon,
-  },
-  created () {
-    if (process.client) {
-      window.addEventListener('scroll', this.handleScroll);
-    }    
-  },
-  unmouted () {
-    window.removeEventListener('scroll', this.handleScroll);
-  },
-  methods: {
-    handleScroll() {
-      const scrollY = window.scrollY;
-      this.isScrollTop = scrollY === 0
+  export default {
+    data() {
+      return {
+        isScrollTop: true,
+        toTopIcon: 'arrow-circle-up'
+      }
     },
-    toTop(){
-      window.scroll({
-        top: 0, 
-        left: 0, 
-        behavior: 'smooth' 
-      });
-      console.log("버튼 작동")
+    components: {
+      FontAwesomeIcon,
+    },
+    created () {
+      if (process.client) {
+        window.addEventListener('scroll', this.handleScroll);
+      }    
+    },
+    unmouted () {
+      window.removeEventListener('scroll', this.handleScroll);
+    },
+    methods: {
+      handleScroll() {
+        const scrollY = window.scrollY;
+        this.isScrollTop = scrollY === 0
+      },
+      toTop(){
+        window.scroll({
+          top: 0, 
+          left: 0, 
+          behavior: 'smooth' 
+        });
+        console.log("버튼 작동")
+      }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>

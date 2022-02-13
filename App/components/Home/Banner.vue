@@ -17,11 +17,15 @@
       </video>
       <div class="container">
         <div class="swiper-contents">
-          <h1 class="fade-in first">
-            Safe food, Safe Table01
+          <h1>
+            <span class="swiper-title">Safe food,</span>
+            <span class="swiper-title">Safe Table01</span>
           </h1>
-          <p class="fade-in second">
-            행복을 담은 안전한 먹거리로 가정에 안전한 식탁을 만들어보세요
+          <p>
+            <span class="swiper-phrase">행복을 담은</span>
+            <span class="swiper-phrase">안전한 먹거리로</span>
+            <span class="swiper-phrase">가정에 안전한 식탁을</span>
+            <span class="swiper-phrase">만들어보세요</span>               
           </p>
         </div>
       </div>
@@ -39,12 +43,18 @@
       </video>
       <div class="container">
         <div class="swiper-contents">
-          <h1 class="fade-in">
-            소비자가 더 건강해지는 먹거리 안전
+          <h1>
+            <span class="swiper-title">소비자가 </span>
+            <span class="swiper-title">더 건강해지는 </span>
+            <span class="swiper-title">먹거리 안전</span>            
           </h1>
-          <p class="fade-in">
-            소비자가 더 건강할수록 먹거리도 더욱 안전해집니다.
-            소비자의 건강한 식생활을 확보하고 일상의 가치를 더해보세요
+          <p>
+            <span class="swiper-phrase">소비자가 더 건강할수록 </span>
+            <span class="swiper-phrase">먹거리도 더욱 안전해집니다.</span>
+            <br />
+            <span class="swiper-phrase">소비자의 건강한 </span>
+            <span class="swiper-phrase">식생활을 확보하고 </span>
+            <span class="swiper-phrase">일상의 가치를 더해보세요</span>
           </p>
         </div>
       </div>
@@ -62,12 +72,18 @@
       </video>
       <div class="container">
         <div class="swiper-contents">
-          <h1 class="fade-in">
-            Safe food, Safe Table03
+          <h1>
+            <span class="swiper-title">Safe food, </span>
+            <span class="swiper-title">Safe Table03</span>            
           </h1>
-          <p class="fade-in">
-            우리의 먹거리가 공정해지고 안전해지는 날까지 안전한 식탁이 도와드리겠습니다. 
-            안전한 식탁을 통해 여러 가지의 음식과 영양성분도 확인해보세요.
+          <p>
+            <span class="swiper-phrase">우리의 먹거리가 공정해지고 </span>
+            <span class="swiper-phrase">안전해지는 날까지 </span>
+            <span class="swiper-phrase">안전한 식탁이 도와드리겠습니다.</span>
+            <br />
+            <span class="swiper-phrase">안전한 식탁을 통해 </span>
+            <span class="swiper-phrase">여러 가지의 음식과 </span>
+            <span class="swiper-phrase">영양성분도 확인해보세요.</span>
           </p>
         </div>
       </div>
@@ -113,18 +129,26 @@
             renderBullet: function (index, className) {
               return '<span class="' + className + '">' + '<b>' + '0' + (index + 1) + '</b>' + '</span>';
             },
-          },
-       
+          },       
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
           },
           on: {
-            slideChange: function () {
-        
-              const fadeEls = document.querySelectorAll('.fade-in');
-              fadeEls.forEach((fadeEl, index) => {
-                gsap.fromTo(fadeEl,{autoAlpha:0,x:0},{autoAlpha:1,x:200, delay: (index + 1) * 0.05, opacity: 1, duration: 1});
+            slideChange: function () {        
+              const title = document.querySelectorAll('.swiper-title');
+              const phrase = document.querySelectorAll('.swiper-phrase');
+              title.forEach((step, i) => {
+                gsap.fromTo(
+                  step,
+                  {autoAlpha:0, x:-200},
+                  {autoAlpha:1, x: 100, delay: (i + 1) * 0.1, opacity: 1, duration: 0.2, ease: "power4.out"});
+              });
+              phrase.forEach((step, i) => {
+                gsap.fromTo(
+                  step,
+                  {autoAlpha:0, x:-200},
+                  {autoAlpha:1, x: 100, delay: (i + 1) * 0.1, opacity: 1, duration: 0.2, ease: "power4.out"});
               });
             },
           },
@@ -155,10 +179,6 @@
         }
       },
     },
-    mounted() {
-      
-
-    }
   };
 </script>
 
@@ -203,6 +223,11 @@
         position: relative;
         flex-shrink: 0;
       }
+      .swiper-contents {
+        .swiper-title, .swiper-phrase {
+          display: inline-block;
+        }
+      }
     }
   }
 </style>
@@ -215,9 +240,7 @@
           color: #fff;
         }
       }
-}
-      
-
+}      
   .swiper-button-prev,
   .swiper-button-next {
     color: #fff;
