@@ -18,18 +18,20 @@
         {{ food.prdlstNm }}
       </div>
     </div>
-    <img
-      src="~/assets/images/allergy/allergy-safe.png"
-      class="mark"
-      v-if="this.isSafe" />
-    <img
-      src="~/assets/images/allergy/allergy-danger.png"
-      class="mark"
-      v-if="this.isDanger" />
-    <img
-      src="~/assets/images/allergy/allergy-unknown.png"
-      class="mark"
-      v-if="this.isUnknown" />
+    <client-only>
+      <img
+        src="~/assets/images/allergy/allergy-safe.png"
+        class="mark"
+        v-if="this.isSafe && isAuthorized" />
+      <img
+        src="~/assets/images/allergy/allergy-danger.png"
+        class="mark"
+        v-if="this.isDanger && isAuthorized" />
+      <img
+        src="~/assets/images/allergy/allergy-unknown.png"
+        class="mark"
+        v-if="this.isUnknown && isAuthorized" />
+    </client-only>    
   </NuxtLink>
 </template>
 
@@ -103,7 +105,7 @@
       }
     },
     computed: {
-      ...mapState('signIn', ['allergiesInfo']),
+      ...mapState('signIn', ['allergiesInfo', 'isAuthorized']),
       ...mapState('search', ['foodAllergies']),
     },
     mounted() {

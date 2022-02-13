@@ -280,16 +280,16 @@
         height: 3rem;
         .user-tab-item {
           flex: 1;
-          color: white;
-          background: #333333;
+          color: black;
+          background: white;
           border: none;
           transition: 0.2s;
           &:hover {
-            background: #555555;
+            background: #DDDDDD;
           }
-          &.active {
-            color: black;
-            background: white;
+          &.active {            
+            color: white;
+            background: #333333;
           }
         }
       } 
@@ -360,13 +360,7 @@
                   background-color: $primary;
                   transform: scaleY(2);                                  
                 } 
-              }
-              &:valid {
-                & ~ .label {
-                  font-size: 0.7rem;
-                  top: -0.5rem;                
-                }
-              }   
+              }             
             }
           }     
           .msgbox {

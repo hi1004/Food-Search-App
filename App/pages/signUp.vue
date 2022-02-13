@@ -217,13 +217,7 @@
                 background-color: $primary;
                 transform: scaleY(2);                                  
               } 
-            }
-            &:valid {
-              & ~ .label {
-                font-size: 0.7rem;
-                top: -0.5rem;                
-              }
-            }   
+            } 
           }
         }     
         .msgbox {
