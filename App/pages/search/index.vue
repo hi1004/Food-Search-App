@@ -1,22 +1,29 @@
 <template>
   <div>
-    <HeadLine />
-    <Search />
+    <Search :mt="100" />
+    <FoodList />
+    <Totop />
   </div>
 </template>
 
 <script>
-  import HeadLine from '~/components/Search/HeadLine';
   import Search from '~/components/Search/Search';
+  import FoodList from '~/components/Search/FoodList';
+  import Totop from '~/components/Totop';
 
   export default {
     components: {
       Search,
-      HeadLine,
+      FoodList,
+      Totop,
     },
-     created() {
-      this.$store.commit('search/resetFood')
-    }
+
+
+
+
   };
 </script>
 
+<style lang="scss" scoped>
+ 
+</style>

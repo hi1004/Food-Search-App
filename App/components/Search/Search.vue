@@ -4,7 +4,7 @@
     :style="{ margin: `${mt}px auto 0 auto` }">
     <input
       v-model.trim="foodName"
-      v-focus
+      ref="search"
       class="form-control"
       type="text"
       placeholder="검색"
@@ -37,10 +37,11 @@
         default: 0,
       },
     },
-
     methods: {
       apply() {
-        this.$router.push('/search/result');
+        this.$router.push('/search');
+        this.$refs.search.focus();
+ 
         this.$store.commit('search/resetFood');
         this.$store.dispatch('search/searchFoods', {
           foodName: this.foodName,

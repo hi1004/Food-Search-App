@@ -10,7 +10,9 @@
 </template>
 
 <script>
-  export default {};
+  export default {
+
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -19,11 +21,6 @@
     height: 40px;
     color: $black;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
     p {
       font-family: 'Jua', sans-serif;
       font-size: 1.5rem;
