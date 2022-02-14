@@ -1,8 +1,15 @@
 <template>
-  <header :class="{ 'header--hidden': !showNavbar }">
-    <div class="container">
-      <Logo @click="removeUser" />
-      <!-- <div class="nav nav-pills">
+  <div>
+    <transition name="slide">
+      <div
+        v-if="showMobileMenu"
+        class="header-mobile-menu">
+      </div>
+    </transition>
+    <header :class="{ 'header--hidden': !showNavbar }">
+      <div class="container">
+        <Logo @click="removeUser" />
+        <!-- <div class="nav nav-pills">
         <div
           v-for="nav in navigations"
           :key="nav.name"
@@ -17,138 +24,145 @@
           </NuxtLink>
         </div>
       </div> -->
-      <div class="header-convenience">
-        <client-only>
-          <h4
-            class="username"
-            v-if="isAuthorized">
-            {{ username }}
-          </h4>
-          <ul
-            v-if="isAuthorized"
-            @click="onActive"
-            class="user active">
-            <FontAwesomeIcon
-              class="iconBtn"
-              icon="circle-user" />
-            <ul class="sub-menu">
-              <li>
-                <div v-if="!isAuthorized">
-                  <a
-                    href="javascript:void(0)"
-                    @click="toSignIn">
-                    <FontAwesomeIcon
-                      class="iconBtn"
-                      icon="sign-in-alt" />
-                    로그인
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div v-if="isAuthorized">
-                  <h4 class="welcome">
-                    {{ username }}
-                  </h4>
-                  <a
-                    href="javascript:void(0)"
-                    @click="toMyPage">
-                    <FontAwesomeIcon
-                      class="iconBtn"
-                      icon="sign-out-alt" />
-                    내정보
-                  </a>
-                  <a
-                    href="javascript:void(0)"
-                    @click="signOut">
-                    <FontAwesomeIcon
-                      class="iconBtn"
-                      icon="sign-out-alt" />
-                    로그아웃
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div v-if="!isAuthorized">
-                  <a
-                    href="javascript:void(0)"
-                    @click="toSignUp">
-                    <FontAwesomeIcon
-                      class="iconBtn"
-                      icon="user-plus" />
-                    회원가입
-                  </a>
-                </div>
-              </li>
+        <div class="header-convenience">
+          <client-only>
+            <h4
+              class="username"
+              v-if="isAuthorized">
+              {{ username }}
+            </h4>
+            <ul
+              v-if="isAuthorized"
+              @click="onActive"
+              class="user active">
+              <FontAwesomeIcon
+                class="iconBtn"
+                icon="circle-user" />
+              <ul class="sub-menu">
+                <li>
+                  <div v-if="!isAuthorized">
+                    <a
+                      href="javascript:void(0)"
+                      @click="toSignIn">
+                      <FontAwesomeIcon
+                        class="iconBtn"
+                        icon="sign-in-alt" />
+                      로그인
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <div v-if="isAuthorized">
+                    <h4 class="welcome">
+                      {{ username }}
+                    </h4>
+                    <a
+                      href="javascript:void(0)"
+                      @click="toMyPage">
+                      <FontAwesomeIcon
+                        class="iconBtn"
+                        icon="sign-out-alt" />
+                      내정보
+                    </a>
+                    <a
+                      href="javascript:void(0)"
+                      @click="signOut">
+                      <FontAwesomeIcon
+                        class="iconBtn"
+                        icon="sign-out-alt" />
+                      로그아웃
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <div v-if="!isAuthorized">
+                    <a
+                      href="javascript:void(0)"
+                      @click="toSignUp">
+                      <FontAwesomeIcon
+                        class="iconBtn"
+                        icon="user-plus" />
+                      회원가입
+                    </a>
+                  </div>
+                </li>
+              </ul>
             </ul>
-          </ul>
-          <ul
-            v-if="!isAuthorized"
-            @click="onActive"
-            class="user">
-            <FontAwesomeIcon
-              class="iconBtn"
-              icon="circle-user" />
-            <ul class="sub-menu">
-              <li>
-                <div v-if="!isAuthorized">
-                  <a
-                    href="javascript:void(0)"
-                    @click="toSignIn">
-                    <FontAwesomeIcon
-                      class="iconBtn"
-                      icon="sign-in-alt" />
-                    로그인
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div v-if="isAuthorized">
-                  <h4 class="welcome">
-                    {{ username }}
-                  </h4>
-                </div>
-              </li>
-              <li>
-                <div v-if="isAuthorized">
-                  <a
-                    href="javascript:void(0)"
-                    @click="toMyPage">
-                    <FontAwesomeIcon
-                      class="iconBtn"
-                      icon="fa-user" />
-                    내정보
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div v-if="!isAuthorized">
-                  <a
-                    href="javascript:void(0)"
-                    @click="toSignUp">
-                    <FontAwesomeIcon
-                      class="iconBtn"
-                      icon="user-plus" />
-                    회원가입
-                  </a>
-                </div>
-              </li>
+            <ul
+              v-if="!isAuthorized"
+              @click="onActive"
+              class="user">
+              <FontAwesomeIcon
+                class="iconBtn"
+                icon="circle-user" />
+              <ul class="sub-menu">
+                <li>
+                  <div v-if="!isAuthorized">
+                    <a
+                      href="javascript:void(0)"
+                      @click="toSignIn">
+                      <FontAwesomeIcon
+                        class="iconBtn"
+                        icon="sign-in-alt" />
+                      로그인
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <div v-if="isAuthorized">
+                    <h4 class="welcome">
+                      {{ username }}
+                    </h4>
+                  </div>
+                </li>
+                <li>
+                  <div v-if="isAuthorized">
+                    <a
+                      href="javascript:void(0)"
+                      @click="toMyPage">
+                      <FontAwesomeIcon
+                        class="iconBtn"
+                        icon="fa-user" />
+                      내정보
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <div v-if="!isAuthorized">
+                    <a
+                      href="javascript:void(0)"
+                      @click="toSignUp">
+                      <FontAwesomeIcon
+                        class="iconBtn"
+                        icon="user-plus" />
+                      회원가입
+                    </a>
+                  </div>
+                </li>
+              </ul>
             </ul>
-          </ul>
-        </client-only>
-
-        <FontAwesomeIcon
-          class="iconBtn search-btn"
-          @click="toSearch"
+          </client-only>
+          <FontAwesomeIcon
+            class="iconBtn search-btn"
+            @click="toSearch"
           
-          icon="fa-search" />
-      </div>
-      <div class="header-mobile-menu">
-        <FontAwesomeIcon
-          icon="fa-solid fa-bars"
-          class="menu-icon" />
-      </div>
-    </div>
-  </header>
+            icon="fa-search" />
+        </div>
+        <div class="header-mobile-btn">
+          <FontAwesomeIcon
+            v-if="!showMobileMenu"
+            @click="toggleMobileMenu"
+            icon="fa-solid fa-bars"
+            class="menu-icon" />
+          <FontAwesomeIcon
+            v-if="showMobileMenu"
+            @click="toggleMobileMenu"
+            icon="fa-solid fa-x"
+            class="menu-icon" />
+        </div>      
+      </div>    
+    </header>
+  </div>
 </template>
 
 <script>
@@ -163,10 +177,11 @@
     faUser,
     faSearch,
     faBars,
+    faX,
   } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-  library.add(faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus, faUser, faSearch, faBars);
+  library.add(faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus, faUser, faSearch, faBars, faX);
   export default {
     components: {
       Logo,
@@ -193,6 +208,7 @@
         showNavbar: true,
         lastScrollPosition: 0,
         addActive: false,
+        showMobileMenu: false,
       };
     },
     computed: {
@@ -228,8 +244,7 @@
       onActive() {
         const urlEl = document.querySelector('.user');
         urlEl.classList.toggle('login');
-      },
-    
+      },    
       onScroll() {
         const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         if (currentScrollPosition < 0) {
@@ -241,6 +256,9 @@
         this.showNavbar = currentScrollPosition < this.lastScrollPosition;
         this.lastScrollPosition = currentScrollPosition;
       },
+      toggleMobileMenu() {
+        this.showMobileMenu = !this.showMobileMenu;
+      }
     },
     mounted() {
       window.addEventListener('scroll', this.onScroll);
@@ -362,14 +380,14 @@
           }
         }
       }
-      .header-mobile-menu {
+      .header-mobile-btn {
         display: none;
-      }
+      }      
       @include media-breakpoint-down(sm) {
         .header-convenience {
           display: none;
         }
-        .header-mobile-menu {
+        .header-mobile-btn {
           display: block;
           .menu-icon {
             color: $white;
@@ -377,8 +395,29 @@
             cursor: pointer;
           }
         }
-      }
-    }
-    
+      }      
+    }        
+  }
+  .header-mobile-menu {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    z-index: 10;
+  }
+  .slide-enter {
+      transform: translateY(-100vh);
+      opacity: 0;
+  }
+  .slide-enter-active,
+  .slide-leave-active {
+    transition: 0.5s;
+  }
+  .slide-leave-to {
+    transform: translateY(-100vh);
+    opacity: 0;
   }
 </style>
