@@ -54,7 +54,7 @@
             type="button"
             class="user-btn"
             @click="updateAllergyInfo">
-            저장!
+            변경!
           </button>
         </div>
         <!-- password update tab -->
@@ -80,7 +80,7 @@
                 type="password"
                 v-model.trim="password"
                 required />
-              <span class="label">비밀번호</span>
+              <span class="label">새 비밀번호</span>
               <div class="underline"></div>        
             </label>
             <div class="msgbox">
@@ -93,7 +93,7 @@
                 type="password"
                 v-model.trim="cPassword"
                 required />
-              <span class="label">비밀번호 확인</span>
+              <span class="label">새 비밀번호 확인</span>
               <div class="underline"></div>              
             </label> 
             <div class="msgbox">

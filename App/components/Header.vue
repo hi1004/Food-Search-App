@@ -3,7 +3,69 @@
     <transition name="slide">
       <div
         v-if="showMobileMenu"
-        class="header-mobile-menu">
+        class="header-mobile">
+        <client-only>
+          <div
+            v-if="isAuthorized"
+            class="header-mobile-menu authorized">
+            <div class="userinfo-section">
+              <h1>{{ username }}</h1>님 안녕하세요!
+            </div>
+            <div class="btn-section">
+              <div
+                @click="signOut"
+                class="button">
+                <FontAwesomeIcon
+                  icon="sign-out-alt" />
+                <span>로그아웃</span> 
+              </div>
+              <div 
+                @click="toMyPage"
+                class="button">
+                <FontAwesomeIcon
+                  icon="circle-info" />
+                <span>내 정보</span>
+              </div>
+              <div
+                @click="toSearch"
+                class="button">
+                <FontAwesomeIcon
+                  icon="fa-search" />
+                <span>검색</span>
+              </div>
+            </div>
+          </div>
+          <div
+            v-if="!isAuthorized"
+            class="header-mobile-menu unauthorized">
+            <div class="userinfo-section">
+              <h1>로그인 해주세요!!</h1>
+            </div>
+            <div class="btn-section">
+              <div
+                @click="toSignIn"
+                class="button">
+                <FontAwesomeIcon
+                  icon="sign-in-alt" />
+                <span>로그인</span> 
+              </div>
+              <div
+                @click="toSignUp"
+                class="button">
+                <FontAwesomeIcon
+                  icon="user-plus" />
+                <span>회원가입</span>
+              </div>
+              <div
+                @click="toSearch" 
+                class="button">
+                <FontAwesomeIcon
+                  icon="fa-search" />
+                <span>검색</span>
+              </div>
+            </div>
+          </div>
+        </client-only>
       </div>
     </transition>
     <header :class="{ 'header--hidden': !showNavbar }">
@@ -61,8 +123,8 @@
                       @click="toMyPage">
                       <FontAwesomeIcon
                         class="iconBtn"
-                        icon="sign-out-alt" />
-                      내정보
+                        icon="circle-info" />
+                      내 정보
                     </a>
                     <a
                       href="javascript:void(0)"
@@ -173,6 +235,7 @@
     faSignInAlt,
     faSignOutAlt,
     faCircleUser,
+    faCircleInfo,
     faUserPlus,
     faUser,
     faSearch,
@@ -181,7 +244,7 @@
   } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-  library.add(faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus, faUser, faSearch, faBars, faX);
+  library.add(faSignInAlt, faSignOutAlt, faCircleUser, faCircleInfo, faUserPlus, faUser, faSearch, faBars, faX);
   export default {
     components: {
       Logo,
@@ -224,21 +287,26 @@
         return path.test(this.$route.fullPath);
       },
       toSignIn() {
+        this.showMobileMenu = false
         this.$router.push('/signIn');
       },
       toSearch() {
+        this.showMobileMenu = false
         const urlEl = document.querySelector('.user');
         urlEl.classList.remove('login');
         this.$router.push('/search');
       },
       toMyPage() {
+        this.showMobileMenu = false
         this.$router.push('/myPage');
       },
       async signOut() {
+        this.showMobileMenu = false
         await this.$store.dispatch('signIn/userLogout');
         this.$router.push('/');
       },
       toSignUp() {
+        this.showMobileMenu = false
         this.$router.push('/signUp');
       },
       onActive() {
@@ -262,6 +330,12 @@
     },
     mounted() {
       window.addEventListener('scroll', this.onScroll);
+      window.addEventListener('resize', () => {
+        const width = window.innerWidth;
+        if (width >= 540) {
+          this.showMobileMenu = false;
+        }
+      })
     },
     Unmount() {
       window.removeEventListener('scroll', this.onScroll);
@@ -398,15 +472,55 @@
       }      
     }        
   }
-  .header-mobile-menu {
+  .header-mobile {
     position: fixed;
-    display: flex;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     background: white;
+    font-family: "Jua", sans-serif;
     z-index: 10;
+    .header-mobile-menu {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      padding: 2rem 0;
+      justify-content: center;
+      align-items: center;
+      .userinfo-section {
+        h1 {
+          display: inline;
+        }
+      }
+      .btn-section {
+        width: 100%; 
+        display: flex;   
+        flex-direction: row;        
+        justify-content: space-evenly;
+        margin-top: 2rem;  
+        cursor: pointer;
+        .button {
+          width: 7rem;
+          height: 7rem;
+          border-radius: .5rem;
+          background: transparent;
+          border: none;
+          text-align: center;
+          color: black;
+          font-size: 3rem; 
+          transition: 0.2s;
+          span {
+            display: block;
+            font-size: 1rem;
+          }
+          &:hover {
+            background: lightgray;
+          }
+        }
+      }
+    }
   }
   .slide-enter {
       transform: translateY(-100vh);
