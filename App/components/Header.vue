@@ -17,8 +17,7 @@
           </NuxtLink>
         </div>
       </div> -->
-
-      <div class="convenience">
+      <div class="header-convenience">
         <client-only>
           <h4
             class="username"
@@ -143,6 +142,11 @@
           
           icon="fa-search" />
       </div>
+      <div class="header-mobile-menu">
+        <FontAwesomeIcon
+          icon="fa-solid fa-bars"
+          class="menu-icon" />
+      </div>
     </div>
   </header>
 </template>
@@ -158,10 +162,11 @@
     faUserPlus,
     faUser,
     faSearch,
+    faBars,
   } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-  library.add(faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus, faUser, faSearch);
+  library.add(faSignInAlt, faSignOutAlt, faCircleUser, faUserPlus, faUser, faSearch, faBars);
   export default {
     components: {
       Logo,
@@ -283,7 +288,7 @@
         color: $white;
         margin: 0;
       }
-      .convenience {
+      .header-convenience {
         display: flex;
         align-items: center;
         height: 40px;
@@ -317,7 +322,6 @@
               cursor: pointer;
             }
           }
-
           .sub-menu {
             position: absolute;
             background: #fff;
@@ -358,12 +362,23 @@
           }
         }
       }
-    }
-
-    @include media-breakpoint-down(xl) {
-      .nav {
+      .header-mobile-menu {
         display: none;
       }
+      @include media-breakpoint-down(sm) {
+        .header-convenience {
+          display: none;
+        }
+        .header-mobile-menu {
+          display: block;
+          .menu-icon {
+            color: $white;
+            font-size: 25px;
+            cursor: pointer;
+          }
+        }
+      }
     }
+    
   }
 </style>
