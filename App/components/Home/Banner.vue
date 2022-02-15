@@ -4,6 +4,17 @@
     class="banner-swiper"
     @slideChange="onSwiperSlideChangeTransitionStart"
     :options="swiperOption">
+    <div class="container">
+      <div
+        class="swiper-pagination"
+        slot="pagination"></div>
+      <div
+        class="swiper-button-prev"
+        slot="button-prev"></div>
+      <div
+        class="swiper-button-next"
+        slot="button-next"></div>
+    </div>
     <SwiperSlide class="swiper-slide">
       <video
         class="video-slide-player video-slide-player01"
@@ -15,19 +26,30 @@
           src="~/assets/video/banner_video01.mp4"
           type="video/mp4" />
       </video>
-      <div class="container">
-        <div class="swiper-contents">
-          <h1>
-            <span class="swiper-title">Safe food,</span>
-            <span class="swiper-title">Safe Table01</span>
-          </h1>
-          <p>
-            <span class="swiper-phrase">행복을 담은</span>
-            <span class="swiper-phrase">안전한 먹거리로</span>
-            <span class="swiper-phrase">가정에 안전한 식탁을</span>
-            <span class="swiper-phrase">만들어보세요</span>               
-          </p>
-        </div>
+
+      <div class="swiper-contents">
+        <h1>
+          <span class="text-overflow-hidden">
+            <span class="swiper-title text-delay--0">Safe food,</span>
+          </span>
+          <span class="text-overflow-hidden">
+            <span class="swiper-title text-delay--1">Safe Table01</span>
+          </span>
+        </h1>
+        <p>
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--2">행복을 담은</span>
+          </span>
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--3">안전한 먹거리로</span><br />
+          </span>
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--4">가정에 안전한 식탁을</span>
+          </span>
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--5">만들어보세요</span>
+          </span>
+        </p>
       </div>
     </SwiperSlide>
     <SwiperSlide class="swiper-slide">
@@ -41,22 +63,38 @@
           src="~/assets/video/banner_video02.mp4"
           type="video/mp4" />
       </video>
-      <div class="container">
-        <div class="swiper-contents">
-          <h1>
-            <span class="swiper-title">소비자가 </span>
-            <span class="swiper-title">더 건강해지는 </span>
-            <span class="swiper-title">먹거리 안전</span>            
-          </h1>
-          <p>
-            <span class="swiper-phrase">소비자가 더 건강할수록 </span>
-            <span class="swiper-phrase">먹거리도 더욱 안전해집니다.</span>
-            <br />
-            <span class="swiper-phrase">소비자의 건강한 </span>
-            <span class="swiper-phrase">식생활을 확보하고 </span>
-            <span class="swiper-phrase">일상의 가치를 더해보세요</span>
-          </p>
-        </div>
+
+      <div class="swiper-contents">
+        <h1>
+          <span class="text-overflow-hidden">
+            <span class="swiper-title text-delay--0">소비자가 </span>
+          </span>
+          <br />
+          <span class="text-overflow-hidden">
+            <span class="swiper-title text-delay--1">더 건강해지는 </span>
+          </span>
+          <span class="text-overflow-hidden">
+            <span class="swiper-title text-delay--2">먹거리 안전</span>
+          </span>
+        </h1>
+        <p>
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--3">소비자가 더 건강할수록 </span>
+          </span>
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--4">먹거리도 더욱 안전해집니다.</span>
+          </span>
+          <br />
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--3">소비자의 건강한 </span>
+          </span>
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--4">식생활을 확보하고 </span>
+          </span>
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--5">일상의 가치를 더해보세요</span>
+          </span>
+        </p>
       </div>
     </SwiperSlide>
     <SwiperSlide class="swiper-slide">
@@ -70,35 +108,39 @@
           src="~/assets/video/banner_video03.mp4"
           type="video/mp4" />
       </video>
-      <div class="container">
-        <div class="swiper-contents">
-          <h1>
-            <span class="swiper-title">Safe food, </span>
-            <span class="swiper-title">Safe Table03</span>            
-          </h1>
-          <p>
-            <span class="swiper-phrase">우리의 먹거리가 공정해지고 </span>
-            <span class="swiper-phrase">안전해지는 날까지 </span>
-            <span class="swiper-phrase">안전한 식탁이 도와드리겠습니다.</span>
-            <br />
-            <span class="swiper-phrase">안전한 식탁을 통해 </span>
-            <span class="swiper-phrase">여러 가지의 음식과 </span>
-            <span class="swiper-phrase">영양성분도 확인해보세요.</span>
-          </p>
-        </div>
+
+      <div class="swiper-contents">
+        <h1>
+          <span class="text-overflow-hidden">
+            <span class="swiper-title text-delay--0">Safe food, </span>
+          </span>
+          <span class="text-overflow-hidden">
+            <span class="swiper-title text-delay--1">Safe Table03</span>
+          </span>
+        </h1>
+        <p>
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--2">우리의 먹거리가 공정해지고 </span>
+          </span>
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--3">안전해지는 날까지 </span>
+          </span>
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--4">안전한 식탁이 도와드리겠습니다.</span>
+          </span>
+          <br />
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--5">안전한 식탁을 통해 </span>
+          </span>
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--5">여러 가지의 음식과 </span>
+          </span>
+          <span class="text-overflow-hidden">
+            <span class="swiper-phrase text-delay--5">영양성분도 확인해보세요.</span>
+          </span>
+        </p>
       </div>
     </SwiperSlide>
-    <div class="container">
-      <div
-        class="swiper-pagination"
-        slot="pagination"></div>
-      <div
-        class="swiper-button-prev"
-        slot="button-prev"></div>
-      <div
-        class="swiper-button-next"
-        slot="button-next"></div>
-    </div>
   </Swiper>
 </template>
 
@@ -129,27 +171,23 @@
             renderBullet: function (index, className) {
               return '<span class="' + className + '">' + '<b>' + '0' + (index + 1) + '</b>' + '</span>';
             },
-          },       
+          },
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
           },
           on: {
-            slideChange: function () {        
-              const title = document.querySelectorAll('.swiper-title');
-              const phrase = document.querySelectorAll('.swiper-phrase');
-              title.forEach((step, i) => {
-                gsap.fromTo(
-                  step,
-                  {autoAlpha:0, x:-200},
-                  {autoAlpha:1, x: 100, delay: (i + 1) * 0.1, opacity: 1, duration: 0.2, ease: "power4.out"});
-              });
-              phrase.forEach((step, i) => {
-                gsap.fromTo(
-                  step,
-                  {autoAlpha:0, x:-200},
-                  {autoAlpha:1, x: 100, delay: (i + 1) * 0.1, opacity: 1, duration: 0.2, ease: "power4.out"});
-              });
+            slideChange: function () {
+              const title = document.querySelectorAll('.swiper-slide-active .swiper-title');
+              const phrase = document.querySelectorAll('.swiper-slide-active .swiper-phrase');
+              title.forEach(step => step.classList.remove('text-active'));
+              phrase.forEach(step => step.classList.remove('text-active'));
+            },
+            slideChangeTransitionEnd() {
+              const title = document.querySelectorAll('.swiper-slide-active .swiper-title');
+              const phrase = document.querySelectorAll('.swiper-slide-active .swiper-phrase');
+              title.forEach(step => step.classList.add('text-active'));
+              phrase.forEach(step => step.classList.add('text-active'));
             },
           },
         },
@@ -183,9 +221,6 @@
 </script>
 
 <style lang="scss" scoped>
-  .fade-in {
-    opacity: 0;
-  }
   .banner-swiper {
     width: 100%;
     height: 100vh;
@@ -210,8 +245,8 @@
     }
     .swiper-slide {
       .video-slide-player {
-            width: 100%;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
       }
       .image {
@@ -224,26 +259,86 @@
         flex-shrink: 0;
       }
       .swiper-contents {
-        .swiper-title, .swiper-phrase {
+        font-family: 'Noto Sans KR', sans-serif;
+        position: absolute;
+        top: 50%;
+        left: 120px;
+        transform: translateY(-50%);
+        height: 50vh;
+        color: #fff;
+        @include media-breakpoint-down(lg) {
+          left: 60px;
+        }
+        @include media-breakpoint-down(sm) {
+          left: 24px;
+          top: auto;
+          bottom: 0;
+          transform: translateY(-50%);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        p {
+          margin-top: 80px;
+        }
+        .text-overflow-hidden,
+        .span {
+          overflow: hidden;
+          margin-right: 0.25rem;
           display: inline-block;
+          vertical-align: top;
+
+          .swiper-title {
+            font-size: 5.5rem;
+            font-weight: 700;
+            transition: transform 1s cubic-bezier(0.83, 0, 0.17, 1) 1.8s;
+            line-height: 1.25;
+            letter-spacing: 0;
+            @include media-breakpoint-down(sm) {
+              font-size: calc(-3px + 15vw);
+            }
+          }
+          .swiper-phrase {
+            font-weight: 400;
+            transition: transform 0.5s cubic-bezier(0.83, 0, 0.17, 1) 2s;
+          }
+          .swiper-title,
+          .swiper-phrase {
+            opacity: 0;
+            display: inline-block;
+            transform: translateX(-110%);
+            &.text-active {
+              opacity: 1;
+              transform: translateX(0);
+              &.text-delay--0 {
+                transition-delay: 0s;
+              }
+              &.text-delay--1 {
+                transition-delay: 0.4s;
+              }
+              &.text-delay--2 {
+                transition-delay: 0.8s;
+              }
+              &.text-delay--3 {
+                transition-delay: 1.2s;
+              }
+              &.text-delay--4 {
+                transition-delay: 1.6s;
+              }
+              &.text-delay--5 {
+                transition-delay: 2s;
+              }
+            }
+          }
         }
       }
     }
   }
 </style>
 <style lang="scss">
-.swiper-slide {
-    .container {
-        .swiper-contents {
-          position: absolute;
-          top: 20vh;
-          color: #fff;
-        }
-      }
-}      
   .swiper-button-prev,
   .swiper-button-next {
-    color: #fff;
+    color: #fff !important;
     opacity: 0.5;
     transition: 0.3s;
     &:hover {

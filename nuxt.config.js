@@ -44,7 +44,7 @@ export default {
       { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Do+Hyeon&family=Noto+Sans+KR&family=Jua&display=swap&family=Roboto:wght@400;700&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Do+Hyeon&family=Noto+Sans+KR:wght@400;900&family=Jua&display=swap&family=Roboto:wght@400;700&display=swap',
       },
     ],
   },
