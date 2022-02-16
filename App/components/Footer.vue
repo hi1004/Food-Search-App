@@ -1,8 +1,38 @@
 <template>
   <footer>
-    <Logo />
-    <div class="copyright">
-      &copy;COPYRIGHT {{ new Date().getFullYear() }}. PROJECT. ALL RIGHTS RESERVED.
+    <div class="container">     
+      <ul class="icons">
+        <li class="icon">
+          <a
+            href="https://github.com/hi1004/Food-Search-App"
+            target="_blank"><img
+              src="~/assets/images/footer/footer_github_icon.png"
+              alt="github" />
+          </a>
+        </li>
+        <li class="icon">
+          <a
+            href="javascript:void(0)"
+            target="_blank">          
+            <img
+              src="~/assets/images/footer/footer_slack_icon.png"
+              alt="slack" />
+          </a>
+        </li>
+        <li class="icon">
+          <a
+            href="https://buscp.org/"
+            target="_blank">
+            <img
+              src="~/assets/images/footer/footer_PROJECT_icon.png"
+              alt="PROJECT" />
+          </a>
+        </li>
+      </ul>
+      <Logo />
+      <div class="copyright">
+        &copy;COPYRIGHT {{ new Date().getFullYear() }}. PROJECT. ALL RIGHTS RESERVED.
+      </div>
     </div>
   </footer>
 </template>
@@ -19,15 +49,52 @@
 
 <style lang="scss" scoped>
   footer {
-    padding: 70px 0;
+    padding: 30px 0;
     text-align: center;
-    opacity: 0.3;
-    font-family: "Oswald",sans-serif;
-    .logo {
-      display: block;
-      margin-bottom: 4px;
-      position: relative;
-      height: 80px;
+    font-family: 'Oswald', sans-serif;
+    background: $primary;
+    height: 20vh;
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 120px;
+      justify-content:space-between;
+      .logo {
+        display: inline-block;
+        position: relative;
+        line-height: 40px;
+        opacity: 0.9;
+      }
+      .copyright {
+        color: $white;
+        font-size: 14px;
+        line-height: 14px;
+      }
+      ul.icons {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        li.icon {
+          width: 35px;
+          height: 35px;
+          overflow: hidden;
+          margin-right: 16px;
+          transition: transform 0.4s;
+          a {
+            img {
+              width: 100%;
+            }
+          }
+          &:last-child {
+            margin-right: 0;
+          }
+          &:hover a img {
+            transform: scale(1.05);
+          }
+        }
+      }
     }
   }
+
 </style>

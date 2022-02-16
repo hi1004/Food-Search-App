@@ -1,8 +1,10 @@
 <template>
   <div>
-    <Search />
-    <FoodList />
-    <Totop />
+    <div class="search-section">
+      <Search />
+      <FoodList />
+      <Totop />
+    </div>
   </div>
 </template>
 
@@ -17,13 +19,11 @@
       FoodList,
       Totop,
     },
-
-
-
-
   };
 </script>
 
 <style lang="scss" scoped>
- 
+  .search-section {
+    min-height: 80vh;
+  }
 </style>

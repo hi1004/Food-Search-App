@@ -74,7 +74,7 @@
     display: none;
   }
   .container {
-    margin-top: 30px;
+    margin: 30px 0;
     .inner {
       background-color: $gray-200;
       padding: 10px 0 10px 0;

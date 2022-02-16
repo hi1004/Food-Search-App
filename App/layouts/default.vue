@@ -10,7 +10,6 @@
 <script>
   import Header from '~/components/Header';
   import Footer from '~/components/Footer';
-  import gsap from 'gsap';
   import { mapState } from 'vuex';
 
   
@@ -22,8 +21,6 @@
 
     mounted() {
       this.$store.dispatch('cursor/mouse');
-      
-      
     },
     computed: {
       ...mapState('default', ['links']),
@@ -37,16 +34,16 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    cursor: none;
+    // cursor: none;
   }
   body {
-      line-height: 1.4;
+  line-height: 1.4;
   font-family: 'Noto Sans KR', 'Roboto', sans-serif;
   overflow-x: hidden;
   }
    .cursor {
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
     //background: white;
     border: 3px solid white;
     border-radius: 50%;

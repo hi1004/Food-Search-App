@@ -76,6 +76,7 @@
       <!-- Product specification section -->
       <div class="product-spec-section">
         <div class="nutrient">
+          <h3>영양성분</h3>
           {{ theFood.nutrient }}
         </div>
         <div>
@@ -306,6 +307,7 @@
   .product-container {
     display: flex;
     flex-direction: column;
+    padding: 100px 0 40px;
     .product-title-section {
       display: flex;
       flex-direction: column;
@@ -369,7 +371,7 @@
         align-items: center;
         background: lightpink;
         canvas {
-          width: 100%;
+          width: 100% !important;
         }
       }
       @include media-breakpoint-down(xl) {

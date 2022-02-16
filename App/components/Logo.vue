@@ -2,9 +2,6 @@
   <NuxtLink
     to="/"
     class="logo">
-    <!-- <img
-      src="~/assets/images/logo.png"
-      alt="logo" /> -->
     <p>안전한식탁</p>
   </NuxtLink>
 </template>
