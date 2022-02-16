@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Search :mt="100" />
+    <Search />
     <FoodList />
     <Totop />
   </div>

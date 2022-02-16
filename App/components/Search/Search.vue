@@ -10,6 +10,7 @@
       placeholder="검색"
       @keyup.enter="apply" />
     <button
+      href=""
       class="btn btn-primary"
       @click="apply">
       Search
@@ -37,11 +38,14 @@
         default: 0,
       },
     },
+    mounted() {
+      this.$store.dispatch('cursor/mouse');
+    },
     methods: {
       apply() {
         this.$router.push('/search');
         this.$refs.search.focus();
- 
+
         this.$store.commit('search/resetFood');
         this.$store.dispatch('search/searchFoods', {
           foodName: this.foodName,
@@ -63,7 +67,8 @@
 <style lang="scss" scoped>
   .container {
     display: flex;
-    margin: 100px auto 10px auto;
+    padding-top: 100px;
+    margin: 0;
     > * {
       margin-right: 10px;
       font-size: 15px;

@@ -329,6 +329,7 @@
       }
     },
     mounted() {
+      this.$store.dispatch('cursor/mouse');
       window.addEventListener('scroll', this.onScroll);
       window.addEventListener('resize', () => {
         const width = window.innerWidth;

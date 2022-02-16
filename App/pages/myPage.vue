@@ -170,6 +170,9 @@
     computed: {
       ...mapState('signIn', ['isAuthorized', 'username', 'email', 'allergiesInfo']),
     },
+    mounted() {
+      this.$store.dispatch('cursor/mouse');
+    },
     watch: {
       oPassword(newData) {
         this.isBlankOPassword = newData === '';
