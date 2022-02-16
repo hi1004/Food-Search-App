@@ -148,7 +148,6 @@
   import { mapState } from 'vuex';
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
   import 'swiper/css/swiper.css';
-  import { gsap } from 'gsap';
   export default {
     components: {
       Swiper,

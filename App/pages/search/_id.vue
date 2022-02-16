@@ -20,53 +20,61 @@
     </template>
     <div
       v-else
-      class="food-details">
-      <!-- Img section -->
-      <div class="container product-img">
-        <Swiper
-          class="swiper"
-          :options="swiperOption">
-          <SwiperSlide>
-            <div
-              :style="{
-                backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl1)})`,
-              }"
-              class="image"></div>
-            <Loader
-              v-if="imageLoading"
-              absolute />
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              :style="{
-                backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl2)})`,
-              }"
-              class="image"></div>
-            <Loader
-              v-if="imageLoading"
-              absolute />
-          </SwiperSlide>
-          <div
-            class="swiper-pagination"
-            slot="pagination"></div>
-          <div
-            class="swiper-button-prev"
-            slot="button-prev"></div>
-          <div
-            class="swiper-button-next"
-            slot="button-next"></div>
-        </Swiper>
-      </div>
-      <!-- Product specification section -->
-      <div class="container product-specs">
-        <div class="title">
+      class="product-container">
+      <div class="product-title-section">
+        <div class="product-name">
           {{ theFood.prdlstNm }}
         </div>
-        <div class="labels">
+        <div class="product-labels">
           <span>{{ theFood.prdkind }}</span>
           <span>{{ theFood.productGb }}</span>
           <!-- <span>{{ theFood.rawmtrl }}</span> -->
         </div>
+      </div>
+      <div class="product-visual-section">
+        <!-- Img section -->
+        <div class="product-img">
+          <Swiper
+            class="swiper"
+            :options="swiperOption">
+            <SwiperSlide>
+              <div
+                :style="{
+                  backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl1)})`,
+                }"
+                class="image"></div>
+              <Loader
+                v-if="imageLoading"
+                absolute />
+            </SwiperSlide>
+            <SwiperSlide>
+              <div
+                :style="{
+                  backgroundImage: `url(${requestDiffSizeImage(theFood.imgurl2)})`,
+                }"
+                class="image"></div>
+              <Loader
+                v-if="imageLoading"
+                absolute />
+            </SwiperSlide>
+            <div
+              class="swiper-pagination"
+              slot="pagination"></div>
+            <div
+              class="swiper-button-prev"
+              slot="button-prev"></div>
+            <div
+              class="swiper-button-next"
+              slot="button-next"></div>
+          </Swiper>
+        </div>
+        <!-- Chart section -->
+        <div class="product-chart">
+          <canvas id="nutrient-chart"></canvas>
+        </div>
+      </div>      
+      <!-- Product specification section -->
+      <div class="product-spec-section">
         <div class="nutrient">
           {{ theFood.nutrient }}
         </div>
@@ -90,11 +98,7 @@
           <h3>판매</h3>
           {{ theFood.seller }}
         </div>
-      </div>
-      <!-- Chart section -->
-      <div class="container product-chart">
-        <canvas id="nutrient-chart"></canvas>
-      </div>
+      </div>      
     </div>
     <div
       id="to-search"
@@ -137,7 +141,6 @@
         },
       };
     },
-
     // ssr이 실행하기 전 동작
     async asyncData({ store, params }) {
       await store.dispatch('search/searchFoodWithId', {
@@ -235,28 +238,7 @@
   };
 </script>
 
-<style lang="scss" scoped>
-  .container {
-    padding-top: 40px;
-    font-family: 'Noto Sans KR', sans-serif;
-    @include media-breakpoint-down(lg) {
-      margin-top: 90px;
-      .title {
-        position: absolute;
-        top: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        text-align: center;
-      }
-      .labels {
-        position: absolute;
-        top: 180px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
-  }
+<style lang="scss" scoped> 
   .skeletons {
     display: flex;
     .image {
@@ -289,61 +271,74 @@
       }
     }
   }
-  .food-details {
+  .product-container {
     display: flex;
-    color: $gray-600;
-    .swiper {
-      width: 300px;
-      height: calc(300px * 3 / 2);
-      margin-right: 70px;
-      border-radius: 10px;
+    flex-direction: column;
+    .product-title-section {
       display: flex;
-      flex-shrink: 0;
-      .swiper-slide {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        font-weight: bold;
-        .image {
-          width: 100%;
-          height: 100%;
-          // margin-right: 70px;
-          border-radius: 10px;
-          background-color: $gray-200;
-          background-size: cover;
-          background-position: center;
-          position: relative;
-          flex-shrink: 0;
-        }
-      }
-    }
-    #nutrient-chart {
-      width: 300px;
-      height: 300px;
-      margin: 30px 0px;
-    }
-    .product-specs {
-      flex-grow: 1;
-      .title {
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      .product-name {
         color: $black;
         font-family: 'Do Hyeon', sans-serif;
-        font-size: 70px;
-        line-height: 1;
-        margin-bottom: 30px;
+        font-size: 4rem;
       }
-      .labels {
+      .product-label {
         color: $primary;
         span {
           &::after {
             content: '\00b7';
-            margin: 0 6px;
-          }
-          &:last-child::after {
-            display: none;
           }
         }
       }
+    }
+    .product-visual-section {
+      display: flex;
+      flex-direction: row;
+      .product-img {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: lightyellow;
+        .swiper {
+          width: 20rem;
+          height: calc(20rem * 3 / 2);
+          border-radius: 10px;
+          display: flex;
+          .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: bold;
+            .image {
+              width: 100%;
+              height: 100%;
+              // margin-right: 70px;
+              border-radius: 10px;
+              background-color: $gray-200;
+              background-size: cover;
+              background-position: center;
+              position: relative;
+            }
+          }
+        }
+      }      
+      .product-chart {
+        flex: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: lightpink;
+      }
+      @include media-breakpoint-down(xl) {
+        flex-direction: column;
+      }
+    }    
+    .product-spec-section {     
+      background: lightcyan; 
       .nutrient {
         margin-top: 20px;
       }
@@ -358,39 +353,13 @@
         font-family: 'Do Hyeon', sans-serif;
         font-size: 20px;
       }
-    }
-
-    .product-img,
-    .product-chart {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+    }    
 
     @include media-breakpoint-down(xl) {
-      .swiper {
-        width: 300px;
-        height: calc(300px * 3 / 2);
-      }
+      
     }
     @include media-breakpoint-down(lg) {
-      margin-top: 30px;
-      display: block;
-      .swiper {
-        // margin-bottom: 40px;
-        margin: 0 auto 40px;
-      }
-      #nutrient-chart {
-        margin: 20px auto;
-      }
-    }
-
-    @include media-breakpoint-down(md) {
-      .product-specs {
-        .title {
-          font-size: 50px;
-        }
-      }
+      
     }
   }
   #to-search {
