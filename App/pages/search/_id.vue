@@ -336,7 +336,7 @@
         background: lightyellow;
         .swiper {
           width: 20rem;
-          height: calc(20rem * 3 / 2);
+          height: 30rem;
           border-radius: 10px;
           display: flex;
           .swiper-slide {
@@ -355,6 +355,10 @@
               background-position: center;
               position: relative;
             }
+          }
+          @include media-breakpoint-down(sm) {
+            width: 15rem;
+            height: 22.5rem;
           }
         }
       }      
