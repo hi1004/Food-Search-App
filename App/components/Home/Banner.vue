@@ -4,18 +4,18 @@
     class="banner-swiper"
     @slideChange="onSwiperSlideChangeTransitionStart"
     :options="swiperOption">
-    <div class="container">
-      <div
-        class="swiper-pagination"
-        slot="pagination"></div>
-      <div
-        class="swiper-button-prev"
-        slot="button-prev"></div>
-      <div
-        class="swiper-button-next"
-        slot="button-next"></div>
-    </div>
-    <SwiperSlide class="swiper-slide">
+    <div
+      class="swiper-pagination"
+      slot="pagination"></div>
+    <div
+      class="swiper-button-prev swiper-btn"
+      slot="button-prev"></div>
+    <div
+      class="swiper-button-next swiper-btn"
+      slot="button-next"></div>
+
+    <SwiperSlide
+      class="swiper-slide">
       <video
         class="video-slide-player video-slide-player01"
         autoplay
@@ -163,7 +163,7 @@
           spaceBetween: 0,
           loop: true,
           effect: 'fade',
-          // autoplay: { delay: 5000,  disableOnInteraction: false, },
+          autoplay: { delay: 5000, disableOnInteraction: false },
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -198,6 +198,9 @@
         return this.$refs.mySwiper.$swiper;
       },
     },
+    mounted() {
+      this.$store.dispatch('cursor/mouse');
+    },
     methods: {
       onSwiperSlideChangeTransitionStart() {
         const swiperPaginationActive = document.querySelector('.swiper-pagination-bullet-active');
@@ -224,7 +227,6 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    margin-top: -70px;
     flex-shrink: 0;
     overflow: hidden;
     .container {
@@ -241,6 +243,7 @@
         display: flex;
         align-items: flex-end;
       }
+    
     }
     .swiper-slide {
       .video-slide-player {
@@ -342,6 +345,9 @@
     transition: 0.3s;
     &:hover {
       opacity: 1;
+    }
+    @include media-breakpoint-down(sm) {
+      display: none;
     }
   }
   .swiper-button-prev {

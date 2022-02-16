@@ -168,7 +168,7 @@
         return src;
       },
       toSearch() {
-        this.$router.push('../search/result');
+        this.$router.push('../search');
       },
       // Create Chart Method
       createChart(chartId) {
@@ -252,7 +252,7 @@
           {
             hid: 'og:description',
             property: 'og:description',
-            // content: this.theFood.Plot,
+            content: this.theFood.nutrient,
           },
           {
             hid: 'og:image',

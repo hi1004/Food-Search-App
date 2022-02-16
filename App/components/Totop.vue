@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <font-awesome-icon
+    <FontAwesomeIcon
       id="totopBtn"
       v-if="!isScrollTop"
       @click="toTop"
