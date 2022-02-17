@@ -52,7 +52,7 @@
     padding: 30px 0;
     text-align: center;
     font-family: 'Oswald', sans-serif;
-    background: $primary;
+    background: #2f2d30;
     height: 20vh;
     display: flex;
     flex-direction: column;
@@ -61,6 +61,7 @@
       display: flex;
       flex-direction: column;
       justify-content:space-between;
+      height: 15vh;
       .logo {
         display: inline-block;
         position: relative;
@@ -78,22 +79,22 @@
         padding: 0;
         margin: 0;
         li.icon {
-          width: 35px;
-          height: 35px;
+          width: 30px;
           overflow: hidden;
           margin-right: 16px;
-          transition: transform 0.4s;
           a {
             img {
               width: 100%;
+              transition: transform 0.4s;
             }
+            &:hover img {
+            transform: scale(1.05);
+          }
           }
           &:last-child {
             margin-right: 0;
           }
-          &:hover a img {
-            transform: scale(1.05);
-          }
+          
         }
       }
     }

@@ -14,8 +14,7 @@
       class="swiper-button-next swiper-btn"
       slot="button-next"></div>
 
-    <SwiperSlide
-      class="swiper-slide">
+    <SwiperSlide class="swiper-slide">
       <video
         class="video-slide-player video-slide-player01"
         autoplay
@@ -97,7 +96,7 @@
       <div class="swiper-contents">
         <h1>
           <span class="text-overflow-hidden">
-            <span class="swiper-title text-delay--0">우리들의, </span>
+            <span class="swiper-title text-delay--0">우리들의 </span>
           </span>
           <span class="text-overflow-hidden">
             <span class="swiper-title text-delay--1">행복한 식사</span>
@@ -105,11 +104,14 @@
         </h1>
         <p>
           <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--3">우리의 먹거리가 공정해지고 안전해지는 날까지 안전한 식탁이 도와드리겠습니다 </span>
+            <span
+              class="swiper-phrase text-delay--3">우리의 먹거리가 공정해지고 안전해지는 날까지 안전한 식탁이 도와드리겠습니다
+            </span>
           </span>
           <br />
           <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--4">안전한 식탁을 통해 여러 가지의 음식과 영양성분도 확인해보세요</span>
+            <span
+              class="swiper-phrase text-delay--4">안전한 식탁을 통해 여러 가지의 음식과 영양성분도 확인해보세요</span>
           </span>
         </p>
       </div>
@@ -214,7 +216,6 @@
         display: flex;
         align-items: flex-end;
       }
-    
     }
     .swiper-slide {
       .video-slide-player {
@@ -277,6 +278,9 @@
             line-height: 40px;
             letter-spacing: -1px;
             transition: transform 0.5s cubic-bezier(0.83, 0, 0.17, 1) 2s;
+            @include media-breakpoint-down(lg) {
+              font-size: 16px;
+            }
           }
           .swiper-title,
           .swiper-phrase {

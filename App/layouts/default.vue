@@ -57,7 +57,7 @@
   .link-grow {
     background: white;
   }
-   @include media-breakpoint-down(sm) {
+   @include media-breakpoint-down(md) {
      body {
        cursor: default;
      }

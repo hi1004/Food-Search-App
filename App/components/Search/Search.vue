@@ -1,17 +1,23 @@
 <template>
   <div
-    class="container"
+    class="container search-container"
     :style="{ margin: `${mt}px auto 0 auto` }">
     <input
       v-model.trim="foodName"
       ref="search"
-      class="form-control"
+      class="form-control home-search-input"
       type="text"
-      placeholder="검색"
+      placeholder="#칸쵸 #콘칩 #우유"
       @keyup.enter="apply" />
+    <div class="home-search-btn">
+      <img
+        src="~/assets/images/home/ico_search.png"
+        @click="apply"
+        alt="home-search-btn" />
+    </div>
     <button
       href=""
-      class="btn btn-primary"
+      class="btn btn-primary search-btn"
       @click="apply">
       Search
     </button>
@@ -39,19 +45,28 @@
       },
     },
     mounted() {
+      const formControl = document.querySelector('.form-control');
+      formControl.addEventListener('click', searchFocus);
+      formControl.addEventListener('blur', searchBlur);
+      function searchFocus() {
+        formControl.setAttribute('placeholder', '');
+      }
+      function searchBlur() {
+        formControl.setAttribute('placeholder', "#칸쵸 #콘칩 #우유");
+      }
       this.$store.dispatch('cursor/mouse');
+
     },
     methods: {
       apply() {
         this.$router.push('/search');
-        this.$refs.search.focus();
-
         this.$store.commit('search/resetFood');
         this.$store.dispatch('search/searchFoods', {
           foodName: this.foodName,
           number: this.number,
         });
       },
+
     },
     directives: {
       focus: {
@@ -61,6 +76,7 @@
         },
       },
     },
+
   };
 </script>
 
@@ -92,6 +108,9 @@
       flex-shrink: 0;
       font-weight: 700;
       color: $white;
+    }
+    .home-search-btn {
+      display: none;
     }
 
     @include media-breakpoint-down(lg) {
