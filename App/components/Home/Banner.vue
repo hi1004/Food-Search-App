@@ -33,21 +33,15 @@
             <span class="swiper-title text-delay--0">Safe food,</span>
           </span>
           <span class="text-overflow-hidden">
-            <span class="swiper-title text-delay--1">Safe Table01</span>
+            <span class="swiper-title text-delay--1">Safe Table</span>
           </span>
         </h1>
         <p>
           <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--2">행복을 담은</span>
+            <span class="swiper-phrase text-delay--3">행복을 담은 안전한 먹거리로</span>
           </span>
           <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--3">안전한 먹거리로</span><br />
-          </span>
-          <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--4">가정에 안전한 식탁을</span>
-          </span>
-          <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--5">만들어보세요</span>
+            <span class="swiper-phrase text-delay--4">가정에 안전한 식탁을 만들어보세요</span>
           </span>
         </p>
       </div>
@@ -79,20 +73,11 @@
         </h1>
         <p>
           <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--3">소비자가 더 건강할수록 </span>
-          </span>
-          <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--4">먹거리도 더욱 안전해집니다.</span>
+            <span class="swiper-phrase text-delay--4">소비자가 더 건강할수록 먹거리도 더욱 안전해집니다.</span>
           </span>
           <br />
           <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--3">소비자의 건강한 </span>
-          </span>
-          <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--4">식생활을 확보하고 </span>
-          </span>
-          <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--5">일상의 가치를 더해보세요</span>
+            <span class="swiper-phrase text-delay--5">소비자의 건강한 식생활을 확보하고 일상의 가치를 더해보세요</span>
           </span>
         </p>
       </div>
@@ -112,31 +97,19 @@
       <div class="swiper-contents">
         <h1>
           <span class="text-overflow-hidden">
-            <span class="swiper-title text-delay--0">Safe food, </span>
+            <span class="swiper-title text-delay--0">우리들의, </span>
           </span>
           <span class="text-overflow-hidden">
-            <span class="swiper-title text-delay--1">Safe Table03</span>
+            <span class="swiper-title text-delay--1">행복한 식사</span>
           </span>
         </h1>
         <p>
           <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--2">우리의 먹거리가 공정해지고 </span>
-          </span>
-          <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--3">안전해지는 날까지 </span>
-          </span>
-          <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--4">안전한 식탁이 도와드리겠습니다.</span>
+            <span class="swiper-phrase text-delay--3">우리의 먹거리가 공정해지고 안전해지는 날까지 안전한 식탁이 도와드리겠습니다 </span>
           </span>
           <br />
           <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--5">안전한 식탁을 통해 </span>
-          </span>
-          <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--5">여러 가지의 음식과 </span>
-          </span>
-          <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--5">영양성분도 확인해보세요.</span>
+            <span class="swiper-phrase text-delay--4">안전한 식탁을 통해 여러 가지의 음식과 영양성분도 확인해보세요</span>
           </span>
         </p>
       </div>
@@ -145,7 +118,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
   import 'swiper/css/swiper.css';
   export default {
@@ -163,7 +135,7 @@
           spaceBetween: 0,
           loop: true,
           effect: 'fade',
-          autoplay: { delay: 5000, disableOnInteraction: false },
+          // autoplay: { delay: 5000, disableOnInteraction: false },
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -193,7 +165,6 @@
       };
     },
     computed: {
-      ...mapState('banner', ['bannerURL']),
       swiper() {
         return this.$refs.mySwiper.$swiper;
       },
@@ -302,6 +273,9 @@
           }
           .swiper-phrase {
             font-weight: 400;
+            font-size: 23px;
+            line-height: 40px;
+            letter-spacing: -1px;
             transition: transform 0.5s cubic-bezier(0.83, 0, 0.17, 1) 2s;
           }
           .swiper-title,

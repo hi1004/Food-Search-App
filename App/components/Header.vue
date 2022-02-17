@@ -98,7 +98,7 @@
               @click="onActive"
               class="user active">
               <FontAwesomeIcon
-                class="iconBtn"
+                class="iconBtn userIcon"
                 icon="circle-user" />
               <ul class="sub-menu">
                 <li>
@@ -338,6 +338,13 @@
         }
       })
     },
+    created() {
+      if (process.client) {
+        const userIcon = document.querySelector('.userIcon');
+        console.log(userIcon)
+        this.$store.dispatch('cursor/mouse');
+      }
+    },
     Unmount() {
       window.removeEventListener('scroll', this.onScroll);
     },
@@ -376,10 +383,12 @@
         }
       }
       .username {
-        font-size: 1rem;
+        font-size: 1.3rem;
+        letter-spacing: 1px;
         line-height: 0;
         color: $white;
         margin: 0;
+        font-family: 'Do Hyeon', sans-serif;
       }
       .header-convenience {
         display: flex;

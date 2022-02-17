@@ -6,9 +6,6 @@
           <div class="user-name">
             {{ username }}<span>님</span>
           </div>
-          <div class="user-email">
-            {{ email }}
-          </div>
         </div>
         <!-- tab menu  -->
         <div class="user-tab-menu">

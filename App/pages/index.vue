@@ -16,6 +16,9 @@
       Banner,
       HeadLine,
     },
+    mounted() {
+      this.$store.dispatch('cursor/mouse');
+    },
 
   }
 </script>

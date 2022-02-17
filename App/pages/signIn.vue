@@ -63,10 +63,7 @@
         this.$router.push('./signUp')
       },      
     },
-    mounted() {
-      this.$store.dispatch('cursor/mouse');
 
-    }
   }
 </script>
 
