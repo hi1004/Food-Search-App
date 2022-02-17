@@ -25,11 +25,26 @@
         <div class="product-name">
           {{ theFood.prdlstNm }}
         </div>
-        <div class="product-labels">
-          <span>{{ theFood.prdkind }}</span>
-          <span>{{ theFood.productGb }}</span>
-          <!-- <span>{{ theFood.rawmtrl }}</span> -->
-        </div>
+        <client-only>
+          <div
+            v-if="isAuthorized"
+            class="product-allergy">
+            <span
+              v-if="isSafe"
+              class="product-allergy-msg"><span class="safe"><FontAwesomeIcon icon="fa-circle-check" /></span> 안전한 식품입니다 :)</span>
+            <span
+              v-if="isUnknown"
+              class="product-allergy-msg"><span class="unknown"><FontAwesomeIcon icon="fa-circle-question" /></span> 알러지 정보가 없다요 :(</span>
+            <span
+              v-if="isDanger"
+              class="product-allergy-msg"><span class="danger"><FontAwesomeIcon icon="fa-triangle-exclamation" /></span> 위험! <span class="warning">{{ this.allergyArr }}</span> 포함!</span>
+          </div>
+          <div
+            v-else
+            class="product-allergy">
+            <span class="product-allergy-msg">알러지 체크를 원하시면 로그인해주세요!</span>
+          </div>
+        </client-only>
       </div>
       <div class="product-visual-section">
         <!-- Img section -->
@@ -119,12 +134,18 @@
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
   import Chart from 'chart.js/auto';
   import 'swiper/css/swiper.css';
+  import { library } from '@fortawesome/fontawesome-svg-core';
+  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+  import { faCircleCheck, faTriangleExclamation, faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
+
+  library.add(faCircleCheck, faTriangleExclamation, faCircleQuestion);
 
   export default {
     components: {
       Loader,
       Swiper,
       SwiperSlide,
+      FontAwesomeIcon,
     },
     directives: {
       swiper: directive,
@@ -144,8 +165,34 @@
             prevEl: '.swiper-button-prev',
           },          
         },
+        checkedAllergies: [],
+        allergies: {
+          egg: '난류',
+          milk: '우유',
+          buckwheat: '메밀',
+          peanut: '땅콩',
+          bean: '대두',
+          wheat: '밀',
+          mackerel: '고등어',
+          crab: '게',
+          shrimp: '새우',
+          pork: '돼지',
+          peach: '복숭아',
+          tomato: '토마토',
+          sulfite: '아황산염',
+          walnut: '호두',
+          chicken: '닭고기',
+          beef: '쇠고기',
+          squid: '오징어',
+          shellfish: '조개류',
+          pineNut: '잣',
+        },
+        allergyArr: [],
+        isDanger: false,
+        isUnknown: false,
+        isSafe: false,
       };
-    },
+    },    
     // ssr이 실행하기 전 동작
     async asyncData({ store, params }) {
       await store.dispatch('search/searchFoodWithId', {
@@ -157,6 +204,7 @@
     },
     computed: {
       ...mapState('search', ['loading', 'theFood']),
+      ...mapState('signIn', ['isAuthorized', 'allergiesInfo']),
     },
     methods: {
       requestDiffSizeImage(url) {
@@ -269,7 +317,29 @@
       },
     },
     mounted() {
+      // create chart
       this.createChart('nutrient-chart');
+      // set allergy check info
+      Object.entries(this.allergiesInfo).forEach(([key, value]) => {
+        if (value === true) {
+          this.checkedAllergies.push(this.allergies[key]);
+        }
+      });
+      console.log(this.checkedAllergies);
+      if (this.theFood.allergy === '알수없음') {
+        this.isUnknown = true;
+      } else {
+        this.checkedAllergies.forEach(al => {
+          if (this.theFood.allergy.includes(al)) {
+            this.allergyArr.push(al);
+          }
+        });
+        if (this.allergyArr.length > 0) {
+          this.isDanger = true;
+        } else {
+          this.isSafe = true;
+        }
+      }   
     },
     head() {
       return {
@@ -344,17 +414,25 @@
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
+      padding: 3rem 0;
+      font-family: 'Do Hyeon', sans-serif;
       .product-name {
-        color: $black;
-        font-family: 'Do Hyeon', sans-serif;
+        color: $black;        
         font-size: 4rem;
       }
-      .product-label {
-        color: $primary;
-        span {
-          &::after {
-            content: '\00b7';
-          }
+      .product-allergy {
+        font-size: 2rem;
+        .warning {
+          color: red;
+        }
+        .safe {
+          color: green;
+        }
+        .unknown {
+          color: yellow;
+        }
+        .danger {
+          color: red;
         }
       }
     }
