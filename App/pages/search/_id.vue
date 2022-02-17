@@ -70,7 +70,11 @@
         </div>
         <!-- Chart section -->
         <div class="product-chart">
-          <canvas id="nutrient-chart"></canvas>
+          <canvas id="nutrient-chart">
+          </canvas>
+          <h1 class="unknownInfoMsg">
+            영양정보가 없다요 :(
+          </h1>
         </div>
       </div>      
       <!-- Product specification section -->
@@ -138,7 +142,7 @@
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
-          },
+          },          
         },
       };
     },
@@ -174,18 +178,18 @@
       // Create Chart Method
       createChart(chartId) {
         // set default
-        let carbohydrate = 0;
-        let protein = 0;
-        let fat = 0;
-        let transFat = 0;
-        let saturatedFat = 0;
-        let cholesterol = 0;
-        let sugars = 0;
-        let calcium = 0;
-        let iron = 0;
+        let carbohydrate = Math.floor(Math.random() * 101);
+        let protein = Math.floor(Math.random() * 101);
+        let fat = Math.floor(Math.random() * 101);
+        let transFat = Math.floor(Math.random() * 101);
+        let saturatedFat = Math.floor(Math.random() * 101);
+        let cholesterol = Math.floor(Math.random() * 101);
+        let sugars = Math.floor(Math.random() * 101);
+        let calcium = Math.floor(Math.random() * 101);
+        let iron = Math.floor(Math.random() * 101);
         // parsing nutrient data if nutrient data is not unknown
         const nutrient = this.theFood.nutrient;
-        if (nutrient != '알수없음' && nutrient != '알 수 없음' && nutrient) {
+        if (nutrient != '알수없음' && nutrient != '알 수 없음' && nutrient) {        
           carbohydrate = nutrient.match(/탄수화물\s{0,}[0-9.]*/) ? Number(nutrient.match(/탄수화물\s{0,}[0-9.]*/)[0].replace('탄수화물', '')) : 0;
           protein = nutrient.match(/단백질\s{0,}[0-9.]*/) ? Number(nutrient.match(/단백질\s{0,}[0-9.]*/)[0].replace('단백질', '')) : 0;
           fat = nutrient.match(/지방\s{0,}[0-9.]*/) ? Number(nutrient.match(/지방\s{0,}[0-9.]*/)[0].replace('지방', '')) : 0;
@@ -195,6 +199,8 @@
           sugars = nutrient.match(/당류\s{0,}[0-9.]*/) ? Number(nutrient.match(/당류\s{0,}[0-9.]*/)[0].replace('당류', '')) : 0;
           calcium = nutrient.match(/칼슘\s{0,}[0-9.]*/) ? Number(nutrient.match(/칼슘\s{0,}[0-9.]*/)[0].replace('칼슘', '')) : 0;
           iron = nutrient.match(/철\s{0,}[0-9.]*/) ? Number(nutrient.match(/철\s{0,}[0-9.]*/)[0].replace('철', '')) : 0;
+        } else {
+          document.querySelector('.product-chart').classList.add('unknown');
         }
         // create chart
         const ctx = document.getElementById(chartId);
@@ -394,10 +400,28 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        // background: lightpink;
-        canvas {
-          width: 100% !important;
+        position: relative;
+        .unknownInfoMsg {
+          display: none;
+          font-family: 'Do Hyeon', sans-serif;
+          font-size: 4rem;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
         }
+        #nutrient-chart {
+          width: 100% !important;           
+        }
+        &.unknown {
+          .unknownInfoMsg{
+            display: block;
+          }
+          #nutrient-chart {
+            filter: blur(0.3rem);
+          }
+        }
+        
       }
       @include media-breakpoint-down(xl) {
         flex-direction: column;

@@ -187,7 +187,7 @@
             width: 100%;
             border: none;
             border-bottom: solid 1px gray;
-            height: 2.5rem;
+            height: 2rem;
             position: relative;
             &:focus {
               outline: none;              
@@ -196,7 +196,7 @@
               position: absolute; 
               font-size: 1.2rem;  
               left: 0.1rem;
-              top: -0.7rem;    
+              top: -1.5rem;    
               pointer-events: none;
               transition: 0.2s;       
             }              
