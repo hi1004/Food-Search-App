@@ -174,66 +174,91 @@
       // Create Chart Method
       createChart(chartId) {
         // set default
-        let kcal = 0;
         let carbohydrate = 0;
         let protein = 0;
         let fat = 0;
         let transFat = 0;
         let saturatedFat = 0;
         let cholesterol = 0;
-        let natrium = 0;
         let sugars = 0;
         let calcium = 0;
         let iron = 0;
         // parsing nutrient data if nutrient data is not unknown
         const nutrient = this.theFood.nutrient;
         if (nutrient != '알수없음' && nutrient != '알 수 없음' && nutrient) {
-          kcal = nutrient.match(/열량 [0-9.]*/) ? Number(nutrient.match(/열량 [0-9.]*/)[0].replace('열량 ', '')) : 0;
-          carbohydrate = nutrient.match(/탄수화물 [0-9.]*/) ? Number(nutrient.match(/탄수화물 [0-9.]*/)[0].replace('탄수화물 ', '')) : 0;
-          protein = nutrient.match(/단백질 [0-9.]*/) ? Number(nutrient.match(/단백질 [0-9.]*/)[0].replace('단백질 ', '')) : 0;
-          fat = nutrient.match(/지방 [0-9.]*/) ? Number(nutrient.match(/지방 [0-9.]*/)[0].replace('지방 ', '')) : 0;
-          transFat = nutrient.match(/트랜스지방 [0-9.]*/) ? Number(nutrient.match(/트랜스지방 [0-9.]*/)[0].replace('트랜스지방 ', '')) : 0;
-          saturatedFat = nutrient.match(/포화지방 [0-9.]*/) ? Number(nutrient.match(/포화지방 [0-9.]*/)[0].replace('포화지방 ', '')) : 0;
-          cholesterol = nutrient.match(/콜레스테롤 [0-9.]*/) ? Number(nutrient.match(/콜레스테롤 [0-9.]*/)[0].replace('콜레스테롤 ', '')) : 0;
-          natrium = nutrient.match(/나트륨 [0-9.]*/) ? Number(nutrient.match(/나트륨 [0-9.]*/)[0].replace('나트륨 ', '')) : 0;
-          sugars = nutrient.match(/당류 [0-9.]*/) ? Number(nutrient.match(/당류 [0-9.]*/)[0].replace('당류 ', '')) : 0;
-          calcium = nutrient.match(/칼슘 [0-9.]*/) ? Number(nutrient.match(/칼슘 [0-9.]*/)[0].replace('칼슘 ', '')) : 0;
-          iron = nutrient.match(/철 [0-9.]*/) ? Number(nutrient.match(/철 [0-9.]*/)[0].replace('철 ', '')) : 0;
+          carbohydrate = nutrient.match(/탄수화물\s{0,}[0-9.]*/) ? Number(nutrient.match(/탄수화물\s{0,}[0-9.]*/)[0].replace('탄수화물', '')) : 0;
+          protein = nutrient.match(/단백질\s{0,}[0-9.]*/) ? Number(nutrient.match(/단백질\s{0,}[0-9.]*/)[0].replace('단백질', '')) : 0;
+          fat = nutrient.match(/지방\s{0,}[0-9.]*/) ? Number(nutrient.match(/지방\s{0,}[0-9.]*/)[0].replace('지방', '')) : 0;
+          transFat = nutrient.match(/트랜스지방\s{0,}[0-9.]*/) ? Number(nutrient.match(/트랜스지방\s{0,}[0-9.]*/)[0].replace('트랜스지방', '')) : 0;
+          saturatedFat = nutrient.match(/포화지방\s{0,}[0-9.]*/) ? Number(nutrient.match(/포화지방\s{0,}[0-9.]*/)[0].replace('포화지방', '')) : 0;
+          cholesterol = nutrient.match(/콜레스테롤\s{0,}[0-9.]*/) ? Number(nutrient.match(/콜레스테롤\s{0,}[0-9.]*/)[0].replace('콜레스테롤', '')) : 0;
+          sugars = nutrient.match(/당류\s{0,}[0-9.]*/) ? Number(nutrient.match(/당류\s{0,}[0-9.]*/)[0].replace('당류', '')) : 0;
+          calcium = nutrient.match(/칼슘\s{0,}[0-9.]*/) ? Number(nutrient.match(/칼슘\s{0,}[0-9.]*/)[0].replace('칼슘', '')) : 0;
+          iron = nutrient.match(/철\s{0,}[0-9.]*/) ? Number(nutrient.match(/철\s{0,}[0-9.]*/)[0].replace('철', '')) : 0;
         }
         // create chart
         const ctx = document.getElementById(chartId);
         new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: ['열량', '탄수화물', '단백질', '지방', '트랜스지방', '포화지방', '콜레스테롤', '나트륨', '당류', '칼슘', '철분'],            
+            labels: ['탄수화물', '단백질', '지방', '트랜스지방', '포화지방', '콜레스테롤', '당류', '칼슘', '철분'],            
             datasets: [
               {                
                 data: [
-                  kcal,
                   carbohydrate,
                   protein,
                   fat,
                   transFat,
                   saturatedFat,
                   cholesterol,
-                  natrium,
                   sugars,
                   calcium,
                   iron,
                 ],
                 backgroundColor: [
+                  'rgba(89, 199, 235, 0.5)',
+                  'rgba(224, 96, 126, 0.5)',
+                  'rgba(11, 144, 134, 0.5)',
+                  'rgba(254, 160, 144, 0.5)',
+                  'rgba(62, 84, 150, 0.5)',
+                  'rgba(239, 220, 96, 0.5)',
+                  'rgba(142, 32, 67, 0.5)',
+                  'rgba(154, 160, 167, 0.5)',
+                  'rgba(7, 113, 135, 0.5)',
+                ],
+                borderColor: [
+                  'rgb(89, 199, 235)',
+                  'rgb(224, 96, 126)',
+                  'rgb(11, 144, 134)',
+                  'rgb(254, 160, 144)',
+                  'rgb(62, 84, 150)',
+                  'rgb(239, 220, 96)',
+                  'rgb(142, 32, 67)',
+                  'rgb(154, 160, 167)',
+                  'rgb(7, 113, 135)',
                 ]
               },
             ],
           },
           options: {
-            responsive: true,
             scales: {
+              x: {
+                grid: {
+                  display: false,
+                }
+              },
               y: {
-                beginAtZero: true,
+                grid: {
+                  display: false
+                }
+              },
+            },
+            plugins: {
+              legend: {
+                display: false
               }
             }
-          },
+          }
         });
       },
     },
@@ -369,7 +394,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: lightpink;
+        // background: lightpink;
         canvas {
           width: 100% !important;
         }

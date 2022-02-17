@@ -70,7 +70,7 @@
 <style lang="scss">
   .signIn {
     width: 100vw;
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
