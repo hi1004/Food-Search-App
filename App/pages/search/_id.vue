@@ -88,7 +88,7 @@
           <canvas id="nutrient-chart">
           </canvas>
           <h1 class="unknownInfoMsg">
-            영양정보가 없다요 :(
+            영양 정보가 없다요 :(
           </h1>
         </div>
       </div>      
@@ -120,20 +120,21 @@
         </div>
       </div>      
     </div>
-    <div
-      id="to-search"
-      @click="toSearch">
-      click
-    </div>
+    <Totop />
   </div>
 </template>
 
 <script>
   import { mapState } from 'vuex';
+
   import Loader from '~/components/Loader';
-  import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
+  import Totop from '~/components/Totop';
+
   import Chart from 'chart.js/auto';
+
+  import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';  
   import 'swiper/css/swiper.css';
+
   import { library } from '@fortawesome/fontawesome-svg-core';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
   import { faCircleCheck, faTriangleExclamation, faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
@@ -146,6 +147,7 @@
       Swiper,
       SwiperSlide,
       FontAwesomeIcon,
+      Totop,
     },
     directives: {
       swiper: directive,
@@ -439,12 +441,18 @@
     .product-visual-section {
       display: flex;
       flex-direction: row;
+      padding: 5rem 0;
+      border-top: 1px solid lightgray;
+      border-bottom: 1px solid lightgray;
+      @include media-breakpoint-down(sm) {
+        padding: 2rem 0;
+      }
       .product-img {
         flex: 1;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: lightyellow;
+        margin-right: 3rem;
         .swiper {
           width: 20rem;
           height: 30rem;
@@ -459,7 +467,6 @@
             .image {
               width: 100%;
               height: 100%;
-              // margin-right: 70px;
               border-radius: 10px;
               background-color: $gray-200;
               background-size: cover;
@@ -470,6 +477,8 @@
           @include media-breakpoint-down(sm) {
             width: 15rem;
             height: 22.5rem;
+            margin: 0;
+            margin-bottom: 2rem;
           }
         }
       }      
@@ -482,7 +491,7 @@
         .unknownInfoMsg {
           display: none;
           font-family: 'Do Hyeon', sans-serif;
-          font-size: 4rem;
+          font-size: 3rem;
           position: absolute;
           left: 50%;
           top: 50%;
@@ -493,7 +502,13 @@
         }
         &.unknown {
           .unknownInfoMsg{
-            display: block;
+            display: block;            
+            @include media-breakpoint-down(xl) {
+              font-size: 2rem;
+            }
+            @include media-breakpoint-down(sm) {
+              font-size: 1.2rem;
+            }
           }
           #nutrient-chart {
             filter: blur(0.3rem);
@@ -505,8 +520,11 @@
         flex-direction: column;
       }
     }    
-    .product-spec-section {     
-      background: lightcyan; 
+    .product-spec-section {  
+      padding: 5rem 0;
+      @include media-breakpoint-down(sm) {
+        padding: 2rem 0;
+      }   
       .nutrient {
         margin-top: 20px;
       }
