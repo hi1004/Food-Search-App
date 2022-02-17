@@ -54,10 +54,12 @@
     font-family: 'Oswald', sans-serif;
     background: $primary;
     height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     .container {
       display: flex;
       flex-direction: column;
-      height: 120px;
       justify-content:space-between;
       .logo {
         display: inline-block;

@@ -160,11 +160,12 @@
 <style lang="scss">
   .signUp {
     width: 100vw;
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: "Jua", sans-serif;
+    padding: 15vh 0;
     .user-title {
       text-align: center;
       font-size: 2.8rem
@@ -172,7 +173,7 @@
     .user-form {
       width: 100%;
       max-width: 540px;
-      height: 40rem;
+      height: 70vh;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
@@ -186,7 +187,7 @@
             width: 100%;
             border: none;
             border-bottom: solid 1px gray;
-            height: 3rem;
+            height: 2.5rem;
             position: relative;
             &:focus {
               outline: none;              
@@ -221,8 +222,9 @@
           }
         }     
         .msgbox {
-          height: 1.5rem;
+          height: 1rem;
           margin-bottom: 1rem;
+          font-size: 0.8rem;
           color: red;
         } 
       }  

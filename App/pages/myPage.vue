@@ -249,9 +249,9 @@
 <style lang="scss">
   .myPage {
     width: 100vw;
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
-    margin-top: 10rem;
+    padding: 15vh;
     font-family: "Jua", sans-serif;
     .user-form {
       width: 100%;
