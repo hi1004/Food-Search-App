@@ -37,7 +37,7 @@
               class="product-allergy-msg"><span class="unknown"><FontAwesomeIcon icon="fa-circle-question" /></span> 알러지 정보가 없다요 :(</span>
             <span
               v-if="isDanger"
-              class="product-allergy-msg"><span class="danger"><FontAwesomeIcon icon="fa-triangle-exclamation" /></span> 위험! <span class="warning">{{ this.allergyArr }}</span> 포함!</span>
+              class="product-allergy-msg"><span class="danger"><FontAwesomeIcon icon="fa-triangle-exclamation" /></span> <span class="warning">{{ this.allergyArr }}</span> 포함!</span>
           </div>
           <div
             v-else
@@ -244,24 +244,34 @@
         // parsing nutrient data if nutrient data is not unknown
         const nutrient = this.theFood.nutrient;
         if (nutrient != '알수없음' && nutrient != '알 수 없음' && nutrient) {        
-          carbohydrate = nutrient.match(/탄수화물\s{0,}[0-9.]*/) ? Number(nutrient.match(/탄수화물\s{0,}[0-9.]*/)[0].replace('탄수화물', '')) : 0;
-          protein = nutrient.match(/단백질\s{0,}[0-9.]*/) ? Number(nutrient.match(/단백질\s{0,}[0-9.]*/)[0].replace('단백질', '')) : 0;
-          fat = nutrient.match(/지방\s{0,}[0-9.]*/) ? Number(nutrient.match(/지방\s{0,}[0-9.]*/)[0].replace('지방', '')) : 0;
-          transFat = nutrient.match(/트랜스지방\s{0,}[0-9.]*/) ? Number(nutrient.match(/트랜스지방\s{0,}[0-9.]*/)[0].replace('트랜스지방', '')) : 0;
-          saturatedFat = nutrient.match(/포화지방\s{0,}[0-9.]*/) ? Number(nutrient.match(/포화지방\s{0,}[0-9.]*/)[0].replace('포화지방', '')) : 0;
-          cholesterol = nutrient.match(/콜레스테롤\s{0,}[0-9.]*/) ? Number(nutrient.match(/콜레스테롤\s{0,}[0-9.]*/)[0].replace('콜레스테롤', '')) : 0;
-          sugars = nutrient.match(/당류\s{0,}[0-9.]*/) ? Number(nutrient.match(/당류\s{0,}[0-9.]*/)[0].replace('당류', '')) : 0;
-          calcium = nutrient.match(/칼슘\s{0,}[0-9.]*/) ? Number(nutrient.match(/칼슘\s{0,}[0-9.]*/)[0].replace('칼슘', '')) : 0;
-          iron = nutrient.match(/철\s{0,}[0-9.]*/) ? Number(nutrient.match(/철\s{0,}[0-9.]*/)[0].replace('철', '')) : 0;
+          carbohydrate = nutrient.match(/탄수화물[^0-9.]*[0-9.]*/) ? Number(nutrient.match(/탄수화물[^0-9.]*[0-9.]*/)[0].replace('탄수화물', '')) : 0;
+          protein = nutrient.match(/단백질[^0-9.]*[0-9.]*/) ? Number(nutrient.match(/단백질[^0-9.]*[0-9.]*/)[0].replace('단백질', '')) : 0;
+          fat = nutrient.match(/지방[^0-9.]*[0-9.]*/) ? Number(nutrient.match(/지방[^0-9.]*[0-9.]*/)[0].replace('지방', '')) : 0;
+          transFat = nutrient.match(/트랜스지방[^0-9.]*[0-9.]*/) ? Number(nutrient.match(/트랜스지방[^0-9.]*[0-9.]*/)[0].replace('트랜스지방', '')) : 0;
+          saturatedFat = nutrient.match(/포화지방[^0-9.]*[0-9.]*/) ? Number(nutrient.match(/포화지방[^0-9.]*[0-9.]*/)[0].replace('포화지방', '')) : 0;
+          cholesterol = nutrient.match(/콜레스테롤[^0-9.]*[0-9.]*/) ? Number(nutrient.match(/콜레스테롤[^0-9.]*[0-9.]*/)[0].replace('콜레스테롤', '')) : 0;
+          sugars = nutrient.match(/당류[^0-9.]*[0-9.]*/) ? Number(nutrient.match(/당류[^0-9.]*[0-9.]*/)[0].replace('당류', '')) : 0;
+          calcium = nutrient.match(/칼슘[^0-9.]*[0-9.]*/) ? Number(nutrient.match(/칼슘[^0-9.]*[0-9.]*/)[0].replace('칼슘', '')) : 0;
+          iron = nutrient.match(/철[^0-9.]*[0-9.]*/) ? Number(nutrient.match(/철[^0-9.]*[0-9.]*/)[0].replace('철', '')) : 0;
         } else {
           document.querySelector('.product-chart').classList.add('unknown');
         }
         // create chart
         const ctx = document.getElementById(chartId);
-        new Chart(ctx, {
+        const nutrientChart = new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: ['탄수화물', '단백질', '지방', '트랜스지방', '포화지방', '콜레스테롤', '당류', '칼슘', '철분'],            
+            labels: [
+              ['탄수화물', 'g'],
+              ['단백질', 'g'],
+              ['지방', 'g'],
+              ['트랜스지방', 'g'],
+              ['포화지방', 'g'],
+              ['콜레스테롤', 'mg'],
+              ['당류', 'g'],
+              ['칼슘', 'mg'],
+              ['철분', 'mg']
+            ],            
             datasets: [
               {                
                 data: [
@@ -316,10 +326,20 @@
             plugins: {
               legend: {
                 display: false
-              }
+              },
             }
           }
         });
+        reponsiveChartFonts()
+        window.addEventListener('resize', reponsiveChartFonts)
+        function reponsiveChartFonts() {
+          if(window.innerWidth > 540) {
+            Chart.defaults.font.size = 12; 
+          } else {
+            Chart.defaults.font.size = 10;
+          }
+          nutrientChart.update();
+        }
       },
     },
     mounted() {
@@ -414,22 +434,26 @@
   .product-container {
     display: flex;
     flex-direction: column;
-    padding: 100px 0 40px;
+    padding: 70px 0;
     .product-title-section {
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
-      padding: 3rem 0 2rem;
       font-family: 'Do Hyeon', sans-serif;
-      line-height: 1;
+      margin: 1rem 0;
       .product-name {
         color: $black;        
         font-size: 4rem;
+        @include media-breakpoint-down(sm) {
+          font-size: 3rem;
+        }
       }
       .product-allergy {
-        font-size: 1.1rem;
-        margin-top: 20px;
+        font-size: 1.5rem;
+        @include media-breakpoint-down(sm) {
+          font-size: 1.2rem;
+        }
         .login-info {
           color: red;
         }
@@ -440,7 +464,7 @@
           color: green;
         }
         .unknown {
-          color: #b8b810;
+          color: #ffc000;
         }
         .danger {
           color: red;
@@ -484,11 +508,19 @@
               position: relative;
             }
           }
+          .swiper-button {
+            @include media-breakpoint-down(sm) {
+              width: 2rem;
+              height: 2rem; 
+            }
+          }
+          @include media-breakpoint-down(lg) {
+            margin: 0;
+            margin-bottom: 2rem;
+          }
           @include media-breakpoint-down(sm) {
             width: 15rem;
             height: 22.5rem;
-            margin: 0;
-            margin-bottom: 2rem;
           }
         }
       }      
@@ -497,7 +529,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        position: relative;
+        position: relative;        
         .unknownInfoMsg {
           display: none;
           font-family: 'Do Hyeon', sans-serif;
@@ -511,20 +543,20 @@
           width: 100% !important;           
         }
         &.unknown {
+          pointer-events: none;
           .unknownInfoMsg{
             display: block;            
             @include media-breakpoint-down(xl) {
               font-size: 2rem;
             }
             @include media-breakpoint-down(sm) {
-              font-size: 1.2rem;
+              font-size: 1.5rem;
             }
           }
           #nutrient-chart {
             filter: blur(0.3rem);
           }
-        }
-        
+        }        
       }
       @include media-breakpoint-down(xl) {
         flex-direction: column;
@@ -549,14 +581,7 @@
         font-family: 'Do Hyeon', sans-serif;
         font-size: 20px;
       }
-    }    
-
-    @include media-breakpoint-down(xl) {
-      
-    }
-    @include media-breakpoint-down(lg) {
-      
-    }
+    }      
   }
  
   #to-search {
@@ -570,7 +595,7 @@
 </style>
 
 <style lang="scss">
-   .swiper-button {
+  .swiper-button {
     width: 50px;
     height: 50px;
     background: $primary;
@@ -581,11 +606,11 @@
       font-weight: bolder;
       color: #fff;
     }
-     @include media-breakpoint-down(sm) {
-       display: flex;
-       justify-content: center;
-       align-items: center;
-     }
+    @include media-breakpoint-down(sm) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   .swiper-pagination-bullet {
     background: $primary;

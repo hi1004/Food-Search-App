@@ -188,10 +188,6 @@
         text-overflow: ellipsis;
         font-size: 15px;
       }
-    }
-   
+    }   
   }
-</style>
-<style lang="scss">
- 
 </style>

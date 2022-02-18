@@ -248,7 +248,7 @@
     width: 100vw;
     min-height: 80vh;
     display: flex;
-    padding: 15vh;
+    padding: 15vh 0;
     font-family: "Jua", sans-serif;
     .user-form {
       width: 100%;
