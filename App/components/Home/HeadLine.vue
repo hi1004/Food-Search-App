@@ -60,14 +60,18 @@
         line-height: 73px;
         font-size: 20px;
         text-align: center;
+        margin: 0;
         border: none;
         font-weight: 400;
         background-color: #fff;
         border-radius: 36px;
         box-shadow: 0 13px 17px 0 rgb(0 0 0 / 50%);
         padding: 0;
-        text-align: center;
         font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+        @include media-breakpoint-down(sm) {
+          text-align: left;
+          padding-left: 40px;
+        }
       }
       .search-btn {
         display: none;
@@ -75,6 +79,7 @@
       .home-search-btn {
         display: inline-block;
         position: absolute;
+        margin: 0;
         right: 30px;
         top: 50%;
         transform: translateY(-50%);

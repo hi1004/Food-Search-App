@@ -418,6 +418,7 @@
       align-items: center;
       padding: 3rem 0;
       font-family: 'Do Hyeon', sans-serif;
+      line-height: 1;
       .product-name {
         color: $black;        
         font-size: 4rem;
@@ -453,6 +454,7 @@
         justify-content: center;
         align-items: center;
         margin-right: 3rem;
+        margin: 0 !important;
         .swiper {
           width: 20rem;
           height: 30rem;
