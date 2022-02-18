@@ -42,7 +42,7 @@
           <div
             v-else
             class="product-allergy">
-            <span class="product-allergy-msg">알러지 체크를 원하시면 로그인해주세요!</span>
+            <span class="product-allergy-msg">알러지 체크를 원하시면 <span class="login-info">로그인</span>해주세요!</span>
           </div>
         </client-only>
       </div>
@@ -76,10 +76,10 @@
               class="swiper-pagination"
               slot="pagination"></div>
             <div
-              class="swiper-button-prev"
+              class="swiper-button-prev swiper-button"
               slot="button-prev"></div>
             <div
-              class="swiper-button-next"
+              class="swiper-button-next swiper-button"
               slot="button-next"></div>
           </Swiper>
         </div>
@@ -97,6 +97,10 @@
         <div class="nutrient">
           <h3>영양성분</h3>
           {{ theFood.nutrient }}
+        </div>
+        <div>
+          <h3>식품분류</h3>
+          {{ theFood.prdkind }}
         </div>
         <div>
           <h3>제조</h3>
@@ -416,7 +420,7 @@
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
-      padding: 3rem 0;
+      padding: 3rem 0 2rem;
       font-family: 'Do Hyeon', sans-serif;
       line-height: 1;
       .product-name {
@@ -424,7 +428,11 @@
         font-size: 4rem;
       }
       .product-allergy {
-        font-size: 2rem;
+        font-size: 1.1rem;
+        margin-top: 20px;
+        .login-info {
+          color: red;
+        }
         .warning {
           color: red;
         }
@@ -432,7 +440,7 @@
           color: green;
         }
         .unknown {
-          color: yellow;
+          color: #b8b810;
         }
         .danger {
           color: red;
@@ -550,6 +558,7 @@
       
     }
   }
+ 
   #to-search {
     position: fixed;
     width: 100px;
@@ -557,5 +566,28 @@
     background-color: red;
     bottom: 0;
     left: 0;
+  }
+</style>
+
+<style lang="scss">
+   .swiper-button {
+    width: 50px;
+    height: 50px;
+    background: $primary;
+    border-radius: 50%;
+    opacity: 0.8;
+    &::after {
+      font-size: 30px;
+      font-weight: bolder;
+      color: #fff;
+    }
+     @include media-breakpoint-down(sm) {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+     }
+  }
+  .swiper-pagination-bullet {
+    background: $primary;
   }
 </style>
