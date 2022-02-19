@@ -60,7 +60,7 @@
           </p>
         </div>
       </div>
-    </div>
+    </div>    
   </section>
 </template>
 
@@ -72,7 +72,7 @@
 
 <style lang="scss" scoped>
   .guide-section {
-    padding: 5rem 0;
+    padding: 5rem 0;    
     .guide-step {
       border: 1px solid lightgray;
       background: lightpink;
