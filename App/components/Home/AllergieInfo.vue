@@ -129,7 +129,7 @@
         return this.$refs.mySwiper.$swiper;
       },
       subSwiper() {
-        return this.$refs.mySwiper.$swiper;
+        return this.$refs.subSwiper.$swiper;
       }
     },
     mounted() {
