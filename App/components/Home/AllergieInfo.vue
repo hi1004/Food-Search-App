@@ -65,14 +65,13 @@
         <div
           class="swiper-button-next swiper-btn"
           slot="button-next"></div>
-        <div
+        <!-- <div
           class="swiper-pagination swiper-pagination-fraction"
-          slot="pagination"></div>
+          slot="pagination"></div> -->
         <div
           class="swiper-pagination swiper-pagination-progress"
           slot="pagination"
-          ref="subSwiper">
-        </div>
+          ref="subSwiper"></div>
       </Swiper>
     </div>
   </section>
@@ -128,15 +127,7 @@
       mainSwiper() {
         return this.$refs.mySwiper.$swiper;
       },
-      subSwiper() {
-        return this.$refs.subSwiper.$swiper;
-      }
     },
-    mounted() {
-      console.log(this.mainSwiper.controller)
-      console.log(this.subSwiper)
-      this.mainSwiper.controller.control = this.subSwiper;
-    }
   };
 </script>
 
@@ -209,7 +200,7 @@
               color: $white;
               z-index: 1;
               line-height: 1.4;
-                  padding: 0 6rem 5.5rem;
+              padding: 0 6rem 5.5rem;
               .allergie-name {
                 font-size: 3.6rem;
                 margin-bottom: 2rem;
