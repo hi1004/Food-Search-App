@@ -19,6 +19,10 @@
       FoodList,
       Totop,
     },
+    mounted() {
+      const searchBar = document.querySelector('.home-search-input');
+      searchBar.focus();
+    }
   };
 </script>
 

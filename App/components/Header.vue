@@ -294,7 +294,12 @@
         this.showMobileMenu = false
         const urlEl = document.querySelector('.user');
         urlEl.classList.remove('login');
-        this.$router.push('/search');
+        if(this.$route.path === '/') {
+          const searchBar = document.querySelector('.home-search-input');
+          searchBar.focus();
+        } else {
+          this.$router.push('/search'); 
+        }            
       },
       toMyPage() {
         this.showMobileMenu = false
