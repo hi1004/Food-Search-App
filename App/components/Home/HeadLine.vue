@@ -36,13 +36,19 @@
         span {
           color: #1bff22;
         }
+        @include media-breakpoint-down(sm) {
+          font-size: 2rem;
+        }
       }
       p {
         margin: 30px 0;
         color: $white;
-         font-family: 'Noto Sans KR', 'Roboto', sans-serif;
-         text-align: center;
-         opacity: 0.9;
+        font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+        text-align: center;
+        opacity: 0.9;
+        @include media-breakpoint-down(sm) {
+          font-size: 0.8rem;
+        }
       }
 
       /* SEARCH */
