@@ -136,8 +136,9 @@
           slidesPerView: 1,
           spaceBetween: 0,
           loop: true,
+          loopedSlides: 2,
           effect: 'fade',
-          // autoplay: { delay: 5000, disableOnInteraction: false },
+          autoplay: { delay: 5000, disableOnInteraction: false },
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -331,7 +332,7 @@
       font-weight: bolder;
     }
     @include media-breakpoint-down(sm) {
-      display: none;
+      display: none !important;
     }
   }
   .swiper-button-prev {
