@@ -17,8 +17,17 @@
             Step 1
           </h1>
           <p class="step-instruction">
-            홈페이지 우측 상단에서 회원가입을 눌러<br />
-            회원가입을 하신 후 로그인 하세요. <br />
+            먼저 <nuxt-link
+              class="link"
+              to="/signUp">
+              <FontAwesomeIcon
+                icon="user-plus" /> 회원가입
+            </nuxt-link>을 하신 후 <nuxt-link
+              class="link"
+              to="/signUp">
+              <FontAwesomeIcon
+                icon="sign-in-alt" /> 로그인
+            </nuxt-link>하세요. <br />
             아이디는 이메일 형식으로 입력해주셔야 합니다.
           </p>
         </div>
@@ -36,7 +45,12 @@
             Step 2
           </h1>
           <p class="step-instruction">
-            로그인 후 우측 상단의 내 정보로 들어가세요. <br />
+            로그인 후 <nuxt-link
+              class="link"
+              to="/myPage">
+              <FontAwesomeIcon
+                icon="fa-user" /> 내 정보
+            </nuxt-link>로 들어가세요. <br />
             알러지 정보 변경 탭에서 알러지 정보를 등록하세요.
           </p>
         </div>
@@ -54,7 +68,14 @@
             Step 3
           </h1>
           <p class="step-instruction">
-            돋보기 아이콘을 눌러 검색 섹션으로 이동한 후 <br />
+            <nuxt-link
+              to="/"
+              event=""
+              @click.native="toSearchSection"
+              class="link">
+              <FontAwesomeIcon
+                icon="fa-search" /> 검색 섹션
+            </nuxt-link>으로 이동한 후 <br />
             알러지 체크를 원하는 상품의 이름을 검색해주세요.
           </p>
         </div>
@@ -83,8 +104,27 @@
 </template>
 
 <script>
-  export default {
+  import { library } from '@fortawesome/fontawesome-svg-core';
+  import {
+    faSignInAlt,
+    faCircleInfo,
+    faUserPlus,
+    faSearch,
+  } from '@fortawesome/free-solid-svg-icons';
+  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+  library.add(faSignInAlt, faCircleInfo, faUserPlus, faSearch);
+
+  export default {
+    components: {
+      FontAwesomeIcon,
+    },
+    methods: {
+      toSearchSection() {
+        const searchBar = document.querySelector('.home-search-input');
+        searchBar.focus();
+      }
+    }
   }
 </script>
 
@@ -154,6 +194,12 @@
         }
         .step-instruction {
           font-size: 1.2rem;
+          .link {
+            text-decoration: none;
+            svg {
+              transform: translateY(-0.2rem);
+            }
+          }
           @include media-breakpoint-down(sm) {
             font-size: 1rem;
           }
