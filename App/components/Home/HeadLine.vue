@@ -19,9 +19,14 @@
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
+    background-repeat: no-repeat;
+    @include media-breakpoint-down(sm) {
+      background-attachment: scroll;
+      height: 50vh;
+    }
     .container.headLine-section {
       padding: 40px;
-      height: 100vh;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -48,6 +53,7 @@
         opacity: 0.9;
         @include media-breakpoint-down(sm) {
           font-size: 0.8rem;
+          text-align: left;
         }
       }
 
@@ -75,8 +81,9 @@
         padding: 0;
         font-family: 'Noto Sans KR', 'Roboto', sans-serif;
         @include media-breakpoint-down(sm) {
+          height: 46px;
           text-align: left;
-          padding-left: 40px;
+          padding-left: 20px;
         }
       }
       .search-btn {
@@ -90,6 +97,11 @@
         top: 50%;
         transform: translateY(-50%);
         cursor: pointer;
+        img {
+           @include media-breakpoint-down(sm) {
+          width: 20px;
+        }
+        }
       }
     }
   }

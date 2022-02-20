@@ -178,7 +178,7 @@
             </picture>
             <div class="allergie-contents">
               <h3 class="allergie-name">
-                돼지고기, 소고 기, 닭고기
+                돼지고기, 소고기, 닭고기
               </h3>
               <p class="allergie-description">
                 돼지고기, 쇠고기, 닭고기 알레르기는 흔히 나타나지는 않습니다. 그러나 돼지고기, 쇠고기, 닭고기를 전부
@@ -207,6 +207,8 @@
 
 <script>
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
+  
+  import gsap from 'gsap';
   import 'swiper/css/swiper.css';
   export default {
     components: {
@@ -270,7 +272,24 @@
         return this.$refs.mySwiper.$swiper;
       },
     },
-    mounted() {},
+    // mounted() {
+    //   // const controller = this.$ScrollMagic.Controller()
+    //   const wrapScene = this.$scrollmagic.scene({
+    //     triggerElement: '.AllergieInfo-section',
+    //     triggerHook: 0,
+    //     duration: '100%'
+    //   })
+    //     .setTween(
+    //       gsap.fromTo('.title', 1, {
+    //         backgroundColor: "#333333",
+    //         rotation: 360,
+    //         x: 130
+    //       })
+    //     )
+    //     // .addTo(controller)
+    //     .addIndicators()
+    //   console.log(wrapScene);
+    // },
   };
 </script>
 
@@ -295,9 +314,11 @@
         margin-bottom: 3rem;
         @include media-breakpoint-down(xl) {
           padding: 0 1rem;
+          font-size: 4.8rem;
         }
-        @include media-breakpoint-down(xl) {
+        @include media-breakpoint-down(sm) {
           padding: 0 2rem;
+          font-size: 3.8rem;
         }
       }
       .allergie-info-swiper {

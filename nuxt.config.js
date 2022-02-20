@@ -57,6 +57,10 @@ export default {
     '~/plugins',
     { src: '~/plugins/infinite-loading', ssr: false },
     { src: '~/plugins/persistedState.client.js' },
+    {
+      src: '~plugins/vue-scrollmagic.js',
+      ssr: false,
+    },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
