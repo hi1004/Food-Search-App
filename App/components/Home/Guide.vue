@@ -5,7 +5,12 @@
         <h1>서비스 이용 방법</h1>
       </div>
       <div class="guide-step">
-        <div class="guide-img-section">       
+        <div class="guide-img-section">
+          <div class="guide-img-box">
+            <img
+              src="~assets/images/guide/1.PNG"
+              alt="step1" />
+          </div>    
         </div>
         <div class="guide-text-section">
           <h1 class="step-title">
@@ -19,7 +24,12 @@
         </div>
       </div>
       <div class="guide-step">
-        <div class="guide-img-section">       
+        <div class="guide-img-section">
+          <div class="guide-img-box">
+            <img
+              src="~assets/images/guide/2.PNG"
+              alt="step2" />
+          </div>        
         </div>
         <div class="guide-text-section">
           <h1 class="step-title">
@@ -32,7 +42,12 @@
         </div>
       </div>
       <div class="guide-step">
-        <div class="guide-img-section">       
+        <div class="guide-img-section">
+          <div class="guide-img-box">
+            <img
+              src="~assets/images/guide/3.PNG"
+              alt="step3" />
+          </div>        
         </div>
         <div class="guide-text-section">
           <h1 class="step-title">
@@ -45,7 +60,12 @@
         </div>
       </div>
       <div class="guide-step">
-        <div class="guide-img-section">       
+        <div class="guide-img-section">
+          <div class="guide-img-box">
+            <img
+              src="~assets/images/guide/4.PNG"
+              alt="step4" />
+          </div>      
         </div>
         <div class="guide-text-section">
           <h1 class="step-title">
@@ -76,8 +96,7 @@
       text-align: center;
     } 
     .guide-step {
-      border: 1px solid lightgray;
-      background: lightpink;
+      border-top: 1px solid lightgray;
       height: 30rem;
       display: flex;
       flex-direction: row;
@@ -95,26 +114,37 @@
       @include media-breakpoint-down(xl) {
         height: 50rem;
         flex-direction: column;
+        margin: 2rem 0;
       }
       @include media-breakpoint-down(sm) {
         height: 35rem;
+        margin: 1.2rem 0;
       }
       .guide-img-section {
         height: 100%;
-        background: lightcyan;
         position: relative;
         flex: 1;
+        .guide-img-box {
+          height: 80%;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          box-shadow: 0.5rem 0.5rem 0.5rem black;
+          img {
+            height: 100%;
+          }
+        }
       }
       .guide-text-section {
         height: 100%;
-        background: lightyellow;
-        flex: 1.5;
+        flex: 1.2;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
         @include media-breakpoint-down(xl) {
-          flex: 1;
+          flex: 0.6;
         }
         .step-title {
           font-size: 3rem;
