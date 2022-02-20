@@ -23,7 +23,7 @@
             @click="clickTab($event)">
             비밀번호 변경
           </button>
-        </div>       
+        </div>
         <!-- allergy info tab -->
         <div
           v-if="this.tab === 0"
@@ -33,7 +33,7 @@
               v-for="(allergy, i) in allergies"
               :key="i"
               class="user-allergy-select form-check-inline">
-              <input           
+              <input
                 type="checkbox"
                 class="user-allergy-check btn-check"
                 :id="allergy"
@@ -45,7 +45,7 @@
                 {{ allergy[0] }}
               </label>
             </div>
-            <br />        
+            <br />
           </div>
           <button
             type="button"
@@ -65,7 +65,7 @@
                 v-model.trim="oPassword"
                 required />
               <span class="label">현재 비밀번호</span>
-              <div class="underline"></div>        
+              <div class="underline"></div>
             </label>
             <div class="msgbox">
               <small v-if="this.isBlankOPassword">필수 입력값입니다.</small>
@@ -78,25 +78,25 @@
                 v-model.trim="password"
                 required />
               <span class="label">새 비밀번호</span>
-              <div class="underline"></div>        
+              <div class="underline"></div>
             </label>
             <div class="msgbox">
               <small v-if="this.isBlankPassword">필수 입력값입니다.</small>
             </div>
-          </div>       
+          </div>
           <div class="user-inputbox">
-            <label class="user-input">        
+            <label class="user-input">
               <input
                 type="password"
                 v-model.trim="cPassword"
                 required />
               <span class="label">새 비밀번호 확인</span>
-              <div class="underline"></div>              
-            </label> 
+              <div class="underline"></div>
+            </label>
             <div class="msgbox">
               <small v-if="this.isBlankCPassword">필수 입력값입니다.</small>
-              <small v-if="!(this.isMatchPassword)">비밀번호란과 입력된 값이 다릅니다.</small>
-            </div>            
+              <small v-if="!this.isMatchPassword">비밀번호란과 입력된 값이 다릅니다.</small>
+            </div>
           </div>
           <button
             type="button"
@@ -111,16 +111,16 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import axios from 'axios';
   import { mapState } from 'vuex';
 
   export default {
     middleware({ store, redirect }) {
       if (!store.state.signIn.isAuthorized) {
         if (typeof window !== 'undefined') {
-          alert("로그인부터 하세요 도라에몽아");
-        }        
-        return redirect("/signIn");
+          alert('로그인부터 하세요 도라에몽아');
+        }
+        return redirect('/signIn');
       }
     },
     data() {
@@ -144,25 +144,25 @@
           ['쇠고기', 'beef'],
           ['오징어', 'squid'],
           ['조개류', 'shellfish'],
-          ['잣', 'pineNut']
-        ],        
-        checkedAllergies: [],         
-        tab: 0,      
-        oPassword: '', 
+          ['잣', 'pineNut'],
+        ],
+        checkedAllergies: [],
+        tab: 0,
+        oPassword: '',
         password: '',
-        cPassword: '', 
+        cPassword: '',
         isBlankOPassword: true,
         isBlankPassword: true,
-        isBlankCPassword: true, 
-        isMatchPassword: true, 
-      }
+        isBlankCPassword: true,
+        isMatchPassword: true,
+      };
     },
-    beforeMount() {    
+    beforeMount() {
       Object.entries(this.allergiesInfo).forEach(([key, value]) => {
         if (value === true) {
-          this.checkedAllergies.push(key)
+          this.checkedAllergies.push(key);
         }
-      })
+      });
     },
     computed: {
       ...mapState('signIn', ['isAuthorized', 'username', 'email', 'allergiesInfo']),
@@ -179,8 +179,8 @@
       },
       cPassword(newData) {
         this.isBlankCPassword = newData === '';
-        this.isMatchPassword = newData === '' || this.password === newData
-      }
+        this.isMatchPassword = newData === '' || this.password === newData;
+      },
     },
     methods: {
       async updateAllergyInfo() {
@@ -204,15 +204,15 @@
           squid: false,
           shellfish: false,
           pineNut: false,
-        }     
+        };
         this.checkedAllergies.forEach(allergy => {
           allergiesInfo[allergy] = true;
-        })
+        });
         try {
           await axios.put('/api/allergy/manage', allergiesInfo);
-          alert('변경 성공!')          
+          alert('변경 성공!');
         } catch (error) {
-          console.log(error)
+          console.log(error);
         }
       },
       async updatePassword() {
@@ -221,9 +221,9 @@
             oldpassword: this.oPassword,
             newpassword: this.password,
           });
-          alert('변경 성공!')          
+          alert('변경 성공!');
         } catch (error) {
-          console.log(error)
+          console.log(error);
         }
       },
       clickTab(event) {
@@ -231,9 +231,9 @@
         const clickedTab = document.querySelector(`#${targetId}`);
         const allTabs = document.querySelectorAll('.user-tab-item');
         allTabs.forEach(tab => {
-          tab.classList.remove("active");
-        })
-        clickedTab.classList.add("active");
+          tab.classList.remove('active');
+        });
+        clickedTab.classList.add('active');
         if (targetId === 'allergy-tab') {
           this.tab = 0;
         } else if (targetId === 'password-tab') {
@@ -241,7 +241,7 @@
         }
       },
     },
-  }
+  };
 </script>
 <style lang="scss">
   .myPage {
@@ -249,14 +249,14 @@
     min-height: 80vh;
     display: flex;
     padding: 15vh 0;
-    font-family: "Jua", sans-serif;
+    font-family: 'Jua', sans-serif;
     .user-form {
       width: 100%;
       max-width: 540px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      padding: 0 2rem; 
+      padding: 0 2rem;
       .user-info-section {
         height: 8rem;
         display: flex;
@@ -285,18 +285,18 @@
           border: none;
           transition: 0.2s;
           &:hover {
-            background: #DDDDDD;
+            background: #dddddd;
           }
-          &.active {            
+          &.active {
             color: white;
             background: #333333;
           }
         }
-      } 
+      }
       .user-allergy-tab {
         display: flex;
         flex-direction: column;
-        align-items: center;        
+        align-items: center;
         .user-allergy-section {
           display: flex;
           flex-direction: row;
@@ -304,15 +304,17 @@
           flex-wrap: wrap;
           margin: 2rem 0;
           .user-allergy-select {
-            margin: 0; 
+            margin: 0;
             .user-allergy-option {
               width: 5rem;
               height: 2.5rem;
               text-align: center;
               margin: 0.7rem;
+              outline: none;
+              -webkit-tap-highlight-color: transparent;
             }
-          }          
-        }        
+          }
+        }
       }
       .user-password-tab {
         display: flex;
@@ -323,8 +325,8 @@
         .user-inputbox {
           width: 100%;
           .user-input {
-            width: 100%;  
-            position: relative;          
+            width: 100%;
+            position: relative;
             input {
               width: 100%;
               border: none;
@@ -332,45 +334,45 @@
               height: 3rem;
               position: relative;
               &:focus {
-                outline: none;              
+                outline: none;
               }
               & ~ .label {
-                position: absolute; 
-                font-size: 1.2rem;  
+                position: absolute;
+                font-size: 1.2rem;
                 left: 0.1rem;
-                top: -0.7rem;    
+                top: -0.7rem;
                 pointer-events: none;
-                transition: 0.2s;       
-              }              
+                transition: 0.2s;
+              }
               & ~ .underline {
                 background-color: gray;
                 width: 100%;
                 height: 0.05rem;
                 position: absolute;
                 bottom: 0;
-                left: 0; 
+                left: 0;
                 transition: 0.2s;
-                transform: scale(0);           
-              }              
+                transform: scale(0);
+              }
               &:focus {
                 & ~ .label {
-                  color: $primary;                             
+                  color: $primary;
                 }
-                & ~ .underline { 
+                & ~ .underline {
                   background-color: $primary;
-                  transform: scaleY(2);                                  
-                } 
-              }             
+                  transform: scaleY(2);
+                }
+              }
             }
-          }     
+          }
           .msgbox {
             height: 1.5rem;
             margin-bottom: 1rem;
             color: red;
-          } 
-        }  
+          }
+        }
       }
-      .user-tab {        
+      .user-tab {
         .user-btn {
           width: 100%;
           height: 3rem;
@@ -378,11 +380,23 @@
           background: #333333;
           border: none;
           transition: 0.2s;
-          &:hover {
-            background: #555555;
-          }
+          outline: none;
         }
       }
+    }
+  }
+</style>
+<style lang="scss">
+  .btn-check:focus + .btn-outline-secondary,
+  .btn-outline-secondary:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  @media (hover: hover) {
+    .btn-outline-secondary:hover {
+      color: #fff !important;
+      background-color: #6c757d !important;
+      border-color: #6c757d !important;
     }
   }
 </style>

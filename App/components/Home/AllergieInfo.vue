@@ -304,6 +304,7 @@
         height: 700px;
         overflow: visible;
         @include media-breakpoint-down(md) {
+          height: 350px;
           overflow: hidden;
         }
         .swiper-wrapper {
@@ -369,6 +370,12 @@
                 margin-bottom: 2rem;
                 display: inline-block;
                 position: relative;
+                 @include media-breakpoint-down(lg) {
+                  font-size: 2.6rem;
+                }
+                 @include media-breakpoint-down(sm) {
+                  font-size: 2.0rem;
+                }
                 &::after {
                   content: '';
                   position: absolute;

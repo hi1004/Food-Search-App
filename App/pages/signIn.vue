@@ -27,13 +27,13 @@
             <div class="underline"></div>
           </label>
         </div>
-        <button
-          @click="signIn"
-          type="button"
-          class="user-button">
-          로그인
-        </button>
       </div>
+      <button
+        @click="signIn"
+        type="button"
+        class="user-button">
+        로그인
+      </button>
       <button
         @click="toSignUp"
         type="button"
@@ -146,14 +146,16 @@
             }          
           }
         }
-        .user-button {
-          flex: 1;
-        }
+        
       }
-      .user-toSignUp {
+      .user-toSignUp, .user-button {
+       
         width: 100%;
         height: 4rem;
       }
+      .user-button {
+          background-color: $primary;
+        }
     }
     button {
       border: none;
