@@ -31,6 +31,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+       @include media-breakpoint-down(sm) {
+          margin-bottom: 30px;
+        }
       h1 {
         line-height: 1;
         font-family: 'Noto Sans KR', 'Roboto', sans-serif;
@@ -82,6 +85,7 @@
         font-family: 'Noto Sans KR', 'Roboto', sans-serif;
         @include media-breakpoint-down(sm) {
           height: 46px;
+          line-height: 46px;
           text-align: left;
           padding-left: 20px;
         }

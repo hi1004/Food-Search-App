@@ -130,7 +130,7 @@
 
 <style lang="scss" scoped>
   .guide-section {
-    padding: 5rem 0;
+    padding: 5rem 0 0;
     font-family: "Jua", sans-serif;   
     .guide-title-section {
       text-align: center;
