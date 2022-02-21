@@ -35,12 +35,12 @@
               class="user-allergy-select form-check-inline">
               <input
                 type="checkbox"
-                class="user-allergy-check btn-check"
+                class="user-allergy-check"
                 :id="allergy"
                 :value="allergy[1]"
                 v-model="checkedAllergies" />
               <label
-                class="user-allergy-option btn btn-outline-secondary"
+                class="user-allergy-option"
                 :for="allergy">
                 {{ allergy[0] }}
               </label>
@@ -305,12 +305,30 @@
           margin: 2rem 0;
           .user-allergy-select {
             margin: 0;
+            .user-allergy-check {
+              display: none;
+              &:checked + .user-allergy-option {
+                background: #666666;
+                color: white;
+              }
+            }
             .user-allergy-option {
+              border: #666666 1px solid;
+              border-radius: 0.3rem;
               width: 5rem;
               height: 2.5rem;
               text-align: center;
               margin: 0.7rem;
               outline: none;
+              transition: 0.2s;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              &:hover {
+                color: white;
+                border: #CCCCCC;
+                background: #CCCCCC;
+              }
               -webkit-tap-highlight-color: transparent;
             }
           }
@@ -383,20 +401,6 @@
           outline: none;
         }
       }
-    }
-  }
-</style>
-<style lang="scss">
-  .btn-check:focus + .btn-outline-secondary,
-  .btn-outline-secondary:focus {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-  @media (hover: hover) {
-    .btn-outline-secondary:hover {
-      color: #fff !important;
-      background-color: #6c757d !important;
-      border-color: #6c757d !important;
     }
   }
 </style>
