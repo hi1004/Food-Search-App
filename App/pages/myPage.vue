@@ -324,11 +324,13 @@
               display: flex;
               flex-direction: column;
               justify-content: center;
-              &:hover {
-                color: white;
-                border: #CCCCCC;
-                background: #CCCCCC;
-              }
+              @include media-breakpoint-up(sm) {
+                &:hover {
+                  color: white;
+                  border: #CCCCCC;
+                  background: #CCCCCC;                
+                }
+              }              
               -webkit-tap-highlight-color: transparent;
             }
           }
