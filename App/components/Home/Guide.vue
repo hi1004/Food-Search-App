@@ -142,7 +142,7 @@
           gsap.to(el, {
             scrollTrigger: {
               trigger: el,
-              start: "top center",
+              start: "top 80%",
             },
             opacity: 1,
             y: 0,
@@ -156,7 +156,7 @@
           gsap.to(el, {
             scrollTrigger: {
               trigger: el,
-              start: "top center",
+              start: "top 80%",
             },
             opacity: 1,
             y: 0,

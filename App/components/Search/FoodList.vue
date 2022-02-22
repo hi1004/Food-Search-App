@@ -18,6 +18,7 @@
         </h2>
         <FoodItem
           v-for="food in foods"
+          class="food"
           :key="food.prdlstReportNo"
           :food="food" />
         <InfiniteLoading
@@ -32,7 +33,8 @@
   import { mapState } from 'vuex';
   import Loader from '~/components/Loader';
   import FoodItem from '~/components/Search/FoodItem';
-  // import axios from 'axios';
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
   export default {
     name: 'InfiniteList',
@@ -49,6 +51,9 @@
     },
     computed: {
       ...mapState('search', ['foods', 'loading', 'message', 'foodName', 'total', 'pgNo']),
+    },  
+    mounted() {
+      this.setGsap()
     },
 
     methods: {
@@ -65,6 +70,23 @@
           }
         }, 1000);
       },
+      setGsap() {
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll('.foods').forEach(el => {
+          gsap.set(el, {
+            opacity: 0,
+            y: 30,          
+          })
+          gsap.to(el, {
+            scrollTrigger: {
+              trigger: el,
+              start: "top bottom",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1, })
+        })
+      }
     },
   };
 </script>
