@@ -203,12 +203,12 @@
                 </li>
               </ul>
             </ul>
+            <FontAwesomeIcon
+              class="iconBtn search-btn"
+              @click="toSearch"
+              loading="lazy"
+              icon="fa-search" />
           </client-only>
-          <FontAwesomeIcon
-            class="iconBtn search-btn"
-            @click="toSearch"
-          
-            icon="fa-search" />
         </div>
         <div class="header-mobile-btn">
           <FontAwesomeIcon

@@ -1,8 +1,10 @@
 <template>
   <div class="headLine-wrap">
     <div class="container headLine-section">
-      <h1>어떤<span>식품</span>을찾으세요?</h1>
-      <p>
+      <h1 class="headLine-title">
+        어떤<span>식품</span>을찾으세요?
+      </h1>
+      <p class="headLine-text">
         안전한 먹거리 생활을 위해 식품의약품안전처 데이터활용서비스에 있는 <br />
         정보를 이용하여 식품의약품안전처에서 알레르기 유발물질 표시 대상으로 선정된 <br />
         19가지의 음식을 확인하며 안전하게 이용할 수 있습니다.
@@ -31,9 +33,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-       @include media-breakpoint-down(sm) {
-          margin-bottom: 30px;
-        }
+      @include media-breakpoint-down(sm) {
+        margin-bottom: 30px;
+      }
       h1 {
         line-height: 1;
         font-family: 'Noto Sans KR', 'Roboto', sans-serif;
@@ -46,6 +48,7 @@
         }
         @include media-breakpoint-down(sm) {
           font-size: 2rem;
+          margin-bottom: 2rem;
         }
       }
       p {
@@ -55,8 +58,7 @@
         text-align: center;
         opacity: 0.9;
         @include media-breakpoint-down(sm) {
-          font-size: 0.8rem;
-          text-align: left;
+          display: none;
         }
       }
 
@@ -102,9 +104,9 @@
         transform: translateY(-50%);
         cursor: pointer;
         img {
-           @include media-breakpoint-down(sm) {
-          width: 20px;
-        }
+          @include media-breakpoint-down(sm) {
+            width: 20px;
+          }
         }
       }
     }

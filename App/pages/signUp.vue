@@ -62,7 +62,7 @@
         @click="register"
         type="button"
         class="user-register">
-        Sign Up
+        회원가입
       </button>
     </form>
   </div>
@@ -224,7 +224,7 @@
         .msgbox {
           height: 1rem;
           margin-bottom: 1rem;
-          font-size: 0.8rem;
+          font-size: 1rem;
           color: red;
         } 
       }  

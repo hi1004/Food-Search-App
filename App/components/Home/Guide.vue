@@ -132,6 +132,7 @@
   .guide-section {
     padding: 5rem 0 0;
     font-family: "Jua", sans-serif;   
+    overflow: hidden;
     .guide-title-section {
       text-align: center;
     } 

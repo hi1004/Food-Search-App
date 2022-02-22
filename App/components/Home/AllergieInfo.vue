@@ -14,6 +14,7 @@
               <source srcset="~/assets/images/allergy/egg.jpg" />
               <img
                 src="~/assets/images/allergy/egg.jpg"
+                loading="lazy"
                 alt="난류" />
             </picture>
             <div class="allergie-contents">
@@ -35,6 +36,7 @@
               <source srcset="~/assets/images/allergy/milk.jpg" />
               <img
                 src="~/assets/images/allergy/milk.jpg"
+                loading="lazy"
                 alt="우유" />
             </picture>
             <div class="allergie-contents">
@@ -56,6 +58,7 @@
               <source srcset="~/assets/images/allergy/soybean.jpg" />
               <img
                 src="~/assets/images/allergy/soybean.jpg"
+                loading="lazy"
                 alt="대두" />
             </picture>
             <div class="allergie-contents">
@@ -75,6 +78,7 @@
               <source srcset="~/assets/images/allergy/wheat.jpg" />
               <img
                 src="~/assets/images/allergy/wheat.jpg"
+                loading="lazy"
                 alt="밀" />
             </picture>
             <div class="allergie-contents">
@@ -94,6 +98,7 @@
               <source srcset="~/assets/images/allergy/buckwheat.jpg" />
               <img
                 src="~/assets/images/allergy/buckwheat.jpg"
+                loading="lazy"
                 alt="메밀" />
             </picture>
             <div class="allergie-contents">
@@ -114,6 +119,7 @@
               <source srcset="~/assets/images/allergy/peanut.jpg" />
               <img
                 src="~/assets/images/allergy/peanut.jpg"
+                loading="lazy"
                 alt="호두, 땅콩" />
             </picture>
             <div class="allergie-contents">
@@ -135,6 +141,7 @@
               <source srcset="~/assets/images/allergy/seafood..jpg" />
               <img
                 src="~/assets/images/allergy/seafood..jpg"
+                loading="lazy"
                 alt="고등어, 게, 새우, 오징어, 조개류" />
             </picture>
             <div class="allergie-contents">
@@ -155,6 +162,7 @@
               <source srcset="~/assets/images/allergy/peach.jpg" />
               <img
                 src="~/assets/images/allergy/peach.jpg"
+                loading="lazy"
                 alt="복숭아, 토마토" />
             </picture>
             <div class="allergie-contents">
@@ -174,6 +182,7 @@
               <source srcset="~/assets/images/allergy/meat.jpg" />
               <img
                 src="~/assets/images/allergy/meat.jpg"
+                loading="lazy"
                 alt="돼지고기, 소고기, 닭고기" />
             </picture>
             <div class="allergie-contents">
@@ -208,7 +217,6 @@
 <script>
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
   
-  import gsap from 'gsap';
   import 'swiper/css/swiper.css';
   export default {
     components: {
@@ -300,6 +308,7 @@
   .AllergieInfo-section {
     padding: 11rem 0;
     background: #f7f7f7;
+    overflow: hidden;
     .AllergieInfo-container {
       padding: 0;
       max-width: 1130px;

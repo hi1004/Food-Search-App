@@ -37,10 +37,10 @@
         </h1>
         <p>
           <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--3">행복을 담은 안전한 먹거리로</span>
+            <span class="swiper-phrase text-delay--3">행복을 담은 먹거리로</span>
           </span>
           <span class="text-overflow-hidden">
-            <span class="swiper-phrase text-delay--4">가정에 안전한 식탁을 만들어보세요</span>
+            <span class="swiper-phrase text-delay--4">안전한 식탁을 만들어보세요</span>
           </span>
         </p>
       </div>
