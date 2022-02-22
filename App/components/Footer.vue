@@ -62,20 +62,18 @@
 
 <style lang="scss" scoped>
   footer {
-    padding: 30px 0;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     background: #2f2d30;
-    height: 20vh;
+    height: 30vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     .container {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      height: 15vh;
- 
+      justify-content: space-evenly;
+      height: 100%;
       .copyright {
         color: $white;
         font-size: 14px;

@@ -351,7 +351,6 @@
           this.checkedAllergies.push(this.allergies[key]);
         }
       });
-      console.log(this.checkedAllergies);
       if (this.theFood.allergy === '알수없음') {
         this.isUnknown = true;
       } else {

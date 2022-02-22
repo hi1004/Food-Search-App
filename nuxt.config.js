@@ -63,9 +63,6 @@ export default {
     },
   ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
-
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [],
 
@@ -78,6 +75,14 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
   ],
+  components: true,
+  ssr: false,
+  loading: '~/components/LoadingBar.vue',
+  loadingIndicator: {
+    name: 'cube-grid',
+    color: '#fff',
+    background: '#2c3e50',
+  },
 
   styleResources: {
     scss: ['~/assets/scss/App.scss'],

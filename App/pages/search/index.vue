@@ -28,6 +28,6 @@
 
 <style lang="scss" scoped>
   .search-section {
-    min-height: 80vh;
+    min-height: 70vh;
   }
 </style>

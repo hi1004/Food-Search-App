@@ -71,21 +71,6 @@
     <header :class="{ 'header--hidden': !showNavbar }">
       <div class="container">
         <Logo @click="removeUser" />
-        <!-- <div class="nav nav-pills">
-        <div
-          v-for="nav in navigations"
-          :key="nav.name"
-          class="nav-item">
-          <NuxtLink
-            :to="nav.href"
-            active-class="active"
-            :class="{ active: isMatch(nav.path) }"
-            class="nav-link"
-            exact>
-            {{ nav.name }}
-          </NuxtLink>
-        </div>
-      </div> -->
         <div class="header-convenience">
           <client-only>
             <h4
@@ -252,20 +237,6 @@
     },
     data() {
       return {
-        // navigations: [
-        //   {
-        //     name: 'Home',
-        //     href: '/',
-        //   },
-        //   {
-        //     name: 'Search',
-        //     href: '/search/',
-        //   },
-        //   {
-        //     name: 'My Page',
-        //     href: '/myPage',
-        //   },
-        // ],
         signInIcon: 'sign-in-alt',
         signOutIcon: 'sign-out-alt',
         showNavbar: true,
@@ -345,8 +316,7 @@
     },
     created() {
       if (process.client) {
-        const userIcon = document.querySelector('.userIcon');
-        console.log(userIcon)
+        document.querySelector('.userIcon');
         this.$store.dispatch('cursor/mouse');
       }
     },

@@ -4,7 +4,7 @@
     <AllergieInfo />
     <Guide />
     <HeadLine />
-    <Totop /> 
+    <Totop />
   </div>
 </template>
 

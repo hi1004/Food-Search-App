@@ -44,7 +44,6 @@
           left: 0, 
           behavior: 'smooth' 
         });
-        console.log("버튼 작동")
       }
     }
   }

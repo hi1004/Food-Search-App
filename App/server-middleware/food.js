@@ -7,12 +7,7 @@ const { API_KEY } = process.env;
 app.use(express.json());
 app.post('/', async (req, res) => {
   const payload = req.body;
-
   const { foodName, pageNo, id } = payload;
-  // console.log(payload);
-  // console.log('API_KEY: ', API_KEY);
-  // console.log('params: ', payload);
-
   const url = id
     ? `http://apis.data.go.kr/B553748/CertImgListService/getCertImgListService?serviceKey=${API_KEY}&prdlstReportNo=${id}&returnType=json`
     : `http://apis.data.go.kr/B553748/CertImgListService/getCertImgListService?serviceKey=${API_KEY}&prdlstNm=${encodeURIComponent(

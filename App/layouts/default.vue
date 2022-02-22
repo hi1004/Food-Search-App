@@ -1,9 +1,11 @@
 <template>
   <div>
-    <Header />
-    <div class="cursor"></div>   
-    <Nuxt />
-    <Footer />
+    <client-only>
+      <Header />
+      <div class="cursor"></div>   
+      <Nuxt />
+      <Footer />
+    </client-only>
   </div>
 </template>
 
@@ -20,9 +22,11 @@
     },
     created() {
       this.$store.dispatch('signIn/setAuthorized');
+  
     }, 
     mounted() {
       this.$store.dispatch('cursor/mouse');
+   
     },
     computed: {
       ...mapState('default', ['links']),

@@ -69,7 +69,6 @@ export default {
           email: res.data.email,
           allergiesInfo: res2.data,
         });
-        console.log('인증성공!');
       } catch (error) {
         commit('updateState', {
           isAuthorized: false,
@@ -77,7 +76,6 @@ export default {
           email: '',
           allergiesInfo: [],
         });
-        console.log('인증실패 T_T');
       }
     },
   },

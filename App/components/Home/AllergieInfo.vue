@@ -216,7 +216,6 @@
 
 <script>
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
-  
   import 'swiper/css/swiper.css';
   export default {
     components: {
@@ -244,20 +243,6 @@
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
           },
-          on: {
-            slideChange: function () {
-              const title = document.querySelectorAll('.swiper-slide-active .allergie-name');
-              const phrase = document.querySelectorAll('.swiper-slide-active .allergie-description');
-              title.forEach(step => step.classList.remove('text-active'));
-              phrase.forEach(step => step.classList.remove('text-active'));
-            },
-            slideChangeTransitionEnd() {
-              const title = document.querySelectorAll('.swiper-slide-active .allergie-name');
-              const phrase = document.querySelectorAll('.swiper-slide-active .allergie-description');
-              title.forEach(step => step.classList.add('text-active'));
-              phrase.forEach(step => step.classList.add('text-active'));
-            },
-          },
           breakpoints: {
             1130: {
               slidesPerView: 1, //브라우저가 768보다 클 때
@@ -280,24 +265,6 @@
         return this.$refs.mySwiper.$swiper;
       },
     },
-    // mounted() {
-    //   // const controller = this.$ScrollMagic.Controller()
-    //   const wrapScene = this.$scrollmagic.scene({
-    //     triggerElement: '.AllergieInfo-section',
-    //     triggerHook: 0,
-    //     duration: '100%'
-    //   })
-    //     .setTween(
-    //       gsap.fromTo('.title', 1, {
-    //         backgroundColor: "#333333",
-    //         rotation: 360,
-    //         x: 130
-    //       })
-    //     )
-    //     // .addTo(controller)
-    //     .addIndicators()
-    //   console.log(wrapScene);
-    // },
   };
 </script>
 
