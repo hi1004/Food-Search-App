@@ -5,14 +5,15 @@
         <h1>서비스 이용 방법</h1>
       </div>
       <div class="guide-step">
-        <div class="guide-img-section">
+        <div class="guide-img-section ">
           <div class="guide-img-box">
             <img
               src="~assets/images/guide/1.PNG"
               alt="step1" />
           </div>    
         </div>
-        <div class="guide-text-section">
+        <div
+          class="guide-text-section">
           <h1 class="step-title">
             Step 1
           </h1>
@@ -33,7 +34,7 @@
         </div>
       </div>
       <div class="guide-step">
-        <div class="guide-img-section">
+        <div class="guide-img-section ">
           <div class="guide-img-box">
             <img
               src="~assets/images/guide/2.PNG"
@@ -56,7 +57,7 @@
         </div>
       </div>
       <div class="guide-step">
-        <div class="guide-img-section">
+        <div class="guide-img-section ">
           <div class="guide-img-box">
             <img
               src="~assets/images/guide/3.PNG"
@@ -81,7 +82,7 @@
         </div>
       </div>
       <div class="guide-step">
-        <div class="guide-img-section">
+        <div class="guide-img-section ">
           <div class="guide-img-box">
             <img
               src="~assets/images/guide/4.PNG"
@@ -113,16 +114,55 @@
   } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
   library.add(faSignInAlt, faCircleInfo, faUserPlus, faSearch);
 
+  
   export default {
     components: {
       FontAwesomeIcon,
+    },
+    mounted() {
+      this.setGsap()
     },
     methods: {
       toSearchSection() {
         const searchBar = document.querySelector('.home-search-input');
         searchBar.focus();
+      }, 
+      setGsap() {
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll('.guide-img-section').forEach(el => {
+          gsap.set(el, {
+            opacity: 0,
+            y: 50,          
+          })
+          gsap.to(el, {
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1, })
+        })
+        document.querySelectorAll('.guide-text-section').forEach(el => {
+          gsap.set(el, {
+            opacity: 0,
+            y: 50,          
+          })
+          gsap.to(el, {
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+            },
+            opacity: 1,
+            y: 0,
+            delay: .3,
+            duration: 1, })
+        })
       }
     }
   }
