@@ -18,7 +18,9 @@
       Header,
       Footer,
     },
-
+    created() {
+      this.$store.dispatch('signIn/setAuthorized');
+    }, 
     mounted() {
       this.$store.dispatch('cursor/mouse');
     },

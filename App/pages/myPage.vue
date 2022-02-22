@@ -115,14 +115,6 @@
   import { mapState } from 'vuex';
 
   export default {
-    middleware({ store, redirect }) {
-      if (!store.state.signIn.isAuthorized) {
-        if (typeof window !== 'undefined') {
-          alert('로그인부터 하세요 도라에몽아');
-        }
-        return redirect('/signIn');
-      }
-    },
     data() {
       return {
         allergies: [
@@ -169,6 +161,12 @@
     },
     mounted() {
       this.$store.dispatch('cursor/mouse');
+      this.$nextTick(() => {
+        if (!this.$store.state.signIn.isAuthorized) {        
+          alert('로그인부터 하세요 도라에몽아');
+          this.$router.push('/signIn');
+        }
+      })
     },
     watch: {
       oPassword(newData) {
