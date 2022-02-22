@@ -10,7 +10,7 @@ export default {
 };
 
 function cursorEffect() {
-  let mouseCursor = document.querySelector('.cursor');
+  let mouseCursor = document.querySelector('.cursor-container');
   let buttons = document.querySelectorAll('button');
   let swiperBtns = document.querySelectorAll('.swiper-btn');
 

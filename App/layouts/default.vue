@@ -2,7 +2,9 @@
   <div>
     <client-only>
       <Header />
-      <div class="cursor"></div>   
+      <di class="cursor-container">
+        <div class="cursor"></div>
+      </di>  
       <Nuxt />
       <Footer />
     </client-only>
@@ -47,14 +49,16 @@
   font-family: 'Noto Sans KR', 'Roboto', sans-serif;
   overflow-x: hidden;
   }
-   .cursor {
-    width: 1.8rem;
-    height: 1.8rem;
-    //background: white;
-    border: 5px solid white;
-    border-radius: 50%;
-    position: fixed;
-    transform: translate(-50%, -50%);
+   .cursor-container {
+    .cursor {
+      width: 1.8rem;
+      height: 1.8rem;
+      //background: white;
+      border: 5px solid white;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    position: fixed;    
     pointer-events: none;
     box-shadow: 1px 2px 1px black;
     transform-origin: center;
