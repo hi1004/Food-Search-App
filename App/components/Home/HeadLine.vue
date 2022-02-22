@@ -9,10 +9,40 @@
         정보를 이용하여 식품의약품안전처에서 알레르기 유발물질 표시 대상으로 선정된 <br />
         19가지의 음식을 확인하며 안전하게 이용할 수 있습니다.
       </p>
-      <Search />
+      <Search class="headLine-search" />
     </div>
   </div>
 </template>
+<script>
+
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+  export default {
+  
+    mounted() {
+      this.setGsap()
+    },
+    methods: {
+      setGsap() {
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll('.headLine-search').forEach(el => {
+          gsap.set(el, {
+            opacity: 0,
+            y: 50,          
+          })
+          gsap.to(el, {
+            scrollTrigger: {
+              trigger: el,
+              start: "top bottom",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1, })
+        })
+      }
+    }
+  }
+</script>
 
 <style lang="scss">
   .headLine-wrap {

@@ -217,6 +217,8 @@
 <script>
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
   import 'swiper/css/swiper.css';
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
   export default {
     components: {
       Swiper,
@@ -265,7 +267,29 @@
         return this.$refs.mySwiper.$swiper;
       },
     },
-  };
+    mounted() {
+      this.setGsap()
+    },
+    methods: {
+      setGsap() {
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll('.allergie-info-swiper').forEach(el => {
+          gsap.set(el, {
+            opacity: 0,
+            y: 50,          
+          })
+          gsap.to(el, {
+            scrollTrigger: {
+              trigger: el,
+              start: "top bottom",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1, })
+        })
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>

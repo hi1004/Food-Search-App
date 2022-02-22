@@ -143,6 +143,8 @@
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
   import { faCircleCheck, faTriangleExclamation, faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
   library.add(faCircleCheck, faTriangleExclamation, faCircleQuestion);
 
   export default {
@@ -341,6 +343,23 @@
           nutrientChart.update();
         }
       },
+      setGsap() {
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll('.product-container').forEach(el => {
+          gsap.set(el, {
+            opacity: 0,
+            y: 50,          
+          })
+          gsap.to(el, {
+            scrollTrigger: {
+              trigger: el,
+              start: "top bottom",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1, })
+        })
+      }
     },
     mounted() {
       // create chart
@@ -365,6 +384,7 @@
           this.isSafe = true;
         }
       }   
+      this.setGsap()
     },
     head() {
       return {
@@ -433,7 +453,7 @@
   .product-container {
     display: flex;
     flex-direction: column;
-    padding: 70px 0;
+    padding: 70px 0 0;
     .product-title-section {
       display: flex;
       flex-direction: column;
