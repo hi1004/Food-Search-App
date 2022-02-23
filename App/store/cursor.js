@@ -10,6 +10,7 @@ export default {
 };
 
 function cursorEffect() {
+  let mouseCursorContainer = document.querySelector('.cursor-container');
   let mouseCursor = document.querySelector('.cursor');
   let swiperBtns = document.querySelectorAll('.swiper-btn');
   console.log(mouseCursor);
@@ -17,7 +18,7 @@ function cursorEffect() {
   window.addEventListener('mousemove', cursor);
 
   function cursor(e) {
-    gsap.to(mouseCursor, 0.4, {
+    gsap.to(mouseCursorContainer, 0.4, {
       x: e.clientX,
       y: e.clientY,
     });
