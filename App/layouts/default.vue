@@ -13,7 +13,6 @@
   import Header from '~/components/Header';
   import Footer from '~/components/Footer';
   import { mapState } from 'vuex';
-
   
   export default {
     components: {

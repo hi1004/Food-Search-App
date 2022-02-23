@@ -33,9 +33,6 @@
   import { mapState } from 'vuex';
   import Loader from '~/components/Loader';
   import FoodItem from '~/components/Search/FoodItem';
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
   export default {
     name: 'InfiniteList',
     data() {
@@ -52,10 +49,6 @@
     computed: {
       ...mapState('search', ['foods', 'loading', 'message', 'foodName', 'total', 'pgNo']),
     },  
-    mounted() {
-      this.setGsap()
-    },
-
     methods: {
       scrolling($state) {
         // 스크롤이 페이지 하단에 위치해도 약간의 딜레이를 주고 데이터를 가져옴
@@ -70,23 +63,6 @@
           }
         }, 1000);
       },
-      setGsap() {
-        gsap.registerPlugin(ScrollTrigger);
-        document.querySelectorAll('.foods').forEach(el => {
-          gsap.set(el, {
-            opacity: 0,
-            y: 30,          
-          })
-          gsap.to(el, {
-            scrollTrigger: {
-              trigger: el,
-              start: "top bottom",
-            },
-            opacity: 1,
-            y: 0,
-            duration: 1, })
-        })
-      }
     },
   };
 </script>

@@ -11,8 +11,8 @@ export default {
 
 function cursorEffect() {
   let mouseCursor = document.querySelector('.cursor');
-  let buttons = document.querySelectorAll('button');
   let swiperBtns = document.querySelectorAll('.swiper-btn');
+  console.log(mouseCursor);
 
   window.addEventListener('mousemove', cursor);
 
@@ -22,22 +22,6 @@ function cursorEffect() {
       y: e.clientY,
     });
   }
-
-  // buttons.forEach(button => {
-  //   button.addEventListener('mouseleave', () => {
-  //     mouseCursor.classList.remove('link-grow');
-  //     gsap.to(mouseCursor, 0.4, {
-  //       scale: 1,
-  //     });
-  //   });
-
-  //   button.addEventListener('mouseover', () => {
-  //     mouseCursor.classList.add('link-grow');
-  //     gsap.to(mouseCursor, 0.4, {
-  //       scale: 2,
-  //     });
-  //   });
-  // });
 
   swiperBtns.forEach(btn => {
     btn.addEventListener('mouseleave', () => {
