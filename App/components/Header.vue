@@ -9,28 +9,28 @@
             v-if="isAuthorized"
             class="header-mobile-menu authorized">
             <div class="userinfo-section">
-              <h1>{{ username }}</h1>님 안녕하세요!
+              <h1 class="login-user-name">
+                {{ username }}
+              </h1>
+              <span class="greeting">님 안녕하세요!</span>
             </div>
             <div class="btn-section">
               <div
                 @click="signOut"
                 class="button">
-                <FontAwesomeIcon
-                  icon="sign-out-alt" />
-                <span>로그아웃</span> 
+                <FontAwesomeIcon icon="sign-out-alt" />
+                <span>로그아웃</span>
               </div>
-              <div 
+              <div
                 @click="toMyPage"
                 class="button">
-                <FontAwesomeIcon
-                  icon="circle-info" />
+                <FontAwesomeIcon icon="circle-info" />
                 <span>내 정보</span>
               </div>
               <div
                 @click="toSearch"
                 class="button">
-                <FontAwesomeIcon
-                  icon="fa-search" />
+                <FontAwesomeIcon icon="fa-search" />
                 <span>검색</span>
               </div>
             </div>
@@ -39,28 +39,25 @@
             v-if="!isAuthorized"
             class="header-mobile-menu unauthorized">
             <div class="userinfo-section">
-              <h1>로그인 해주세요!!</h1>
+              <h1><span class="login-text-color">로그인</span> 해주세요!!</h1>
             </div>
             <div class="btn-section">
               <div
                 @click="toSignIn"
                 class="button">
-                <FontAwesomeIcon
-                  icon="sign-in-alt" />
-                <span>로그인</span> 
+                <FontAwesomeIcon icon="sign-in-alt" />
+                <span>로그인</span>
               </div>
               <div
                 @click="toSignUp"
                 class="button">
-                <FontAwesomeIcon
-                  icon="user-plus" />
+                <FontAwesomeIcon icon="user-plus" />
                 <span>회원가입</span>
               </div>
               <div
-                @click="toSearch" 
+                @click="toSearch"
                 class="button">
-                <FontAwesomeIcon
-                  icon="fa-search" />
+                <FontAwesomeIcon icon="fa-search" />
                 <span>검색</span>
               </div>
             </div>
@@ -70,7 +67,11 @@
     </transition>
     <header :class="{ 'header--hidden': !showNavbar }">
       <div class="container">
-        <Logo @click="removeUser" />
+        <div
+          class="logo"
+          @click="toHome">
+          <Logo />
+        </div>
         <div class="header-convenience">
           <client-only>
             <h4
@@ -206,8 +207,8 @@
             @click="toggleMobileMenu"
             icon="fa-solid fa-x"
             class="menu-icon" />
-        </div>      
-      </div>    
+        </div>
+      </div>
     </header>
   </div>
 </template>
@@ -249,7 +250,8 @@
       ...mapState('signIn', ['isAuthorized', 'username']),
     },
     methods: {
-      removeUser() {
+      toHome() {
+        this.showMobileMenu = false;
         const urlEl = document.querySelector('.user');
         urlEl.classList.remove('login');
       },
@@ -258,37 +260,32 @@
         return path.test(this.$route.fullPath);
       },
       toSignIn() {
-        this.showMobileMenu = false
+        this.showMobileMenu = false;
         this.$router.push('/signIn');
       },
       toSearch() {
-        this.showMobileMenu = false
+        this.showMobileMenu = false;
         const urlEl = document.querySelector('.user');
         urlEl.classList.remove('login');
-        // if(this.$route.path === '/') {
-        //   const searchBar = document.querySelector('.home-search-input');
-        //   searchBar.focus();
-        // } else {
-        this.$router.push('/search'); 
-        // }            
+        this.$router.push('/search');
       },
       toMyPage() {
-        this.showMobileMenu = false
+        this.showMobileMenu = false;
         this.$router.push('/myPage');
       },
       async signOut() {
-        this.showMobileMenu = false
+        this.showMobileMenu = false;
         await this.$store.dispatch('signIn/userLogout');
         this.$router.push('/');
       },
       toSignUp() {
-        this.showMobileMenu = false
+        this.showMobileMenu = false;
         this.$router.push('/signUp');
       },
       onActive() {
         const urlEl = document.querySelector('.user');
         urlEl.classList.toggle('login');
-      },    
+      },
       onScroll() {
         const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         if (currentScrollPosition < 0) {
@@ -302,7 +299,26 @@
       },
       toggleMobileMenu() {
         this.showMobileMenu = !this.showMobileMenu;
+      },
+    },
+    watch: {
+      showMobileMenu() {
+        const $header = document.querySelector('header');
+        const $headerMobileBtn = document.querySelector('.header-mobile-btn');
+        const $body = document.body;
+        if(this.showMobileMenu) {
+          $headerMobileBtn.classList.add('active');
+          $header.classList.add('bg-active');
+          $body.classList.add('body-scroll-active');
+    
+        } else {
+          $headerMobileBtn.classList.remove('active');
+          $header.classList.remove('bg-active');
+          $body.classList.remove('body-scroll-active');
+        }
       }
+      
+ 
     },
     mounted() {
       this.$store.dispatch('cursor/mouse');
@@ -312,7 +328,8 @@
         if (width >= 540) {
           this.showMobileMenu = false;
         }
-      })
+      });
+
     },
     created() {
       if (process.client) {
@@ -336,10 +353,17 @@
     transform: translate3d(0, 0, 0);
     transition: 0.1s all ease-out;
     position: fixed;
+    transition: background .4s;
     background-color: rgba(0, 0, 0, 0.8);
     top: 0;
     z-index: 99;
     box-sizing: border-box;
+    &.bg-active {
+      background-color: rgba(0, 0, 0, 0);
+    }
+    @include media-breakpoint-down(sm) {
+      padding: 0 10px;
+    }
     &.header--hidden {
       box-shadow: none;
       transform: translate3d(0, -100%, 0);
@@ -393,7 +417,6 @@
             color: $primary;
           }
           .iconBtn {
-            transition: 0.4s;
             font-size: 30px;
             &:hover {
               cursor: pointer;
@@ -408,6 +431,7 @@
             margin-top: -1rem;
             padding: 10px;
             box-sizing: border-box;
+            transition: 0.4s;
             display: flex;
             flex-direction: column;
             width: 150px;
@@ -435,13 +459,20 @@
                 align-items: center;
                 text-decoration: none;
               }
+              &:hover {
+                background: $primary;
+                a {
+                  color: $white;
+                }
+              }
             }
           }
         }
       }
       .header-mobile-btn {
         display: none;
-      }      
+        transition: 1s;
+      }
       @include media-breakpoint-down(sm) {
         .header-convenience {
           display: none;
@@ -454,8 +485,8 @@
             cursor: pointer;
           }
         }
-      }      
-    }        
+      }
+    }
   }
   .header-mobile {
     position: fixed;
@@ -463,9 +494,9 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: white;
-    font-family: "Jua", sans-serif;
-    z-index: 10;
+    background: #2c3e50;
+    font-family: 'Jua', sans-serif;
+    z-index: 11;
     .header-mobile-menu {
       display: flex;
       width: 100%;
@@ -475,41 +506,55 @@
       justify-content: center;
       align-items: center;
       .userinfo-section {
+        color: #fff;
         h1 {
           display: inline;
+          color: #fff;
+          &.login-user-name {
+            font-size: 2.5rem;
+            color: $primary;
+          }
+         
+          .login-text-color {
+            color: $primary;
+          }
         }
+         .greeting {
+            font-size: 1.3rem;
+          }
       }
       .btn-section {
-        width: 100%; 
-        display: flex;   
-        flex-direction: row;        
+        width: 100%;
+        display: flex;
+        flex-direction: row;
         justify-content: space-evenly;
-        margin-top: 2rem;  
+        margin-top: 2rem;
         cursor: pointer;
         .button {
           width: 7rem;
           height: 7rem;
-          border-radius: .5rem;
+          border-radius: 0.5rem;
           background: transparent;
           border: none;
+          color: #fff;
           text-align: center;
-          color: black;
-          font-size: 3rem; 
+
+          font-size: 3rem;
           transition: 0.2s;
           span {
             display: block;
             font-size: 1rem;
           }
           &:hover {
-            background: lightgray;
+            background: $primary;
           }
         }
       }
     }
   }
   .slide-enter {
-      transform: translateY(-100vh);
-      opacity: 0;
+    transform: translateY(-100vh);
+    opacity: 0;
   }
   .slide-enter-active,
   .slide-leave-active {
@@ -519,4 +564,14 @@
     transform: translateY(-100vh);
     opacity: 0;
   }
+</style>
+<style lang="scss">
+  body {
+  overflow: scroll;
+  &.body-scroll-active {
+    overflow: hidden;
+    transition: 0.4s;
+
+  }
+}
 </style>

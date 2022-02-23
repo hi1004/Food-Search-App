@@ -32,7 +32,7 @@ export default {
         commit('updateState', {
           isAuthorized: true,
         });
-        this.$router.push('/');
+        this.$router.push('/myPage');
       } catch (error) {
         return;
       }

@@ -42,7 +42,14 @@
           <div
             v-else
             class="product-allergy">
-            <span class="product-allergy-msg">알러지 체크를 원하시면 <span class="login-info">로그인</span>해주세요!</span>
+            <span class="product-allergy-msg">알러지 체크를 원하시면 
+              <NuxtLink
+                class="login-info"
+                to="/signIn">
+                <FontAwesomeIcon
+                  icon="sign-in-alt" />
+                로그인
+              </NuxtLink>해주세요!</span>
           </div>
         </client-only>
       </div>
@@ -141,8 +148,8 @@
 
   import { library } from '@fortawesome/fontawesome-svg-core';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-  import { faCircleCheck, faTriangleExclamation, faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
-  library.add(faCircleCheck, faTriangleExclamation, faCircleQuestion);
+  import { faCircleCheck, faTriangleExclamation, faCircleQuestion, faSignInAlt, } from '@fortawesome/free-solid-svg-icons';
+  library.add(faCircleCheck, faTriangleExclamation, faCircleQuestion, faSignInAlt,);
 
   export default {
     components: {
@@ -227,6 +234,9 @@
       },
       toSearch() {
         this.$router.push('../search');
+      },
+      toSignIn() {
+        this.$router.push('/signIn');
       },
       // Create Chart Method
       createChart(chartId) {
@@ -449,11 +459,13 @@
       }
       .product-allergy {
         font-size: 1.5rem;
+        letter-spacing:1px;
         @include media-breakpoint-down(sm) {
           font-size: 1.2rem;
         }
         .login-info {
           color: red;
+          cursor: pointer;
         }
         .warning {
           color: red;
@@ -562,6 +574,7 @@
     }    
     .product-spec-section {  
       padding: 5rem 0;
+      letter-spacing: -1px;
       @include media-breakpoint-down(sm) {
         padding: 2rem 0;
       }   
