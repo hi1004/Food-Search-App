@@ -99,28 +99,32 @@
                     </a>
                   </div>
                 </li>
-                <li>
-                  <div v-if="isAuthorized">
-                    <h4 class="welcome">
-                      {{ username }}
-                    </h4>
-                    <a
-                      href="javascript:void(0)"
-                      @click="toMyPage">
-                      <FontAwesomeIcon
-                        class="iconBtn"
-                        icon="circle-info" />
-                      내 정보
-                    </a>
-                    <a
-                      href="javascript:void(0)"
-                      @click="signOut">
-                      <FontAwesomeIcon
-                        class="iconBtn"
-                        icon="sign-out-alt" />
-                      로그아웃
-                    </a>
-                  </div>
+
+                <h4
+                  class="welcome"
+                  v-if="isAuthorized">
+                  {{ username }}
+                </h4>
+
+                <li v-if="isAuthorized">
+                  <a
+                    href="javascript:void(0)"
+                    @click="toMyPage">
+                    <FontAwesomeIcon
+                      class="iconBtn"
+                      icon="circle-info" />
+                    내 정보
+                  </a>
+                </li>
+                <li v-if="isAuthorized">
+                  <a
+                    href="javascript:void(0)"
+                    @click="signOut">
+                    <FontAwesomeIcon
+                      class="iconBtn"
+                      icon="sign-out-alt" />
+                    로그아웃
+                  </a>
                 </li>
                 <li>
                   <div v-if="!isAuthorized">
@@ -306,19 +310,16 @@
         const $header = document.querySelector('header');
         const $headerMobileBtn = document.querySelector('.header-mobile-btn');
         const $body = document.body;
-        if(this.showMobileMenu) {
+        if (this.showMobileMenu) {
           $headerMobileBtn.classList.add('active');
           $header.classList.add('bg-active');
           $body.classList.add('body-scroll-active');
-    
         } else {
           $headerMobileBtn.classList.remove('active');
           $header.classList.remove('bg-active');
           $body.classList.remove('body-scroll-active');
         }
-      }
-      
- 
+      },
     },
     mounted() {
       this.$store.dispatch('cursor/mouse');
@@ -329,7 +330,6 @@
           this.showMobileMenu = false;
         }
       });
-
     },
     created() {
       if (process.client) {
@@ -353,7 +353,7 @@
     transform: translate3d(0, 0, 0);
     transition: 0.1s all ease-out;
     position: fixed;
-    transition: background .4s;
+    transition: background 0.4s;
     background-color: rgba(0, 0, 0, 0.8);
     top: 0;
     z-index: 99;
@@ -439,18 +439,21 @@
             border-top: 0;
             line-height: 50px;
             display: none;
+            h4.welcome {
+              text-align: center;
+              font-weight: 600;
+              border-bottom: 1px solid #ada4a4;
+              padding-bottom: 10px;
+              font-family: 'Do Hyeon', sans-serif;
+              margin: 0;
+              padding: 10px 0;
+            }
             li {
               .iconBtn {
                 font-size: 16px;
                 padding-right: 10px;
               }
-              h4.welcome {
-                text-align: center;
-                font-weight: 600;
-                border-bottom: 1px solid #ada4a4;
-                padding-bottom: 10px;
-                font-family: 'Do Hyeon', sans-serif;
-              }
+
               a {
                 font-family: 'Noto Sans KR', sans-serif;
                 font-weight: 600;
@@ -514,14 +517,14 @@
             font-size: 2.5rem;
             color: $primary;
           }
-         
+
           .login-text-color {
             color: $primary;
           }
         }
-         .greeting {
-            font-size: 1.3rem;
-          }
+        .greeting {
+          font-size: 1.3rem;
+        }
       }
       .btn-section {
         width: 100%;
@@ -567,11 +570,10 @@
 </style>
 <style lang="scss">
   body {
-  overflow: scroll;
-  &.body-scroll-active {
-    overflow: hidden;
-    transition: 0.4s;
-
+    overflow: scroll;
+    &.body-scroll-active {
+      overflow: hidden;
+      transition: 0.4s;
+    }
   }
-}
 </style>

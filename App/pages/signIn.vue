@@ -152,9 +152,14 @@
        
         width: 100%;
         height: 4rem;
+        
       }
       .user-button {
           background-color: $primary;
+          transition: 0.3s;
+          &:hover {
+            background-color: #2c3e50;
+          }
         }
     }
     button {
@@ -164,7 +169,7 @@
       color: white;
       transition: 0.5s;
       &:hover {
-        background-color: #555555
+        opacity: 0.8;
       }
     }
   }

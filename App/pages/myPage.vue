@@ -387,7 +387,7 @@
           .msgbox {
             height: 1.5rem;
             margin-bottom: 1rem;
-            color: red;
+            color: $primary;
           }
         }
       }
@@ -396,7 +396,7 @@
           width: 100%;
           height: 3rem;
           color: white;
-          background: #333333;
+          background: $primary;
           border: none;
           transition: 0.2s;
           outline: none;
