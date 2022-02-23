@@ -210,7 +210,8 @@
           await axios.put('/api/allergy/manage', allergiesInfo);
           alert('변경 성공!');
         } catch (error) {
-          console.log(error);
+          
+          return;
         }
       },
       async updatePassword() {
@@ -221,7 +222,7 @@
           });
           alert('변경 성공!');
         } catch (error) {
-          console.log(error);
+          return;
         }
       },
       clickTab(event) {

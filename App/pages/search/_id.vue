@@ -88,7 +88,7 @@
           <canvas id="nutrient-chart">
           </canvas>
           <h1 class="unknownInfoMsg">
-            영양 정보가 없다요 :(
+            영양 정보가 없습니다 :(
           </h1>
         </div>
       </div>      

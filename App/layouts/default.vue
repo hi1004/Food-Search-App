@@ -2,9 +2,9 @@
   <div>
     <client-only>
       <Header />
-      <di class="cursor-container">
+      <div class="cursor-container">
         <div class="cursor"></div>
-      </di>  
+      </div>  
       <Nuxt />
       <Footer />
     </client-only>

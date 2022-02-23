@@ -139,7 +139,6 @@ export default {
           loading: false,
           foodAllergies: allergiesObject,
         });
-        console.log('state.foods', state.foods);
       }
     },
   },

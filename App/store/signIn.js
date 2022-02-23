@@ -34,16 +34,7 @@ export default {
         });
         this.$router.push('/');
       } catch (error) {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-          alert(error.response.data.message);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log('Error', error.message);
-        }
+        return;
       }
     },
     async userLogout({ commit }) {
@@ -55,14 +46,13 @@ export default {
         });
         alert('로그아웃 하셨습니다.');
       } catch (error) {
-        console.log(error);
+        return;
       }
     },
     async setAuthorized({ commit }) {
       try {
         const res = await axios.get('/api/user/user');
         const res2 = await axios.get('/api/allergy/manage');
-        console.log(res2.data);
         commit('updateState', {
           isAuthorized: true,
           username: res.data.name,
