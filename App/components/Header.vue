@@ -285,7 +285,7 @@
         this.$router.push('/signUp');
       },
       onScroll() {
-        // document.querySelector('.user').classList.remove('login');
+        document.querySelector('.user').classList.remove('login');
         const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         if (currentScrollPosition < 0) {
           return;
