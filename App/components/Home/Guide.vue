@@ -25,7 +25,7 @@
                 icon="user-plus" /> 회원가입
             </nuxt-link>을 하신 후 <nuxt-link
               class="link"
-              to="/signUp">
+              to="/signIn">
               <FontAwesomeIcon
                 icon="sign-in-alt" /> 로그인
             </nuxt-link>하세요. <br />
