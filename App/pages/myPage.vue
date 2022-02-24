@@ -163,7 +163,7 @@
       this.$store.dispatch('cursor/mouse');
       this.$nextTick(() => {
         if (!this.$store.state.signIn.isAuthorized) {        
-          alert('로그인부터 하세요 도라에몽아');
+          alert('로그인이 필요한 서비스입니다.');
           this.$router.push('/signIn');
         }
       })

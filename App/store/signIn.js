@@ -34,6 +34,9 @@ export default {
         });
         this.$router.push('/');
       } catch (error) {
+        if (error.response) {
+          alert(error.response.data.message);
+        }
         return;
       }
     },
