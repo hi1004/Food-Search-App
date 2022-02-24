@@ -285,7 +285,7 @@
         this.$router.push('/signUp');
       },
       onScroll() {
-        document.querySelector('.user').classList.remove('login');
+        // document.querySelector('.user').classList.remove('login');
         const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         if (currentScrollPosition < 0) {
           return;
@@ -355,9 +355,8 @@
     align-items: center;
     padding: 0 40px;
     transform: translate3d(0, 0, 0);
-    transition: 0.1s all ease-out;
     position: fixed;
-    transition: background 0.4s;
+    transition: 0.4s;
     background-color: rgba(0, 0, 0, 0.8);
     top: 0;
     z-index: 99;
