@@ -31,7 +31,7 @@
             </nuxt-link>하세요. <br />
             아이디는 이메일 형식으로 입력해주셔야 합니다.
           </p>
-        </div>
+        </div> 
       </div>
       <div class="guide-step">
         <div class="guide-img-section ">
