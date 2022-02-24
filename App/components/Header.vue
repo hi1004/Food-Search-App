@@ -81,7 +81,6 @@
             </h4>
             <ul
               v-if="isAuthorized"
-              @click="onActive"
               class="user active">
               <FontAwesomeIcon
                 class="iconBtn userIcon"
@@ -286,10 +285,6 @@
         this.showMobileMenu = false;
         this.$router.push('/signUp');
       },
-      onActive() {
-        const urlEl = document.querySelector('.user');
-        urlEl.classList.toggle('login');
-      },
       onScroll() {
         const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         if (currentScrollPosition < 0) {
@@ -330,6 +325,15 @@
           this.showMobileMenu = false;
         }
       });
+      window.addEventListener('click', (e) => {
+        console.log(e.target)
+        const btn = document.querySelector('.user svg');
+        const urlEl = document.querySelector('.user');
+        btn === e.target ? urlEl.classList.toggle('login') : false;
+        if (urlEl.classList.contains('login')) {
+          !(btn === e.target) ? urlEl.classList.remove('login') : false;
+        }                  
+      })
     },
     created() {
       if (process.client) {
