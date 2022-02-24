@@ -1,13 +1,11 @@
 <template>
   <div>
-    <client-only>
-      <Header />
-      <div class="cursor-container">
-        <div class="cursor"></div>
-      </div>  
-      <Nuxt />
-      <Footer />
-    </client-only>
+    <Header />
+    <div class="cursor-container">
+      <div class="cursor"></div>
+    </div>  
+    <Nuxt />
+    <Footer />
   </div>
 </template>
 
