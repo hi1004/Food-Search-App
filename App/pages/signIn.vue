@@ -157,9 +157,6 @@
       .user-button {
           background-color: $primary;
           transition: 0.3s;
-          &:hover {
-            background-color: #2c3e50;
-          }
         }
     }
     button {
