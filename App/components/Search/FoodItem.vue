@@ -31,7 +31,7 @@
         src="~/assets/images/allergy/allergy-unknown.png"
         class="mark"
         v-if="this.isUnknown && isAuthorized" />
-    </client-only>    
+    </client-only>
   </NuxtLink>
 </template>
 
@@ -87,7 +87,7 @@
           this.checkedAllergies.push(this.allergies[key]);
         }
       });
-      if (this.food.allergy === '알수없음') {
+      if (this.food.allergy === '알수없음' || this.food.allergy === '알 수 없음') {
         this.message = '정보제공 안함';
         this.isUnknown = true;
       } else {
@@ -105,7 +105,7 @@
     },
     computed: {
       ...mapState('signIn', ['allergiesInfo', 'isAuthorized']),
-      ...mapState('search', ['foodAllergies']),
+      ...mapState('search', ['foodAllergies', 'foodName', 'foods']),
     },
     mounted() {
       this.init();
@@ -188,6 +188,6 @@
         text-overflow: ellipsis;
         font-size: 15px;
       }
-    }   
+    }
   }
 </style>

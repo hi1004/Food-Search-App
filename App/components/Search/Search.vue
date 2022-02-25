@@ -30,12 +30,6 @@
       return {
         foodName: '',
         number: 12,
-        filters: [
-          // {
-          //   name: 'number',
-          //   items: [10, 20, 30],
-          // },
-        ],
       };
     },
     props: {

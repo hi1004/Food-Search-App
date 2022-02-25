@@ -34,7 +34,7 @@
               class="product-allergy-msg"><span class="safe"><FontAwesomeIcon icon="fa-circle-check" /></span> 안전한 식품입니다 :)</span>
             <span
               v-if="isUnknown"
-              class="product-allergy-msg"><span class="unknown"><FontAwesomeIcon icon="fa-circle-question" /></span> 알러지 정보가 없다요 :(</span>
+              class="product-allergy-msg"><span class="unknown"><FontAwesomeIcon icon="fa-circle-question" /></span> 알러지 정보가 없습니다 :(</span>
             <span
               v-if="isDanger"
               class="product-allergy-msg"><span class="danger"><FontAwesomeIcon icon="fa-triangle-exclamation" /></span> <span class="warning">{{ this.allergyArr }}</span> 포함!</span>
@@ -360,8 +360,9 @@
           this.checkedAllergies.push(this.allergies[key]);
         }
       });
-      if (this.theFood.allergy === '알수없음') {
+      if (this.theFood.allergy === '알수없음' || this.theFood.allergy === '알 수 없음') {
         this.isUnknown = true;
+        this.isSafe = false;
       } else {
         this.checkedAllergies.forEach(al => {
           if (this.theFood.allergy.includes(al)) {
