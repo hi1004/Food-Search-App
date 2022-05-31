@@ -34,7 +34,7 @@
 2022年1月26日~2月25日（4週間）
 
 ## 使った言語
-<FrontEnd>
+### FrontEnd
 - HTML5
 - CSS3
     - scss
@@ -49,7 +49,7 @@
     - swiper
 * Distribute:Heroku
   
-<BackEnd>
+### BackEnd
 - Django(DRF)
 - nginx
 - SQLite
