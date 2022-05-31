@@ -37,16 +37,16 @@
 <FrontEnd>
 - HTML5
 - CSS3
-  - scss
+    - scss
 - JAVASCRIPT
-  - node.js
-  - vue(Nuxt)
-  - express
-  - bootstrap
-  - webpack
-  - gsap
-  - chart
-  - swiper
+    - node.js
+    - vue(Nuxt)
+    - express
+    - bootstrap
+    - webpack
+    - gsap
+    - chart
+    - swiper
 * Distribute:Heroku
   
 <BackEnd>
