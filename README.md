@@ -12,7 +12,7 @@
 
 ## 1. 製作期間 ＆ 参加人数
 
--2022 年 1 月 26 日~2 月 25 日（4 週間）
+- 2022 年 1 月 26 日 ~ 2 月 25 日（4 週間）
 
 ![image](https://user-images.githubusercontent.com/80688093/170995783-3c27d721-e273-4ddd-ad1a-9cce86dbf131.png)
 
