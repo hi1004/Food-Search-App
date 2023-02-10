@@ -4,7 +4,7 @@
 >
 > このサービスは韓国語のみ、検索サービス（製品検索）を提供しています。
 >
-> [DEMO](https://bit.ly/3ytDaqK)
+> [DEMO](https://food-search-app-gold.vercel.app/)
 
 </br>
 
